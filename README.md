@@ -4,12 +4,12 @@ Spring 2019 - GitRowdy
 
 font = Segoe UI
 
-Initial Assignments
-Sai - Welcome Page
-Moses - Login & Password
-Chelsea - base set up of Goals & Upload
-Gabe - Settings
-Dakota - Cash Transactions
+Initial Assignments:
+  Sai - Welcome Page
+  Moses - Login & Password
+  Chelsea - base set up of Goals & Upload
+  Gabe - Settings
+  Dakota - Cash Transactions
 
 Login
 -Password only

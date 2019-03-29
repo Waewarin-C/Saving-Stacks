@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController">
+   <children>
+      <Pane layoutY="722.0" prefHeight="88.0" prefWidth="800.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #E0E0E0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <effect>
+            <DropShadow color="#0000002e" spread="0.2" />
+         </effect>
+         <children>
+            <Label alignment="CENTER" layoutX="663.0" layoutY="54.0" prefHeight="17.0" prefWidth="110.0" text="Settings">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="507.0" layoutY="54.0" prefHeight="17.0" prefWidth="110.0" text="Goals">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="345.0" layoutY="54.0" prefHeight="17.0" prefWidth="110.0" text="Upload Files">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="155.0" layoutY="54.0" prefHeight="20.0" prefWidth="129.0" text="Cash Transactions">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="54.0" prefHeight="17.0" prefWidth="110.0" text="Home">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>
-

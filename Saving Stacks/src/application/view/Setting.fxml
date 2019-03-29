@@ -1,8 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: EEEEEE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="apllication.controller.SettingController">
+   <children>
+      <Pane layoutY="712.0" prefHeight="88.0" prefWidth="800.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #E0E0E0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <effect>
+            <DropShadow color="#0000002e" spread="0.2" />
+         </effect>
+         <children>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="57.0" prefHeight="17.0" prefWidth="110.0" text="Home">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="155.0" layoutY="57.0" prefHeight="20.0" prefWidth="129.0" text="Cash Transactions">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="345.0" layoutY="57.0" prefHeight="17.0" prefWidth="110.0" text="Upload Files">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="507.0" layoutY="57.0" prefHeight="17.0" prefWidth="110.0" text="Goals">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="663.0" layoutY="57.0" prefHeight="17.0" prefWidth="110.0" text="Settings">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="52.0" prefWidth="221.0" text="SETTINGS">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="70.0" layoutY="198.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="263.0" text="Enable Password Protection" />
+      <TextField layoutX="70.0" layoutY="248.0" prefHeight="25.0" prefWidth="256.0" />
+      <Label layoutX="345.0" layoutY="252.0" text="Set / Change Password" />
+      <Label layoutX="69.0" layoutY="147.0" text="Secutiry">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutX="69.0" layoutY="303.0" prefWidth="500.0" />
+      <Label layoutX="69.0" layoutY="324.0" text="Customization">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="67.0" layoutY="383.0" mnemonicParsing="false" text="Light Mode (Default)" />
+      <RadioButton layoutX="64.0" layoutY="454.0" mnemonicParsing="false" text="Dark Mode" />
+      <Label layoutX="69.0" layoutY="535.0" text="Accent Color: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <CheckBox layoutX="68.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="189.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="309.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="414.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
+   </children>
 </AnchorPane>
-

@@ -1,10 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="800.0">
+         <children>
+            <Label layoutX="65.0" layoutY="69.0" text="Welcome to Saving Stacks!">
+               <font>
+                  <Font name="Segoe UI Bold Italic" size="35.0" />
+               </font>
+            </Label>
+            <Button layoutX="561.0" layoutY="696.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="198.0" style="-fx-background-color: black;" text="Get Started" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold Italic" size="24.0" />
+               </font>
+            </Button>
+            <Label layoutX="65.0" layoutY="190.0" text="Home">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font></Label>
+            <Label layoutX="65.0" layoutY="350.0" text="Goals">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font></Label>
+            <Label layoutX="65.0" layoutY="448.0" text="Upload Statements and Cash Transactions">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font></Label>
+            <Label layoutX="65.0" layoutY="573.0" text="Settings">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font></Label>
+            <Label layoutX="89.0" layoutY="471.0" text="- Upload your bank statements to contribute to your goals">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font></Label>
+            <Label layoutX="89.0" layoutY="217.0" text="- Track the progress on your goals">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="111.0" layoutY="244.0" text="- Weekly">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="111.0" layoutY="271.0" text="- Monthly">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="111.0" layoutY="298.0" text="- Yearly">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="373.0" text="- Create Goals">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="396.0" text="- Update Existing Goals">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font></Label>
+            <Label layoutX="89.0" layoutY="494.0" text="- Purchases/Earnings in cash? No problem">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font></Label>
+            <Label layoutX="111.0" layoutY="517.0" text="- You can manually enter them">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font></Label>
+            <Label layoutX="89.0" layoutY="596.0" text="- Personalize the color scheme">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="619.0" text="- Set a password to secure your information">
+               <font>
+                  <Font name="Segoe UI" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="132.0" text="What to Expect:">
+               <font>
+                  <Font name="Segoe UI Italic" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>

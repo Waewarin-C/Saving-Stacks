@@ -1,5 +1,23 @@
 package application.controller;
 
-public class SettingController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
+
+public class SettingController implements Initializable {
+
+	
+	
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		
+	}
+	
 
 }

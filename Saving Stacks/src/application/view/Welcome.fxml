@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.WelcomeController">
    <children>
       <Pane prefHeight="800.0" prefWidth="800.0">
          <children>
@@ -15,7 +15,7 @@
                   <Font name="Segoe UI Bold Italic" size="35.0" />
                </font>
             </Label>
-            <Button layoutX="561.0" layoutY="696.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="198.0" style="-fx-background-color: black;" text="Get Started" textFill="WHITE">
+            <Button layoutX="561.0" layoutY="696.0" mnemonicParsing="false" onAction="#handle" prefHeight="68.0" prefWidth="198.0" style="-fx-background-color: black;" text="Get Started" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold Italic" size="24.0" />
                </font>

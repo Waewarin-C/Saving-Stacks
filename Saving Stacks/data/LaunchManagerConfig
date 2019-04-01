@@ -1,0 +1,4 @@
+#File intended for on-launch setting preparation.
+user_password=false
+is_login_active=false
+welcome_shown_once=true

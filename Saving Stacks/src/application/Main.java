@@ -1,6 +1,6 @@
 package application;
 
-import application.model.LaunchManager;
+import application.model.SettingsManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -22,16 +22,15 @@ public class Main extends Application{
 		
 		try {
 			
-			LaunchManager launchManager = LaunchManager.loadConfig();
+			SettingsManager launchManager = SettingsManager.loadSettings("data/SettingsManagerConfig");
 			
-			if (!launchManager.getValueWithProperty("welcome_shown_once"))
+			if (!launchManager.getBooleanValueWithProperty("welcome_shown_once"))
 			{
 				
-				//TODO: Might be better to place the value setting within the welcome's handle.
 				root = FXMLLoader.load(getClass().getResource("view/Welcome.fxml"));
-				launchManager.setValueWithProperty("welcome_shown_once", true);
+				launchManager.setValueWithBooleanProperty("welcome_shown_once", true);
 				
-				LaunchManager.saveConfig(launchManager);
+				SettingsManager.saveSettings(launchManager);
 				
 			}
 			else

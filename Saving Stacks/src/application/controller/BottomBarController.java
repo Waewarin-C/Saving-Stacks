@@ -1,13 +1,14 @@
 package application.controller;
 
 
-import application.Main;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+
 
 /**
  * @author Gabriel Morales
@@ -28,14 +29,10 @@ public class BottomBarController {
 	 * Constructs the bottom bar navigation.
 	 * @param stage Stage - stage for computations.
 	 */
-	public BottomBarController(Stage stage)
+	public BottomBarController()
 	{
 		backingPane = new Pane();
-		backingPane.setPrefWidth(800);
-		backingPane.setPrefHeight(88);
-		backingPane.setLayoutX(0);
-		backingPane.setLayoutY(712);
-		backingPane.setStyle("-fx-background-color: #FFFFFF");
+		
 		backingPane.setStyle("-fx-border-color: #E0E0E0");
 		
 		DropShadow ds = new DropShadow();
@@ -43,11 +40,16 @@ public class BottomBarController {
 		ds.setHeight(21.0);
 		ds.setRadius(10);
 		ds.setSpread(0.2);
-		ds.setColor(Color.color(0, 0, 0, .20));
+		ds.setColor(Color.color(0, 0, 0, .18));
 		
 		backingPane.setEffect(ds);
-		
 	
+		backingPane.setPrefWidth(800);
+		backingPane.setPrefHeight(88);
+		backingPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+		backingPane.setLayoutX(0);
+		backingPane.setLayoutY(712);
+		
 	}
 	
 	/**
@@ -56,7 +58,7 @@ public class BottomBarController {
 	 */
 	public static void attachBottomBar(ObservableList<Node> anchor)
 	{
-		BottomBarController bc = new BottomBarController(Main.stage);
+		BottomBarController bc = new BottomBarController();
 		anchor.add(bc.getBackingPane());
 	}
 	

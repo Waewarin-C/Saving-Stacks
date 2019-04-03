@@ -21,42 +21,43 @@ import java.util.Set;
  * be done internally, with minimal calls externally.
  *
  */
-public class LaunchManager {
+public class SettingsManager {
 	
-	LinkedHashMap<String, Boolean> properties;
+	LinkedHashMap<String, String> properties;
 	
 	/**
 	 * Constructs a new LaunchManager.
 	 * Visibility private due to only internal use of the object creation.
 	 */
-	private LaunchManager()
+	private SettingsManager()
 	{
-		this.properties = new LinkedHashMap<String, Boolean>();
+		this.properties = new LinkedHashMap<String, String>();
 	}
 	
 	/**
 	 * Loads the config from the "LaunchManagerConfig" file located in the data folder.
 	 * Each property is mapped with a boolean value. Keys are the properties, the values
 	 * are assigned to these keys (i.e. the booleans)
+	 * @param file TODO
 	 * 
 	 * 
 	 * @return LaunchManger - A LaunchManager object for use with settings and/or launch prep.
 	 * @throws IOException
 	 */
-	public static LaunchManager loadConfig() throws IOException
+	public static SettingsManager loadSettings(String file) throws IOException
 	{
 		
-		LaunchManager launchManager = new LaunchManager();
-		Scanner scan = new Scanner(new File("data/LaunchManagerConfig"));
+		SettingsManager launchManager = new SettingsManager();
+		Scanner scan = new Scanner(new File(file));
 		
 		while (scan.hasNextLine())
 		{
 			
-			String line = scan.nextLine();
+			String line = scan.nextLine().trim();
 			String[] tokens = line.split("=");
 			
 			//Each property contains it's own boolean.
-			launchManager.getProperties().put(tokens[0], Boolean.parseBoolean(tokens[1]));
+			launchManager.getProperties().put(tokens[0], tokens[1]);
 			
 		}
 		
@@ -74,7 +75,7 @@ public class LaunchManager {
 	 * @param launchManager LaunchManager - A LaunchManager object from earlier creation.
 	 * @throws IOException
 	 */
-	public static void saveConfig(LaunchManager launchManager) throws IOException
+	public static void saveSettings(SettingsManager launchManager) throws IOException
 	{
 		
 		FileWriter fileWrite = new FileWriter(new File("data/LaunchManagerConfig"));
@@ -100,7 +101,7 @@ public class LaunchManager {
 	 * @param key String - Key to search for.
 	 * @return boolean - Value for the key searched for.
 	 */
-	public boolean getValueWithProperty(String key)
+	public boolean getBooleanValueWithProperty(String key)
 	{
 		
 		if (!this.getProperties().containsKey(key))
@@ -111,11 +112,38 @@ public class LaunchManager {
 			return false;
 		}
 		
-		Boolean value = this.getProperties().get(key);
+		Boolean value = Boolean.parseBoolean(this.getProperties().get(key));
 		
 		return value.booleanValue();
 		
 	}
+	
+	/**
+	 * Utility method for easy access to the values with
+	 * respective keys.
+	 * Provided an error occurs, method defaults to empty string.
+	 * and notifies client of such an error.
+	 * Otherwise, return the value for the key.
+	 * 
+	 * @param key String - Key to search for.
+	 * @return String - Value for the key searched for. (must be parsed).
+	 */
+	public String getValueWithProperty(String key)
+	{
+		
+		if (!this.getProperties().containsKey(key))
+		{
+			
+			System.out.println("WARNING: " + key + " does not exist within the HashMap, defaulted to false.");
+			
+			return "";
+		}
+		
+		
+		return this.getProperties().get(key);
+		
+	}
+	
 	
 	
 	/**
@@ -126,7 +154,28 @@ public class LaunchManager {
 	 * @param key String - key to change value of.
 	 * @param value Boolean - value to change to.
 	 */
-	public void setValueWithProperty(String key, Boolean value)
+	public void setValueWithBooleanProperty(String key, Boolean value)
+	{
+		if (!this.getProperties().containsKey(key))
+		{
+			System.out.println("WARNING: " + key + " does not exist within the HashMap; map left unchanged.");
+			return;
+		}
+		
+		this.getProperties().put(key, String.valueOf(value));
+		
+		
+	}
+	
+	/**
+	 * Sets the value of "Key" string to provided boolean value.
+	 * If error occurs, map is left unchanged and warning
+	 * is provided.
+	 * 
+	 * @param key String - key to change value of.
+	 * @param value String - value to change to.
+	 */
+	public void setValueWithProperty(String key, String value)
 	{
 		if (!this.getProperties().containsKey(key))
 		{
@@ -145,7 +194,7 @@ public class LaunchManager {
 	 * 
 	 * @return HashMap<String, Boolean> - HashMap with property=boolean key-value pairs.
 	 */
-	public LinkedHashMap<String, Boolean> getProperties() {
+	public LinkedHashMap<String, String> getProperties() {
 		return properties;
 	}
 
@@ -155,7 +204,7 @@ public class LaunchManager {
 	 * 
 	 * @param properties HashMap<String, Boolean> - HashMap to set the properties to.
 	 */
-	public void setProperties(LinkedHashMap<String, Boolean> properties) {
+	public void setProperties(LinkedHashMap<String, String> properties) {
 		
 		if (properties == null)
 		{

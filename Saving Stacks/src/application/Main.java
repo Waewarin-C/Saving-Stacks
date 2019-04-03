@@ -16,6 +16,7 @@ public class Main extends Application{
 	public void start(Stage primaryStage) {
 		
 		Parent root = null;
+		stage = primaryStage;
 		
 		//TODO: May need to load resource for CSS components later on. TBA.
 		
@@ -41,7 +42,7 @@ public class Main extends Application{
 			primaryStage.setScene(new Scene(root, 800, 800));
 			primaryStage.show();
 
-			stage = primaryStage;
+			
 			
 			
 		} catch(Exception e) {

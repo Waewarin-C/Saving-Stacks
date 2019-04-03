@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: EEEEEE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="apllication.controller.SettingController">
+<AnchorPane fx:id="homeAnchor" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="apllication.controller.SettingController">
    <children>
-      <Pane layoutY="712.0" prefHeight="88.0" prefWidth="800.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #E0E0E0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Pane layoutY="712.0" prefHeight="88.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E0E0E0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <effect>
             <DropShadow color="#0000002e" spread="0.2" />
          </effect>
@@ -44,7 +44,7 @@
       </Pane>
       <Label alignment="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="52.0" prefWidth="221.0" text="SETTINGS">
          <font>
-            <Font size="28.0" />
+            <Font name="Segoe UI" size="28.0" />
          </font>
       </Label>
       <RadioButton layoutX="70.0" layoutY="198.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="263.0" text="Enable Password Protection" />
@@ -69,8 +69,8 @@
          </font>
       </Label>
       <CheckBox layoutX="68.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox layoutX="189.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox layoutX="309.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox layoutX="414.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="199.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="319.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox layoutX="450.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
    </children>
 </AnchorPane>

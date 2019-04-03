@@ -25,9 +25,6 @@ public class WelcomeController implements EventHandler<ActionEvent>{
 			e.printStackTrace();
 		}
 		
-		
 	}
-	
-	
 	
 }

@@ -3,7 +3,7 @@ package application.model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -23,8 +23,7 @@ import java.util.Set;
  */
 public class LaunchManager {
 	
-	HashMap<String, Boolean> properties;
-	private static String commentLine;
+	LinkedHashMap<String, Boolean> properties;
 	
 	/**
 	 * Constructs a new LaunchManager.
@@ -32,7 +31,7 @@ public class LaunchManager {
 	 */
 	private LaunchManager()
 	{
-		this.properties = new HashMap<String, Boolean>();
+		this.properties = new LinkedHashMap<String, Boolean>();
 	}
 	
 	/**
@@ -54,12 +53,6 @@ public class LaunchManager {
 		{
 			
 			String line = scan.nextLine();
-			if(line.contains("#"))
-			{
-				LaunchManager.commentLine = line;
-				continue;
-			}
-			
 			String[] tokens = line.split("=");
 			
 			//Each property contains it's own boolean.
@@ -88,7 +81,6 @@ public class LaunchManager {
 			
 		Set<String> hashStrings = launchManager.getProperties().keySet();
 		
-		fileWrite.write(String.format("%s%n", LaunchManager.commentLine));
 		for (String s : hashStrings)
 		{
 			fileWrite.write(String.format("%s=%s%n", s, launchManager.getProperties().get(s)));
@@ -153,7 +145,7 @@ public class LaunchManager {
 	 * 
 	 * @return HashMap<String, Boolean> - HashMap with property=boolean key-value pairs.
 	 */
-	public HashMap<String, Boolean> getProperties() {
+	public LinkedHashMap<String, Boolean> getProperties() {
 		return properties;
 	}
 
@@ -163,7 +155,7 @@ public class LaunchManager {
 	 * 
 	 * @param properties HashMap<String, Boolean> - HashMap to set the properties to.
 	 */
-	public void setProperties(HashMap<String, Boolean> properties) {
+	public void setProperties(LinkedHashMap<String, Boolean> properties) {
 		
 		if (properties == null)
 		{

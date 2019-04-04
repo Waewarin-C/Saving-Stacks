@@ -35,5 +35,4 @@ Home:
 
 
 SUGGESTIONS:
-* Test test
-
+* Test: Test

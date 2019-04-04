@@ -73,12 +73,13 @@ public class SettingsManager {
 	 * 
 	 * 
 	 * @param launchManager LaunchManager - A LaunchManager object from earlier creation.
+	 * @param file TODO
 	 * @throws IOException
 	 */
-	public static void saveSettings(SettingsManager launchManager) throws IOException
+	public static void saveSettings(SettingsManager launchManager, String file) throws IOException
 	{
 		
-		FileWriter fileWrite = new FileWriter(new File("data/LaunchManagerConfig"));
+		FileWriter fileWrite = new FileWriter(new File(file));
 			
 		Set<String> hashStrings = launchManager.getProperties().keySet();
 		

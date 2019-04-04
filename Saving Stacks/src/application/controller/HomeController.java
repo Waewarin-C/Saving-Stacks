@@ -10,13 +10,15 @@ import javafx.scene.layout.AnchorPane;
 
 public class HomeController implements Initializable {
 
+	private static final String controllerID = "HOME";
+	
 	@FXML
 	AnchorPane homeAnchor;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		BottomBarController.attachBottomBar(homeAnchor.getChildren());
+		BottomBarController.attachBottomBar(homeAnchor.getChildren(), controllerID);
 		
 	}
 

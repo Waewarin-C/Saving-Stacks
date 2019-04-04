@@ -30,7 +30,7 @@ public class Main extends Application{
 				root = FXMLLoader.load(getClass().getResource("view/Welcome.fxml"));
 				launchManager.setValueWithBooleanProperty("welcome_shown_once", true);
 				
-				SettingsManager.saveSettings(launchManager);
+				SettingsManager.saveSettings(launchManager, "data/SettingsManagerConfig");
 				
 			}
 			else

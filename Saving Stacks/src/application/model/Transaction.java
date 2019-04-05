@@ -7,14 +7,16 @@ public class Transaction {
 	private String transDate;
 	private String name;
 	private String tag;
+	private double amount;
 	
-	public Transaction(int idNumber, String entryDate, String transDate, String name, String tag)
+	public Transaction(int idNumber, String entryDate, String transDate, String name, String tag, double amount)
 	{
 		this.transId = idNumber;
 		this.entryDate = entryDate;
 		this.transDate = transDate;
 		this.name = name;
 		this.tag = tag;
+		this.amount = amount;
 	}
 	
 	//TODO: add addTransaction function

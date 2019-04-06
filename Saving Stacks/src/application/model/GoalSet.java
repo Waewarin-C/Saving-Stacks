@@ -10,27 +10,31 @@ public class GoalSet {
 	
 	private ArrayList<Goal> goalArray;
 	
+	/**
+	 * GoalSet constructor for Goal Page initialization
+	 */
 	public GoalSet()
 	{
 		this.goalArray = new ArrayList<Goal>();
 	}
 	
 
-	//save goals to file when typed into the interface
-	public void saveGoal() {
+	/**
+	 * save goals to file when typed into the interface
+	 * @param file name as a String to use to save the goals.
+	 */
+	public void saveGoalArray( String file ) {
 		
 		try {
 			// open the file for writing	
-			FileWriter writer = null;
-			File file = new File("goal.csv");
+			FileWriter writer = new FileWriter( new File( file ) );
 			
-			if(file.exists())
-				writer = new FileWriter( new File("goal.csv") );				
-			else
-				System.out.print("Doesn't exists");
-			
-			// write goal to file 
-			writer.write( toString() + "\n" );
+			for( Goal a : goalArray )
+			{
+				// write goal to file 
+				writer.write( a.toString() );
+			}
+
 			
 			// close the file!
 			writer.close();			
@@ -39,7 +43,9 @@ public class GoalSet {
 		}
 	}
 	
-	//load goals from file
+	/**
+	 * @param the file File of the goal information.
+	 */
 	public void loadGoals( File file )
 	{		
 		
@@ -55,7 +61,7 @@ public class GoalSet {
 				
 				Goal newGoal = new Goal(tokens[0],tokens[1], dollarAmt );
 				
-				goalArray.add(newGoal);
+				this.goalArray.add(newGoal);
 			}
 				
 			scan.close();
@@ -81,7 +87,10 @@ public class GoalSet {
 		this.goalArray = goalArray;
 	}
 
-	
+	/**
+	 * Adds a goal to the goalArray.
+	 * @param goal Goal to be added
+	 */	
 	public void addGoal(Goal goal)
 	{
 		this.goalArray.add(goal);

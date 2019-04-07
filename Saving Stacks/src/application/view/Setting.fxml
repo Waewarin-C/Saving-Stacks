@@ -10,28 +10,27 @@
 
 <AnchorPane fx:id="settingAnchor" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SettingController">
    <children>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="52.0" prefWidth="221.0" text="SETTINGS">
+      <Label fx:id="title" alignment="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="52.0" prefWidth="221.0" text="SETTINGS">
          <font>
             <Font name="Segoe UI" size="28.0" />
          </font>
       </Label>
-      <RadioButton layoutX="70.0" layoutY="198.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="263.0" text="Enable Password Protection" />
-      <TextField layoutX="70.0" layoutY="248.0" prefHeight="25.0" prefWidth="256.0" />
-      <Label layoutX="345.0" layoutY="252.0" text="Set / Change Password" />
-      <Label layoutX="69.0" layoutY="147.0" text="Secutiry">
+      <RadioButton fx:id="passwordRadio" layoutX="70.0" layoutY="198.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="263.0" text="Enable Password Protection" />
+      <TextField fx:id="password" layoutX="70.0" layoutY="248.0" prefHeight="25.0" prefWidth="256.0" style="-fx-background-color: F5F5F5;" />
+      <Label fx:id="passPrompt" layoutX="345.0" layoutY="252.0" text="Set / Change Password" />
+      <Label fx:id="security" layoutX="69.0" layoutY="147.0" text="Secutiry">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Separator layoutX="69.0" layoutY="303.0" prefWidth="500.0" />
-      <Label layoutX="69.0" layoutY="324.0" text="Customization">
+      <Label fx:id="customization" layoutX="69.0" layoutY="324.0" text="Customization">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <RadioButton layoutX="67.0" layoutY="383.0" mnemonicParsing="false" text="Light Mode (Default)" />
-      <RadioButton layoutX="64.0" layoutY="454.0" mnemonicParsing="false" text="Dark Mode" />
-      <Label layoutX="69.0" layoutY="535.0" text="Accent Color: ">
+      <RadioButton fx:id="lightMode" layoutX="67.0" layoutY="383.0" mnemonicParsing="false" onAction="#lightHandle" text="Light Mode (Default)" />
+      <RadioButton fx:id="darkMode" layoutX="64.0" layoutY="454.0" mnemonicParsing="false" onAction="#darkHandle" text="Dark Mode" />
+      <Label fx:id="accentColor" layoutX="69.0" layoutY="535.0" text="Accent Color: ">
          <font>
             <Font size="18.0" />
          </font>

@@ -85,13 +85,16 @@ public class BottomBarController {
 	 * Utility function allowing caller to attach bar to given anchor point.
 	 * 
 	 * @param anchor ObservableList<Node> - Preferably the children given by .getChildren() on a Parent subclass.
-	 * @param controllerID TODO
+	 * @param controllerID String - Helps identify which controller the bottom controller is connected to currently.
+	 * @return BottomBarController - For use in settings only.
 	 */
-	public static void attachBottomBar(ObservableList<Node> anchor, String controllerID)
+	public static BottomBarController attachBottomBar(ObservableList<Node> anchor, String controllerID)
 	{
 		BottomBarController bc = new BottomBarController(controllerID);
 		anchor.add(bc.getBackingPane());
 		bc.enactPushActions();
+		
+		return bc;
 
 	}
 	
@@ -265,6 +268,7 @@ public class BottomBarController {
 	{
 		this.controllerID = controllerID;
 	}
+	
 	
 	
 }

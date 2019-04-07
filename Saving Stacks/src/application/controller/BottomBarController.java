@@ -92,6 +92,7 @@ public class BottomBarController {
 		BottomBarController bc = new BottomBarController(controllerID);
 		anchor.add(bc.getBackingPane());
 		bc.enactPushActions();
+
 	}
 	
 	/**
@@ -113,7 +114,7 @@ public class BottomBarController {
 		
 		attachHandlerWithView(home, "Home.fxml");
 		attachHandlerWithView(settings, "Setting.fxml");
-		
+		attachHandlerWithView(goals, "GoalPage.fxml");
 		
 		if (this.getControllerID().equals("HOME"))
 		{
@@ -127,6 +128,14 @@ public class BottomBarController {
 			settings.setDisable(true);
 			settings.setStyle("-fx-opacity: 1.0");
 		}
+		else if (this.getControllerID().equals("GOALS"))
+		{
+			goals.setFont(new Font("Segoe UI bold", 14));
+			goals.setDisable(true);
+			goals.setStyle("-fx-opacity: 1.0");
+		}
+		
+		
 		
 	}
 	

@@ -4,20 +4,27 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	
 	public GridPane gridPane;
 	
+	
+	@FXML
+	AnchorPane goalAnchor;
+	
+	public static final String controllerID = "GOALS";
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		BottomBarController.attachBottomBar(goalAnchor.getChildren(), controllerID);
 	}
 	
 	@Override

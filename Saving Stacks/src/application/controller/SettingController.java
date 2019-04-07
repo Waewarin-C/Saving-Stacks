@@ -12,12 +12,12 @@ public class SettingController implements Initializable {
 	private static final String controllerID = "SETTINGS";
 	
 	@FXML
-	AnchorPane homeAnchor;
+	AnchorPane settingAnchor;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		BottomBarController.attachBottomBar(homeAnchor.getChildren(), controllerID);
+		BottomBarController.attachBottomBar(settingAnchor.getChildren(), controllerID);
 	}
 	
 

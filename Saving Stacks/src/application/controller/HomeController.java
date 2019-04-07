@@ -20,6 +20,7 @@ public class HomeController implements Initializable {
 		
 		BottomBarController.attachBottomBar(homeAnchor.getChildren(), controllerID);
 		
+		
 	}
 
 }

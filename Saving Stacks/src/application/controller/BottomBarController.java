@@ -25,12 +25,13 @@ import javafx.scene.text.Font;
 /**
  * @author Gabriel Morales
  * 
+ * <h1>
  * BottomBarController class is intended to provided
  * the functionality for the navigation central
  * to the application. This will contain 
  * all the logic pertaining to the bottom
  * bar as it persists through the views.
- * 
+ * </h1>
  */
 
 public class BottomBarController {

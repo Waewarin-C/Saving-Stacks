@@ -16,28 +16,22 @@
          </font>
       </Label>
       <RadioButton fx:id="passwordRadio" layoutX="70.0" layoutY="198.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="263.0" text="Enable Password Protection" />
-      <TextField fx:id="password" layoutX="70.0" layoutY="248.0" prefHeight="25.0" prefWidth="256.0" style="-fx-background-color: F5F5F5;" />
-      <Label fx:id="passPrompt" layoutX="345.0" layoutY="252.0" text="Set / Change Password" />
-      <Label fx:id="security" layoutX="69.0" layoutY="147.0" text="Secutiry">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="customization" layoutX="69.0" layoutY="324.0" text="Customization">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <RadioButton fx:id="lightMode" layoutX="67.0" layoutY="383.0" mnemonicParsing="false" onAction="#lightHandle" text="Light Mode (Default)" />
-      <RadioButton fx:id="darkMode" layoutX="64.0" layoutY="454.0" mnemonicParsing="false" onAction="#darkHandle" text="Dark Mode" />
-      <Label fx:id="accentColor" layoutX="69.0" layoutY="535.0" text="Accent Color: ">
+      <TextField fx:id="password" layoutX="67.0" layoutY="263.0" prefHeight="42.0" prefWidth="385.0" promptText="Set Password" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
          <font>
             <Font size="18.0" />
+         </font></TextField>
+      <Label fx:id="security" layoutX="67.0" layoutY="148.0" text="Secutiry">
+         <font>
+            <Font size="20.0" />
          </font>
       </Label>
-      <CheckBox layoutX="68.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox layoutX="199.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox layoutX="319.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
-      <CheckBox layoutX="450.0" layoutY="591.0" mnemonicParsing="false" text="CheckBox" />
+      <Label fx:id="customization" layoutX="67.0" layoutY="385.0" text="UI Mode and Accent Colors">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Pane fx:id="accents" layoutX="67.0" layoutY="527.0" prefHeight="144.0" prefWidth="622.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
+      <Button fx:id="lightMode" layoutX="67.0" layoutY="436.0" mnemonicParsing="false" onAction="#lightHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-color: #BDBDBD; -fx-border-radius: 20;" text="Light " />
+      <Button fx:id="darkMode" layoutX="260.0" layoutY="436.0" mnemonicParsing="false" onAction="#darkHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Dark" textFill="WHITE" />
    </children>
 </AnchorPane>

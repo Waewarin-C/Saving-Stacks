@@ -3,6 +3,7 @@ package application.model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -73,7 +74,7 @@ public class SettingsManager {
 	 * 
 	 * 
 	 * @param launchManager LaunchManager - A LaunchManager object from earlier creation.
-	 * @param file TODO
+	 * @param file String - File to open.
 	 * @throws IOException
 	 */
 	public static void saveSettings(SettingsManager launchManager, String file) throws IOException
@@ -81,11 +82,18 @@ public class SettingsManager {
 		
 		FileWriter fileWrite = new FileWriter(new File(file));
 			
-		Set<String> hashStrings = launchManager.getProperties().keySet();
+		ArrayList<String> hashStrings = new ArrayList<>(launchManager.getProperties().keySet());
 		
 		for (String s : hashStrings)
 		{
-			fileWrite.write(String.format("%s=%s%n", s, launchManager.getProperties().get(s)));
+			if (s == hashStrings.get(hashStrings.size() - 1))
+			{
+				fileWrite.write(String.format("%s=%s", s, launchManager.getProperties().get(s)));
+			}
+			else
+			{
+				fileWrite.write(String.format("%s=%s%n", s, launchManager.getProperties().get(s)));
+			}
 		}
 		
 		

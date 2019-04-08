@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
+   <children>
+      <Pane layoutX="245.0" layoutY="400.0" prefHeight="202.0" prefWidth="310.0" />
+      <PasswordField layoutX="294.0" layoutY="274.0" prefHeight="30.0" prefWidth="194.0" />
+      <Button layoutX="524.0" layoutY="274.0" mnemonicParsing="false" text="Login" />
+      <Label layoutX="129.0" layoutY="279.0" prefHeight="20.0" prefWidth="96.0" text="Password:" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="77.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="329.0" layoutY="320.0" mnemonicParsing="false" text="Forgot Password" />
+   </children>
 </AnchorPane>

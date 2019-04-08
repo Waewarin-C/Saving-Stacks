@@ -225,7 +225,7 @@ public class SettingsManager {
 	
 	
 	
-	
+	//TODO: Create method that checks the config file for the hash for the password and returns a boolean
 	
 
 }

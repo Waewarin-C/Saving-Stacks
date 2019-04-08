@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  * @author Gabriel Morales
@@ -57,7 +56,6 @@ public class SettingsManager {
 			String line = scan.nextLine().trim();
 			String[] tokens = line.split("=");
 			
-			//Each property contains it's own boolean.
 			launchManager.getProperties().put(tokens[0], tokens[1]);
 			
 		}
@@ -71,7 +69,7 @@ public class SettingsManager {
 	/**
 	 * Saves any modifications (from scratch) to the config file. 
 	 * Avoid redundant calling to reduce efficiency hits.
-	 * 
+	 * Primarily called on app exit.
 	 * 
 	 * @param launchManager LaunchManager - A LaunchManager object from earlier creation.
 	 * @param file String - File to open.
@@ -223,9 +221,7 @@ public class SettingsManager {
 		this.properties = properties;
 	}
 	
-	
-	
-	//TODO: Create method that checks the config file for the hash for the password and returns a boolean
+
 	
 
 }

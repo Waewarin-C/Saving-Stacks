@@ -25,9 +25,28 @@ public class LoginController implements Initializable, EventHandler<ActionEvent>
 	//TODO: Link up to the Login view, check the user's password
 
 	
-		//TODO: Call on the settingsManager password function to check the password to decide page switch
-		
-		//TODO: Make sure that login can handle false user information
+	//TODO: Call on the settings static variable in main to check the password to decide page switch
+	
+		/* Dear Moses, the SettingsManager class has the following object method:
+		 * 
+		 * public String getValueWithProperty(String key)
+		 * 
+		 * The config itself has this key: user_password
+		 * Use the available settings variable from main as follows:
+		 * 
+		 * Main.settings.getValueWithProperty("user_password");
+		 * 
+		 * That way you can get the value instantly from the settings
+		 * HashMap :)
+		 * 
+		 * Feel free to change how the pass is stored in the config via the 
+		 * following method in the SettingController class:
+		 * 
+		 * handle() line 91-96. The TextField is called "password". 
+		 * 
+		 */
+	
+	//TODO: Make sure that login can handle false user information
 		
 	
 	@Override

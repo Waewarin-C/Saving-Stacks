@@ -3,6 +3,7 @@ package application.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import application.model.ColorTransition;
 import javafx.animation.ParallelTransition;
 import javafx.event.ActionEvent;
@@ -12,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -42,30 +42,57 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		bottomBar = BottomBarController.attachBottomBar(settingAnchor.getChildren(), controllerID);
-		//TODO: Condense.
+
+		
 		settingAnchor.backgroundProperty().bind(bottomBar.getBackingPane().backgroundProperty());
+		lightMode.backgroundProperty().bind(settingAnchor.backgroundProperty());
+		
 		security.textFillProperty().bind(title.textFillProperty());
 		customization.textFillProperty().bind(title.textFillProperty());
 		passwordRadio.textFillProperty().bind(title.textFillProperty());
-		accents.backgroundProperty().bind(password.backgroundProperty());
-		lightMode.backgroundProperty().bind(settingAnchor.backgroundProperty());
 		lightMode.textFillProperty().bind(title.textFillProperty());
 		
+		password.visibleProperty().bind(passwordRadio.selectedProperty());
 		
-		for(Button b : bottomBar.getBarButtons())
+		accents.backgroundProperty().bind(password.backgroundProperty());
+		
+		for (Button b : bottomBar.getBarButtons())
 		{
-			b.backgroundProperty().bind(bottomBar.getBackingPane().backgroundProperty());
 			b.textFillProperty().bind(title.textFillProperty());
 		}
+		
+		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
+		{
+			
+			darkMode.setDisable(true);
+			lightMode.setDisable(false);
+			//load dark styling from config.
+			
+		}
+		else
+		{
+			darkMode.setDisable(false);
+			lightMode.setDisable(true);
+			//load light styling from config.
+		}
+		
+		if (Main.settings.getBooleanValueWithProperty("is_protection_enabled"))
+		{
+			passwordRadio.setSelected(true);
+		}
+		else
+		{
+			passwordRadio.setSelected(false);
+		}
+		
 		
 	}
 
 	@Override
 	public void handle(ActionEvent arg0) {
 		
-		
-		
-		
+		Main.settings.setValueWithProperty("user_password", String.valueOf(password.getText()));
+		//TODO: Display message saying password saved successfully.
 	}
 	
 	public void darkHandle(ActionEvent darkEvent)
@@ -75,11 +102,14 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		ColorTransition passwordColor = new ColorTransition(Duration.millis(500), password, Color.web("F5F5F5"), Color.web("25282f"), "-fx-text-fill: white; -fx-background-radius: 30; -fx-background-color: ");
 		
 		
-		
 		ParallelTransition pt = new ParallelTransition(bottomBarTransition, textColor, passwordColor);
 		
 		darkMode.setDisable(true);
 		lightMode.setDisable(false);
+		
+		Main.settings.setValueWithBooleanProperty("is_dark_mode_enabled", true);
+		
+		//Change css styling in config to dark
 		
 		pt.play();
 	}
@@ -98,7 +128,25 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		darkMode.setDisable(false);
 		lightMode.setDisable(true);
 		
+		
+		Main.settings.setValueWithBooleanProperty("is_dark_mode_enabled", false);
+		
+		//Change css styling in config to light
+		
 		pt.play();
+	}
+	
+	
+	public void radioToggle(ActionEvent event)
+	{
+		if (passwordRadio.isSelected())
+		{
+			Main.settings.setValueWithBooleanProperty("is_protection_enabled", true);
+		}
+		else
+		{
+			Main.settings.setValueWithBooleanProperty("is_protection_enabled", false);
+		}
 	}
 
 }

@@ -185,6 +185,8 @@ public class BottomBarController {
 			b.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 			b.setLayoutY(57);
 			b.setFont(new Font("Segoe UI",14));
+			b.backgroundProperty().bind(this.getBackingPane().backgroundProperty());
+			
 		}
 		
 		

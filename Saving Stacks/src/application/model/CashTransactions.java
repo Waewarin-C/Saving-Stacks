@@ -14,16 +14,25 @@ public class CashTransactions {
 
 	public double total; 
 	public String item;
-	public String date; 
+	public String dateBuy; 
 	public String tag; 
+	public String date; 
 	public int id; 
 	
-private Transaction CashT = new Transaction( id, date, date, item, tag, total);
-	
+private Transaction CashT = new Transaction( id, dateBuy, date, item, tag, total){
 
 public void handle(){
+	
+	CashT.id.get();
+	
+	
+	
 	String item = item.getText();
-	String total = total.getText(); 
+	String total = total.getText();
+	this.tag = tag;
+	this.id= id;
+	String dateBuy = dateBuy.getText();
+	
 	
 }
 

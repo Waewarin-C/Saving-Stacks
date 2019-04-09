@@ -1,5 +1,5 @@
 package application.model;
-import java.util.date;
+import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;

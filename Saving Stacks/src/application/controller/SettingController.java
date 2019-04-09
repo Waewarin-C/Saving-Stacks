@@ -92,14 +92,23 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	public void handle(ActionEvent arg0) {
 		
 		Main.settings.setValueWithProperty("user_password", String.valueOf(password.getText()));
-		//TODO: Display message saying password saved successfully.
+		//TODO: Display message with successful password change.
 	}
 	
 	public void darkHandle(ActionEvent darkEvent)
 	{
-		ColorTransition bottomBarTransition = new ColorTransition(Duration.millis(500), bottomBar.getBackingPane(), Color.web("ffffff"), Color.web("33333d"), "-fx-background-color: ");
-		ColorTransition textColor = new ColorTransition(Duration.millis(500), title, Color.web("000000"), Color.web("ffffff"), "-fx-text-fill: ");
-		ColorTransition passwordColor = new ColorTransition(Duration.millis(500), password, Color.web("F5F5F5"), Color.web("25282f"), "-fx-text-fill: white; -fx-background-radius: 30; -fx-background-color: ");
+		
+		ColorTransition bottomBarTransition = new ColorTransition(Duration.millis(500),
+				bottomBar.getBackingPane(), Color.web("ffffff"), Color.web("33333d"), "-fx-background-color: ");
+		
+		
+		ColorTransition textColor = new ColorTransition(Duration.millis(500), 
+				title, Color.web("000000"), Color.web("ffffff"), "-fx-text-fill: ");
+		
+		
+		ColorTransition passwordColor = new ColorTransition(Duration.millis(500), password, Color.web("F5F5F5"), 
+				Color.web("25282f"), "-fx-text-fill: white; -fx-background-radius: 30; -fx-background-color: ");
+		
 		
 		
 		ParallelTransition pt = new ParallelTransition(bottomBarTransition, textColor, passwordColor);
@@ -117,9 +126,17 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	public void lightHandle(ActionEvent darkEvent)
 	{
 		
-		ColorTransition bottomBarTransition = new ColorTransition(Duration.millis(500), bottomBar.getBackingPane(), Color.web("33333d"), Color.web("ffffff"), "-fx-background-color: ");
-		ColorTransition textColor = new ColorTransition(Duration.millis(500), title, Color.web("ffffff"), Color.web("000000"), "-fx-text-fill: ");
-		ColorTransition passwordColor = new ColorTransition(Duration.millis(500), password, Color.web("25282f"), Color.web("F5F5F5"), "-fx-background-radius: 30; -fx-background-color: ");
+		ColorTransition bottomBarTransition = new ColorTransition(Duration.millis(500), bottomBar.getBackingPane(), 
+				Color.web("33333d"), Color.web("ffffff"), "-fx-background-color: ");
+		
+		
+		
+		ColorTransition textColor = new ColorTransition(Duration.millis(500), title, 
+				Color.web("ffffff"), Color.web("000000"), "-fx-text-fill: ");
+		
+		
+		ColorTransition passwordColor = new ColorTransition(Duration.millis(500), password, Color.web("25282f"), 
+				Color.web("F5F5F5"), "-fx-background-radius: 30; -fx-background-color: ");
 		
 		
 		

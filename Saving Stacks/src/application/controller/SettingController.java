@@ -23,11 +23,13 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 
 	private static final String controllerID = "SETTINGS";
 	private BottomBarController bottomBar;
+	private String selectedStyle;
+	private Button settingButton;
 	
 	@FXML
 	AnchorPane settingAnchor;
 	@FXML
-	Label title, security, customization;
+	Label title, security, customization, accentPrompt;
 	@FXML
 	RadioButton passwordRadio;
 	@FXML
@@ -35,16 +37,20 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	@FXML
 	Pane accents;
 	@FXML
-	Button darkMode, lightMode;
+	Button darkMode, lightMode, tint0, tint1, tint2, tint3, tint4;
 
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		selectedStyle = Main.settings.getValueWithProperty("defined_tint_color");
+		
 		bottomBar = BottomBarController.attachBottomBar(settingAnchor.getChildren(), controllerID);
 		
 		settingAnchor.backgroundProperty().bind(bottomBar.getBackingPane().backgroundProperty());
 		lightMode.backgroundProperty().bind(settingAnchor.backgroundProperty());
+		
+		accentPrompt.textFillProperty().bind(title.textFillProperty());
 		
 		security.textFillProperty().bind(title.textFillProperty());
 		customization.textFillProperty().bind(title.textFillProperty());
@@ -57,6 +63,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 		for (Button b :bottomBar.getBarButtons())
 		{
+			if (b.getText().equalsIgnoreCase("settings"))
+			{
+				settingButton = b;
+				break;
+			}
+			
 			b.textFillProperty().bind(title.textFillProperty());
 		}
 		
@@ -68,6 +80,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			title.setStyle("-fx-text-fill: white");
 			password.setStyle("-fx-background-color: #25282f; ; -fx-background-radius: 30");
 			
+			
+			tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_dark"));
+			tint1.setStyle("-fx-background-color: #4f83cc");
+			tint2.setStyle("-fx-background-color: #f05545");
+			tint3.setStyle("-fx-background-color: #60ad5e");
+			tint4.setStyle("-fx-background-color: #ff9d3f");
 		}
 		else
 		{
@@ -77,6 +95,14 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			
 			title.setStyle("-fx-text-fill: black");
 			password.setStyle("-fx-background-color: #F5F5F5; -fx-background-radius: 30");
+			
+			
+			//TODO: Also set up dark color options. Also put these into a data structure to navigate easier.
+			tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_light"));
+			tint1.setStyle("-fx-background-color: #002f6c");
+			tint2.setStyle("-fx-background-color: #b71c1c");
+			tint3.setStyle("-fx-background-color: #005005");
+			tint4.setStyle("-fx-background-color: #ef6c00");
 		}
 		
 		if (Main.settings.getBooleanValueWithProperty("is_protection_enabled"))
@@ -97,6 +123,53 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		Main.settings.setValueWithProperty("user_password", String.valueOf(password.getText()));
 		//TODO: Display message with successful password change.
 	}
+	
+	
+	public void tintHandle(ActionEvent arg0)
+	{
+		String style = tint0.getStyle().split(" ")[1];
+		Main.settings.setValueWithProperty("defined_tint_color", style);
+		selectedStyle = style;
+		settingButton.setStyle("-fx-text-fill: " + style);
+		
+	}
+	
+	
+	public void tintHandle1(ActionEvent arg0)
+	{
+		String style = tint1.getStyle().split(" ")[1];
+		Main.settings.setValueWithProperty("defined_tint_color", style);
+		selectedStyle = style;
+		settingButton.setStyle("-fx-text-fill: " + style);
+	}
+	
+	
+	public void tintHandle2(ActionEvent arg0)
+	{
+		String style = tint2.getStyle().split(" ")[1];
+		Main.settings.setValueWithProperty("defined_tint_color", style);
+		selectedStyle = style;
+		settingButton.setStyle("-fx-text-fill: " + style);
+	}
+	
+	
+	public void tintHandle3(ActionEvent arg0)
+	{
+		String style = tint3.getStyle().split(" ")[1];
+		Main.settings.setValueWithProperty("defined_tint_color", style);
+		selectedStyle = style;
+		settingButton.setStyle("-fx-text-fill: " + style);
+	}
+	
+	
+	public void tintHandle4(ActionEvent arg0)
+	{
+		String style = tint4.getStyle().split(" ")[1];
+		Main.settings.setValueWithProperty("defined_tint_color", style);
+		selectedStyle = style;
+		settingButton.setStyle("-fx-text-fill: " + style);
+	}
+
 	
 	public void darkHandle(ActionEvent darkEvent)
 	{
@@ -120,6 +193,42 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		lightMode.setDisable(false);
 		
 		Main.settings.setValueWithBooleanProperty("is_dark_mode_enabled", true);
+		
+		
+		tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_dark"));
+		tint1.setStyle("-fx-background-color: #4f83cc");
+		tint2.setStyle("-fx-background-color: #f05545");
+		tint3.setStyle("-fx-background-color: #60ad5e");
+		tint4.setStyle("-fx-background-color: #ff9d3f");
+		
+		
+		if (selectedStyle.equals(Main.settings.getValueWithProperty("default_tint_color_light")))
+		{
+			selectedStyle = Main.settings.getValueWithProperty("default_tint_color_dark");
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		else if (selectedStyle.equals("#002f6c"))
+		{
+			selectedStyle = "#4f83cc";
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		else if (selectedStyle.equals("#b71c1c"))
+		{
+			selectedStyle = "#f05545";
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		else if (selectedStyle.equals("#005005"))
+		{
+			selectedStyle = "#60ad5e";
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		else
+		{
+			selectedStyle = "#ff9d3f";
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		
+		settingButton.setStyle("-fx-text-fill: " + selectedStyle);
 		
 		pt.play();
 	}
@@ -146,9 +255,45 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 		Main.settings.setValueWithBooleanProperty("is_dark_mode_enabled", false);
 		
+		
+		
+		tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_light"));
+		tint1.setStyle("-fx-background-color: #002f6c");
+		tint2.setStyle("-fx-background-color: #b71c1c");
+		tint3.setStyle("-fx-background-color: #005005");
+		tint4.setStyle("-fx-background-color: #ef6c00");
+		
+		
+		if (selectedStyle.equals(Main.settings.getValueWithProperty("default_tint_color_dark")))
+		{
+			selectedStyle = Main.settings.getValueWithProperty("default_tint_color_light");
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		else if (selectedStyle.equals("#4f83cc"))
+		{
+			selectedStyle = "#002f6c";
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		else if (selectedStyle.equals("#f05545"))
+		{
+			selectedStyle = "#b71c1c";
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		else if (selectedStyle.equals("#60ad5e"))
+		{
+			selectedStyle = "#005005";
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		else
+		{
+			selectedStyle = "#ef6c00";
+			Main.settings.setValueWithProperty("defined_tint_color", selectedStyle);
+		}
+		
+		settingButton.setStyle("-fx-text-fill: " + selectedStyle);
+		
 		pt.play();
 	}
-	
 	
 	public void radioToggle(ActionEvent event)
 	{

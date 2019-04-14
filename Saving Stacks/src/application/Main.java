@@ -56,19 +56,21 @@ public class Main extends Application{
 	
 	
 	public static void main(String[] args) {
-		SettingsManager settingManager = null;
-		try {
-			settingManager = SettingsManager.loadSettings("data/SettingsManagerConfig");
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		settings = settingManager;
 		
-		launch(args);
+		SettingsManager settingManager = null;
+		//load settings right before launch. Required for settings to remain persistent.
 		try {
+			
+			settingManager = SettingsManager.loadSettings("data/SettingsManagerConfig");
+			
+			settings = settingManager;
+		
+			launch(args);
+			
 			SettingsManager.saveSettings(settings, "data/SettingsManagerConfig");
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

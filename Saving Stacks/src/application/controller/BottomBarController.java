@@ -83,6 +83,8 @@ public class BottomBarController extends Thread{
 		{
 			backingPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 			this.describedTint = Main.settings.getValueWithProperty("default_tint_color_light");
+			
+			
 		}
 		else
 		{
@@ -90,6 +92,16 @@ public class BottomBarController extends Thread{
 			backingPane.setStyle("-fx-background-color: #33333d");
 			for (Button b : buttons)
 				b.setStyle("-fx-text-fill: white");
+			
+		}
+		
+		if(Main.settings.getValueWithProperty("defined_tint_color").equals("unset"))
+		{
+			Main.settings.setValueWithProperty("defined_tint_color", describedTint);
+		}
+		else
+		{
+			this.describedTint = Main.settings.getValueWithProperty("defined_tint_color");
 		}
 		
 		backingPane.getChildren().addAll(buttons);
@@ -186,6 +198,7 @@ public class BottomBarController extends Thread{
 			goalPath.setOpacity(1);
 			
 			goals.setTextFill(Color.web(this.describedTint));
+			
 			
 		}
 		

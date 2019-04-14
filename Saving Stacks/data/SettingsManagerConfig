@@ -5,3 +5,4 @@ is_dark_mode_enabled=true
 user_password=admin
 default_tint_color_dark=#FFFFFF
 default_tint_color_light=#000000
+defined_tint_color=#60ad5e

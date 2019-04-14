@@ -25,13 +25,25 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="customization" layoutX="67.0" layoutY="385.0" text="UI Mode and Accent Colors">
+      <Label fx:id="customization" layoutX="67.0" layoutY="358.0" text="UI Look and Feel">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Pane fx:id="accents" layoutX="67.0" layoutY="527.0" prefHeight="144.0" prefWidth="622.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
-      <Button fx:id="lightMode" layoutX="67.0" layoutY="436.0" mnemonicParsing="false" onAction="#lightHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-color: #BDBDBD; -fx-border-radius: 20; -fx-border-width: 2;" text="Light " />
-      <Button fx:id="darkMode" layoutX="260.0" layoutY="436.0" mnemonicParsing="false" onAction="#darkHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Dark" textFill="WHITE" />
+      <Pane fx:id="accents" layoutX="67.0" layoutY="527.0" prefHeight="144.0" prefWidth="622.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
+         <children>
+            <Button fx:id="tint1" layoutX="169.0" layoutY="72.0" mnemonicParsing="false" onAction="#tintHandle1" prefHeight="32.0" prefWidth="32.0" />
+            <Button fx:id="tint2" layoutX="295.0" layoutY="72.0" mnemonicParsing="false" onAction="#tintHandle2" prefHeight="32.0" prefWidth="32.0" />
+            <Button fx:id="tint3" layoutX="417.0" layoutY="72.0" mnemonicParsing="false" onAction="#tintHandle3" prefHeight="32.0" prefWidth="32.0" />
+            <Button fx:id="tint4" layoutX="547.0" layoutY="72.0" mnemonicParsing="false" onAction="#tintHandle4" prefHeight="32.0" prefWidth="32.0" />
+            <Button fx:id="tint0" layoutX="40.0" layoutY="72.0" mnemonicParsing="false" onAction="#tintHandle" prefHeight="32.0" prefWidth="32.0" />
+            <Label fx:id="accentPrompt" layoutX="40.0" layoutY="14.0" prefHeight="27.0" prefWidth="170.0" text="Select Accent Color:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Button fx:id="lightMode" layoutX="67.0" layoutY="409.0" mnemonicParsing="false" onAction="#lightHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-color: #BDBDBD; -fx-border-radius: 20; -fx-border-width: 2;" text="Light " />
+      <Button fx:id="darkMode" layoutX="260.0" layoutY="409.0" mnemonicParsing="false" onAction="#darkHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Dark" textFill="WHITE" />
    </children>
 </AnchorPane>

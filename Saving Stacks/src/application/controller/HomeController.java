@@ -18,6 +18,11 @@ public class HomeController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
+		{
+			homeAnchor.setStyle("-fx-background-color: #33333d");
+		}
 
 		BottomBarController.attachBottomBar(homeAnchor.getChildren(), controllerID);
 		

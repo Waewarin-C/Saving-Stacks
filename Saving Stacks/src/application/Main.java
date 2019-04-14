@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 
+
 import application.model.SettingsManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,6 @@ public class Main extends Application{
 	public static Stage stage;
 	public static SettingsManager settings;
 	
-	
 	@Override
 	public void start(Stage primaryStage) {
 		
@@ -26,13 +26,13 @@ public class Main extends Application{
 		
 		try {
 			
-			SettingsManager settingManager = SettingsManager.loadSettings("data/SettingsManagerConfig");
+
 			
-			if (!settingManager.getBooleanValueWithProperty("welcome_shown_once"))
+			if (!settings.getBooleanValueWithProperty("welcome_shown_once"))
 			{
 				
 				root = FXMLLoader.load(getClass().getResource("view/Welcome.fxml"));
-				settingManager.setValueWithBooleanProperty("welcome_shown_once", true);
+				settings.setValueWithBooleanProperty("welcome_shown_once", true);
 				
 			}
 			else
@@ -43,7 +43,7 @@ public class Main extends Application{
 			primaryStage.setScene(new Scene(root, 800, 800));
 			primaryStage.show();
 
-			settings = settingManager;
+
 			
 			
 		} catch(Exception e) {
@@ -56,6 +56,14 @@ public class Main extends Application{
 	
 	
 	public static void main(String[] args) {
+		SettingsManager settingManager = null;
+		try {
+			settingManager = SettingsManager.loadSettings("data/SettingsManagerConfig");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		settings = settingManager;
+		
 		launch(args);
 		try {
 			SettingsManager.saveSettings(settings, "data/SettingsManagerConfig");

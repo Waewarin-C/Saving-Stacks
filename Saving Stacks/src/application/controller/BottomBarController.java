@@ -45,7 +45,7 @@ public class BottomBarController extends Thread{
 	ObservableList<Button> buttons;
 	ObservableList<SVGPath> paths;
 	
-	
+	private String describedTint;
 	
 	
 	/**
@@ -72,19 +72,29 @@ public class BottomBarController extends Thread{
 	
 		backingPane.setPrefWidth(800);
 		backingPane.setPrefHeight(88);
-		backingPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+		
 		backingPane.setLayoutX(0);
 		backingPane.setLayoutY(712);
 		
 		
 		buttons = this.generateBarButtons();
 		
+		if (!Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
+		{
+			backingPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+			this.describedTint = Main.settings.getValueWithProperty("default_tint_color_light");
+		}
+		else
+		{
+			this.describedTint = Main.settings.getValueWithProperty("default_tint_color_dark");
+			backingPane.setStyle("-fx-background-color: #33333d");
+			for (Button b : buttons)
+				b.setStyle("-fx-text-fill: white");
+		}
+		
 		backingPane.getChildren().addAll(buttons);
 		
-		
-		
 		this.controllerID = controllerID;
-		
 		
 	}
 	
@@ -108,6 +118,8 @@ public class BottomBarController extends Thread{
 
 	}
 	
+	
+	
 	/**
 	 * Manages the pushing of scenes and displaying the 
 	 * current tab selector. 
@@ -118,7 +130,6 @@ public class BottomBarController extends Thread{
 	{
 		Button home, cash, upload, goals, settings;
 		SVGPath homePath, cashPath, uploadPath, settingsPath, goalPath;
-		
 		
 		home = this.getBarButtons().get(0);
 		cash = this.getBarButtons().get(1);
@@ -144,6 +155,8 @@ public class BottomBarController extends Thread{
 			
 			homePath.setContent("M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z");
 			homePath.setOpacity(1);
+
+			home.setTextFill(Color.web(this.describedTint));
 			
 		}
 		else if (this.getControllerID().equals("SETTINGS"))
@@ -152,13 +165,15 @@ public class BottomBarController extends Thread{
 			settings.setDisable(true);
 			settings.setStyle("-fx-opacity: 1.0");
 			
-			
 			settingsPath.setContent("M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z");
 			settingsPath.setScaleY(1.9);
 			settingsPath.setScaleX(2);
 			settingsPath.setLayoutY(25);
 			settingsPath.setLayoutX(705);
 			settingsPath.setOpacity(1);
+			
+			settings.setTextFill(Color.web(this.describedTint));
+			
 		}
 		else if (this.getControllerID().equals("GOALS"))
 		{
@@ -169,6 +184,9 @@ public class BottomBarController extends Thread{
 			
 			goalPath.setContent("M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z");
 			goalPath.setOpacity(1);
+			
+			goals.setTextFill(Color.web(this.describedTint));
+			
 		}
 		
 		

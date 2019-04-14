@@ -42,7 +42,6 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		bottomBar = BottomBarController.attachBottomBar(settingAnchor.getChildren(), controllerID);
-
 		
 		settingAnchor.backgroundProperty().bind(bottomBar.getBackingPane().backgroundProperty());
 		lightMode.backgroundProperty().bind(settingAnchor.backgroundProperty());
@@ -56,24 +55,28 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 		accents.backgroundProperty().bind(password.backgroundProperty());
 		
-		for (Button b : bottomBar.getBarButtons())
+		for (Button b :bottomBar.getBarButtons())
 		{
 			b.textFillProperty().bind(title.textFillProperty());
 		}
 		
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
-			
 			darkMode.setDisable(true);
 			lightMode.setDisable(false);
-			//load dark styling from config.
+			
+			title.setStyle("-fx-text-fill: white");
+			password.setStyle("-fx-background-color: #25282f; ; -fx-background-radius: 30");
 			
 		}
 		else
 		{
 			darkMode.setDisable(false);
 			lightMode.setDisable(true);
-			//load light styling from config.
+			
+			
+			title.setStyle("-fx-text-fill: black");
+			password.setStyle("-fx-background-color: #F5F5F5; -fx-background-radius: 30");
 		}
 		
 		if (Main.settings.getBooleanValueWithProperty("is_protection_enabled"))
@@ -118,8 +121,6 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 		Main.settings.setValueWithBooleanProperty("is_dark_mode_enabled", true);
 		
-		//Change css styling in config to dark
-		
 		pt.play();
 	}
 	
@@ -130,15 +131,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 				Color.web("33333d"), Color.web("ffffff"), "-fx-background-color: ");
 		
 		
-		
 		ColorTransition textColor = new ColorTransition(Duration.millis(500), title, 
 				Color.web("ffffff"), Color.web("000000"), "-fx-text-fill: ");
 		
 		
 		ColorTransition passwordColor = new ColorTransition(Duration.millis(500), password, Color.web("25282f"), 
 				Color.web("F5F5F5"), "-fx-background-radius: 30; -fx-background-color: ");
-		
-		
 		
 		ParallelTransition pt = new ParallelTransition(bottomBarTransition, textColor, passwordColor);
 
@@ -147,8 +145,6 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 		
 		Main.settings.setValueWithBooleanProperty("is_dark_mode_enabled", false);
-		
-		//Change css styling in config to light
 		
 		pt.play();
 	}

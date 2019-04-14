@@ -114,6 +114,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			passwordRadio.setSelected(false);
 		}
 		
+		settingButton.setOpacity(1.0);
 		
 	}
 

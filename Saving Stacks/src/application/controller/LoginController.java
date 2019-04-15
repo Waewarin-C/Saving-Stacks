@@ -1,13 +1,10 @@
 package application.controller;
 
-import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 import application.Main;

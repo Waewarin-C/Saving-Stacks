@@ -13,9 +13,9 @@
    <children>
       <Pane fx:id="loginAnchor" layoutX="-1.0" layoutY="-4.0" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: FFFFFF;">
          <children>
-            <ImageView fitHeight="107.0" fitWidth="138.0" layoutX="21.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="276.0" fitWidth="365.0" layoutX="63.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../data/savingstacks.png" />
+                  <Image url="@../../../data/logo.png" />
                </image>
                <effect>
                   <Lighting>
@@ -52,6 +52,18 @@
                <font>
                   <Font size="30.0" />
                </font>
+            </Label>
+            <Label layoutX="349.0" layoutY="108.0" prefHeight="78.0" prefWidth="385.0" text="Saving Stacks">
+               <font>
+                  <Font name="Bodoni MT Bold" size="63.0" />
+               </font>
+               <effect>
+                  <Lighting bumpInput="$null">
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </Label>
          </children></Pane>
    </children>

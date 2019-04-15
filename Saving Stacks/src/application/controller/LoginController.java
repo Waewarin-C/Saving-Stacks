@@ -82,6 +82,8 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 		String password = passwordField.getText();
 		
 		String stored_password = Main.settings.getValueWithProperty("user_password");
+		
+		//TODO: Hash the answer as well
 		String stored_answer = Main.settings.getValueWithProperty("user_answer");
 		
 		try {

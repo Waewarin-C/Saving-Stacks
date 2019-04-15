@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  * then stored in the config file. For security purposes, it is best
  * to call the verify method rather than the object
  * 
- * @author moses
+ * @author Moses J. Arocha
  *
  */
 

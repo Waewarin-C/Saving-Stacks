@@ -121,7 +121,14 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	@Override
 	public void handle(ActionEvent arg0) {
 		
+		
 		Main.settings.setValueWithProperty("user_password", String.valueOf(password.getText()));
+		
+		if (!password.getText().isEmpty())
+			Main.settings.setValueWithBooleanProperty("is_login_active", true);
+		else
+			Main.settings.setValueWithBooleanProperty("is_login_active", false);
+		
 		//TODO: Display message with successful password change.
 	}
 	
@@ -301,10 +308,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		if (passwordRadio.isSelected())
 		{
 			Main.settings.setValueWithBooleanProperty("is_protection_enabled", true);
+			Main.settings.setValueWithBooleanProperty("is_login_active", true);
 		}
 		else
 		{
 			Main.settings.setValueWithBooleanProperty("is_protection_enabled", false);
+			Main.settings.setValueWithBooleanProperty("is_login_active", true);
 		}
 	}
 

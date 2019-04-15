@@ -22,8 +22,6 @@ public class Main extends Application{
 		Parent root = null;
 		stage = primaryStage;
 		
-		//TODO: May need to load resource for CSS components later on. TBA.
-		
 		try {
 			
 
@@ -34,6 +32,11 @@ public class Main extends Application{
 				root = FXMLLoader.load(getClass().getResource("view/Welcome.fxml"));
 				settings.setValueWithBooleanProperty("welcome_shown_once", true);
 				
+			}
+			else if (!settings.getValueWithProperty("user_password").equals("unset") && settings.getBooleanValueWithProperty("is_login_active"))
+			{
+				//The user password equals flag is meant for debug purposes.
+				root = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
 			}
 			else
 			{
@@ -56,6 +59,7 @@ public class Main extends Application{
 	
 	
 	public static void main(String[] args) {
+		
 		
 		SettingsManager settingManager = null;
 		//load settings right before launch. Required for settings to remain persistent.

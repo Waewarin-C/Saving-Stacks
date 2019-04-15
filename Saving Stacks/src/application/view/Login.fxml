@@ -30,17 +30,21 @@
             </ImageView>
             <Pane layoutX="121.0" layoutY="350.0" prefHeight="390.0" prefWidth="544.0" style="-fx-background-color: #264d73;">
                <children>
-                  <PasswordField layoutX="102.0" layoutY="125.0" prefHeight="30.0" prefWidth="341.0">
+                  <PasswordField fx:id="passwordField" layoutX="108.0" layoutY="102.0" prefHeight="30.0" prefWidth="341.0" promptText="Please Enter Your Password:">
                      <effect>
                         <Glow />
                      </effect>
                   </PasswordField>
-                  <Label layoutX="31.0" layoutY="73.0" text="Please Enter Your Password:" textFill="#f2eded">
+                  <Label fx:id="wrongPassword" layoutX="164.0" layoutY="132.0" prefHeight="29.0" prefWidth="219.0" textFill="#c31d1d">
                      <font>
                         <Font name="Bodoni MT" size="23.0" />
                      </font>
                   </Label>
-                  <Button layoutX="242.0" layoutY="180.0" mnemonicParsing="false" text="Login" />
+                  <Button fx:id="login" layoutX="164.0" layoutY="161.0" mnemonicParsing="false" onAction="#handle" prefHeight="30.0" prefWidth="230.0" text="Login">
+                     <font>
+                        <Font name="Bodoni MT" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="forgotPassword" layoutX="210.0" layoutY="339.0" mnemonicParsing="false" onAction="#handleForgotPassword" text="Forgot Password" />
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />

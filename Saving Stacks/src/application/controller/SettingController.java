@@ -1,6 +1,9 @@
 package application.controller;
 
+import java.math.BigInteger;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -121,8 +124,27 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	@Override
 	public void handle(ActionEvent arg0) {
 		
+		String new_password = password.getText();
 		
-		Main.settings.setValueWithProperty("user_password", String.valueOf(password.getText()));
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			byte[] messageDigest = md.digest(new_password.getBytes());
+			
+			BigInteger num = new BigInteger(1, messageDigest);
+			String hashtext = num.toString(16);
+			
+			while (hashtext.length() < 32) {
+				hashtext = "0" + hashtext;
+			}
+			
+			Main.settings.setValueWithProperty("user_password", hashtext);
+
+					
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		if (!password.getText().isEmpty())
 			Main.settings.setValueWithBooleanProperty("is_login_active", true);

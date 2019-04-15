@@ -1,5 +1,6 @@
 package application.model;
 import java.util.Date;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,8 +11,11 @@ import javafx.scene.control.TextField;
  *decide if we need the date.
  */
 
+
 public class CashTransactions {
 
+}
+/*
 	public double total; 
 	public String item;
 	public String dateBuy; 
@@ -35,7 +39,7 @@ public void handle(){
 	
 	
 }
-
+*/
 	
 	
 	
@@ -53,7 +57,7 @@ public void handle(){
 //	public double getTotal() {
 //		return total;
 //	}
-
+/*
 	public void setTotal(double total) {
 		this.total = total;
 	}
@@ -75,3 +79,4 @@ public void handle(){
 	}
 	
 }
+*/

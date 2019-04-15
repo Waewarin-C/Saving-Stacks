@@ -1,8 +1,8 @@
 is_login_active=true
 is_protection_enabled=true
 welcome_shown_once=true
-is_dark_mode_enabled=true
-user_password=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+is_dark_mode_enabled=false
+user_password=unset
 default_tint_color_dark=#FFFFFF
 default_tint_color_light=#000000
-defined_tint_color=#4f83cc
+defined_tint_color=#ef6c00

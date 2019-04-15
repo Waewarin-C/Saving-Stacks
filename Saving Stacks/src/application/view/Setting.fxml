@@ -25,7 +25,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="customization" layoutX="67.0" layoutY="358.0" text="UI Look and Feel">
+      <Label fx:id="customization" layoutX="67.0" layoutY="367.0" text="UI Look and Feel">
          <font>
             <Font size="20.0" />
          </font>
@@ -43,7 +43,13 @@
                </font>
             </Label>
          </children></Pane>
-      <Button fx:id="lightMode" layoutX="67.0" layoutY="409.0" mnemonicParsing="false" onAction="#lightHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-color: #BDBDBD; -fx-border-radius: 20; -fx-border-width: 2;" text="Light " />
-      <Button fx:id="darkMode" layoutX="260.0" layoutY="409.0" mnemonicParsing="false" onAction="#darkHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Dark" textFill="WHITE" />
+      <Button fx:id="lightMode" layoutX="67.0" layoutY="418.0" mnemonicParsing="false" onAction="#lightHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-color: #BDBDBD; -fx-border-radius: 20; -fx-border-width: 2;" text="Light " />
+      <Button fx:id="darkMode" layoutX="260.0" layoutY="418.0" mnemonicParsing="false" onAction="#darkHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Dark" textFill="WHITE" />
+      <Button fx:id="saveButton" layoutX="474.0" layoutY="263.0" mnemonicParsing="false" onAction="#handle" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Save" textFill="WHITE" />
+      <Label fx:id="passMsg" layoutX="77.0" layoutY="315.0" prefHeight="28.0" prefWidth="221.0" text="Password successfully set!">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

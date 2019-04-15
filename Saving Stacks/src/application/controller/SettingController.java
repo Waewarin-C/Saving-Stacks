@@ -32,7 +32,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	@FXML
 	AnchorPane settingAnchor;
 	@FXML
-	Label title, security, customization, accentPrompt;
+	Label title, security, customization, accentPrompt, passMsg;
 	@FXML
 	RadioButton passwordRadio;
 	@FXML
@@ -40,7 +40,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	@FXML
 	Pane accents;
 	@FXML
-	Button darkMode, lightMode, tint0, tint1, tint2, tint3, tint4;
+	Button darkMode, lightMode, tint0, tint1, tint2, tint3, tint4, saveButton;
 
 	
 	@Override
@@ -49,6 +49,9 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		selectedStyle = Main.settings.getValueWithProperty("defined_tint_color");
 		
 		bottomBar = BottomBarController.attachBottomBar(settingAnchor.getChildren(), controllerID);
+		
+		passMsg.setVisible(false);
+		passMsg.textFillProperty().bind(title.textFillProperty());
 		
 		settingAnchor.backgroundProperty().bind(bottomBar.getBackingPane().backgroundProperty());
 		lightMode.backgroundProperty().bind(settingAnchor.backgroundProperty());
@@ -61,6 +64,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		lightMode.textFillProperty().bind(title.textFillProperty());
 		
 		password.visibleProperty().bind(passwordRadio.selectedProperty());
+		saveButton.visibleProperty().bind(passwordRadio.selectedProperty());
 		
 		accents.backgroundProperty().bind(password.backgroundProperty());
 		
@@ -81,7 +85,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			lightMode.setDisable(false);
 			
 			title.setStyle("-fx-text-fill: white");
-			password.setStyle("-fx-background-color: #25282f; ; -fx-background-radius: 30");
+			password.setStyle("-fx-background-color: #25282f; ; -fx-background-radius: 30; -fx-text-fill: white");
 			
 			
 			tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_dark"));
@@ -151,6 +155,10 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		else
 			Main.settings.setValueWithBooleanProperty("is_login_active", false);
 		
+		password.clear();
+		passMsg.setVisible(true);
+		
+
 		//TODO: Display message with successful password change.
 	}
 	
@@ -327,6 +335,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	
 	public void radioToggle(ActionEvent event)
 	{
+		
 		if (passwordRadio.isSelected())
 		{
 			Main.settings.setValueWithBooleanProperty("is_protection_enabled", true);
@@ -336,6 +345,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		{
 			Main.settings.setValueWithBooleanProperty("is_protection_enabled", false);
 			Main.settings.setValueWithBooleanProperty("is_login_active", false);
+			passMsg.setVisible(false);
 		}
 	}
 

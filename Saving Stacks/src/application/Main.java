@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 
 
 public class Main extends Application{
@@ -23,9 +22,9 @@ public class Main extends Application{
 		Parent root = null;
 		stage = primaryStage;
 		//TODO: Edit the icon and title name
-		//stage.getIcons().add(new Image("data/logo.png"));
+		//stage.getIcons().add(new Image("/data/logo.png"));
 		//stage.setTitle("Saving Stacks");
-		
+				
 		try {
 			
 			

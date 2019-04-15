@@ -36,14 +36,14 @@ import javafx.scene.layout.Pane;
 
 public class LoginController implements EventHandler<ActionEvent>, Initializable
 {
+	@FXML
+	Label wrongPassword, name, greeting, forgotPasswordLabel, questionLabel;
+	
 	@FXML 
 	Button forgotPassword, login;
 	
 	@FXML
 	PasswordField passwordField;
-	
-	@FXML
-	Label wrongPassword, name, greeting;
 	
 	@FXML
 	Pane loginAnchor;
@@ -82,6 +82,7 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 		String password = passwordField.getText();
 		
 		String stored_password = Main.settings.getValueWithProperty("user_password");
+		String stored_answer = Main.settings.getValueWithProperty("user_answer");
 		
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -94,7 +95,7 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 				hashtext = "0" + hashtext;
 			}
 
-			if(hashtext.equals(stored_password)) {
+			if(hashtext.equals(stored_password) || stored_answer.equals(password)) {
 				
 				Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
 				Main.stage.setScene(new Scene(root, 800, 800));
@@ -113,7 +114,11 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 		
 	}
 	
-	public void handleForgotPassword(ActionEvent event) {
+	public void handleForgotPassword(ActionEvent arg0) {
+		
+		forgotPasswordLabel.setText("Pleae enter the answer to the security question in the password field:");
+		questionLabel.setText(Main.settings.getValueWithProperty("user_question"));
+		
 		
 	}
 

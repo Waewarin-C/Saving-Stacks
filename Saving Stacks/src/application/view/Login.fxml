@@ -65,6 +65,16 @@
                   </Lighting>
                </effect>
             </Label>
+            <Label fx:id="forgotPasswordLabel" layoutX="128.0" layoutY="503.0" prefHeight="52.0" prefWidth="545.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Bodoni MT" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="questionLabel" layoutX="128.0" layoutY="541.0" prefHeight="52.0" prefWidth="545.0">
+               <font>
+                  <Font name="Bodoni MT" size="18.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </AnchorPane>

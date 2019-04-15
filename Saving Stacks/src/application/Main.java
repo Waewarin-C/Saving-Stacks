@@ -24,7 +24,7 @@ public class Main extends Application{
 		
 		try {
 			
-
+			
 			
 			if (!settings.getBooleanValueWithProperty("welcome_shown_once"))
 			{

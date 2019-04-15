@@ -335,7 +335,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		else
 		{
 			Main.settings.setValueWithBooleanProperty("is_protection_enabled", false);
-			Main.settings.setValueWithBooleanProperty("is_login_active", true);
+			Main.settings.setValueWithBooleanProperty("is_login_active", false);
 		}
 	}
 

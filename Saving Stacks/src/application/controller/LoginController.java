@@ -1,16 +1,29 @@
 package application.controller;
 
+import javafx.scene.paint.Color;
+import java.io.IOException;
 import java.math.BigInteger;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.ResourceBundle;
 
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.layout.Pane;
+
+
 
 /**
  * The LoginController class will take in a password from the user,
@@ -24,7 +37,7 @@ import javafx.scene.control.PasswordField;
  */
 
 
-public class LoginController implements EventHandler<ActionEvent>
+public class LoginController implements EventHandler<ActionEvent>, Initializable
 {
 	@FXML 
 	Button forgotPassword, login;
@@ -33,7 +46,12 @@ public class LoginController implements EventHandler<ActionEvent>
 	PasswordField passwordField;
 	
 	@FXML
-	Label wrongPassword;
+	Label wrongPassword, name, greeting;
+	
+	@FXML
+	Pane loginAnchor;
+	
+	
 	//TODO: Link up to the Login view, check the user's password
 
 	
@@ -78,15 +96,20 @@ public class LoginController implements EventHandler<ActionEvent>
 			while (hashtext.length() < 32) {
 				hashtext = "0" + hashtext;
 			}
-			
-			System.out.println(hashtext);
-			
-			if(password.equals(stored_password)) {
-				System.out.println("Hello");
+
+			if(hashtext.equals(stored_password)) {
+				
+				Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+				Main.stage.setScene(new Scene(root, 800, 800));
+				Main.stage.show();
 			}
-			
+			else
+			{
+				//TODO add error message, etc
+			}
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
@@ -94,6 +117,15 @@ public class LoginController implements EventHandler<ActionEvent>
 	}
 	
 	public void handleForgotPassword(ActionEvent event) {
+		
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+
+		name.setText(System.getProperty("user.name") + "!");
+
 		
 	}	
 	

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Label layoutX="14.0" prefHeight="75.0" prefWidth="324.0" text="Cash Transactions">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label layoutX="4.0" layoutY="65.0" prefHeight="48.0" prefWidth="593.0" text="To enter your cash transactions enter the name of your item, the price of it, and the date it was purchased. Then by clicking add you will see your item being displayed. " wrapText="true">
+         <font>
+           <Font size="11.0" />
+         </font>
+      </Label>
+      <Button layoutX="527.0" layoutY="536.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="59.0" text="Add" />
+      <DatePicker layoutX="387.0" layoutY="536.0" prefHeight="27.0" prefWidth="128.0" />
+      <TextField layoutX="14.0" layoutY="536.0" promptText="Name Of Item" />
+      <TextField layoutX="202.0" layoutY="536.0" promptText="Cost Of Item" />
+      <ListView layoutX="272.0" layoutY="227.0" prefHeight="200.0" prefWidth="303.0" />
+   </children>
+</AnchorPane>

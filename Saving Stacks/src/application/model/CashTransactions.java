@@ -23,17 +23,13 @@ private Transaction CashT = new Transaction( id, dateBuy, date, item, tag, total
 
 public void handle(){
 	
-	CashT.id.get();
-	
-	
-	
-	String item = item.getText();
-	String total = total.getText();
-	this.tag = tag;
-	this.id= id;
-	String dateBuy = dateBuy.getText();
-	
-	
+	CashT.id.get(i);
+	CashT.tag.get();
+	CashT.dateBuy.getText();
+	CashT.total.getText();
+	CashT.dateBuy.getText();
+	CashT.item.getText();
+	CashT.total.get();
 }
 
 	

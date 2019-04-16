@@ -7,4 +7,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="homeAnchor" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController" />
+<AnchorPane fx:id="homeAnchor" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController">
+   <children>
+      <Pane fx:id="spendPane" layoutX="14.0" layoutY="345.0" prefHeight="338.0" prefWidth="379.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
+      <Pane fx:id="goalPane" layoutX="407.0" layoutY="345.0" prefHeight="338.0" prefWidth="379.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
+      <Pane fx:id="switchPane" layoutX="400.0" layoutY="28.0" prefHeight="61.0" prefWidth="379.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
+      <Label fx:id="moneyPrompt" layoutX="42.0" layoutY="28.0" prefHeight="37.0" prefWidth="203.0" text="Monthly Remaining:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="spendingPrompt" alignment="CENTER" layoutX="102.0" layoutY="302.0" prefHeight="37.0" prefWidth="203.0" text="Spending">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="goalPrompt" alignment="CENTER" layoutX="488.0" layoutY="302.0" prefHeight="37.0" prefWidth="203.0" text="Goal Progress">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

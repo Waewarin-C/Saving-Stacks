@@ -329,8 +329,7 @@ public class BottomBarController extends Thread{
 		backPane.addAll(paths);
 		
 		this.setBarButtonPaths(paths);
-		
-		
+
 		return  buttons;
 		
 	}

@@ -1,21 +1,26 @@
 package application.model;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Goal {
 	
 	private String title;
-	private String date;
+	private String time;
+	private LocalDate date;
 	private double amount;
 	
-	public Goal( String title, String date, double amount)
+	public Goal( String title, String time, LocalDate date, double amount)
 	{
 		this.title = title;
+		this.time = time;
 		this.date = date;
 		this.amount = amount;
 	}
 
 	//goal string
 	public String toString() {
-		String ret = this.getTitle() + "," + this.getDate() + "," + this.getAmount() + "\n";
+		String ret = this.getTitle() + "," + this.getTime() + "," + this.getDate() + "," + this.getAmount() + "\n";
 		return ret;
 	}
 	
@@ -27,12 +32,32 @@ public class Goal {
 		this.title = title;
 	}
 
-	public String getDate() {
-		return date;
+	/**
+	 * @return the time
+	 */
+	public String getTime() {
+		return time;
 	}
 
-	public void setDate(String date) {
+	/**
+	 * @param time the time to set
+	 */
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+	
+	/**
+	 * @return the date
+	 */
+	public LocalDate getDate() {
+		return this.date;
 	}
 	
 	/**

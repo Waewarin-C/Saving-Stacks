@@ -3,13 +3,14 @@ package application.model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GoalSet {
 	
-	private ArrayList<Goal> goalArray;
-	
+	private ArrayList<Goal> goalArray;	
 	/**
 	 * GoalSet constructor for Goal Page initialization
 	 */
@@ -23,19 +24,17 @@ public class GoalSet {
 	 * save goals to file when typed into the interface
 	 * @param file name as a String to use to save the goals.
 	 */
-	public void saveGoalArray( String file ) {
+	public static void saveGoalArray( String file, GoalSet goalArray ) {
 		
 		try {
 			// open the file for writing	
 			FileWriter writer = new FileWriter( new File( file ) );
 			
-			for( Goal a : goalArray )
+			for( int i = 0; i < goalArray.getGoalArray().size(); i++ )
 			{
 				// write goal to file 
-				writer.write( a.toString() );
-			}
-
-			
+				writer.write( goalArray.getGoalArray().get(i).toString() );
+			}	
 			// close the file!
 			writer.close();			
 		}catch( IOException e ) {
@@ -58,8 +57,8 @@ public class GoalSet {
 				String line = scan.nextLine();
 				String[] tokens = line.split(",");
 				double dollarAmt = Double.parseDouble(tokens[2]);
-				
-				Goal newGoal = new Goal(tokens[0],tokens[1], dollarAmt );
+				LocalDate date = LocalDate.parse(tokens[2]);
+				Goal newGoal = new Goal(tokens[0], tokens[1], date, dollarAmt );
 				
 				this.goalArray.add(newGoal);
 			}
@@ -73,9 +72,12 @@ public class GoalSet {
 		}		
 	}
 	
-	public Goal createGoal()
+	public Goal generateGoal( String title, String dollarAmt, String time )
 	{
-		Goal goal = new Goal(null, null, 0);
+		LocalDate date = LocalDate.now();
+		double amount = Double.valueOf(dollarAmt);
+		Goal goal = new Goal( title, time, date, amount);
+		
 		return goal;
 	}
 	

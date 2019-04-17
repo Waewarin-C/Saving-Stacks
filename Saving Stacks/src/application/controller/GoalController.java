@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import application.Main;
 import application.model.Goal;
+import application.model.GoalSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,10 +43,9 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	private Label goalError;
 	
 	public static final String controllerID = "GOALS";
-	public static ArrayList<Goal> goalArray;
 	public static final int MAX_ROWS = 10;
 	public static final int MAX_COLS = 6;
-	
+	GoalSet goalArray = new GoalSet();
 	File file;
 
 	@Override
@@ -114,7 +114,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			removeButton(btn);
 			lockTextField( row );
 			addLockIcon( row );
-			createGoals( row, n );
+			addGoaltoArray( row );
 			//goalArray.add(goal);
 			
 		}		
@@ -122,7 +122,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	
 	public void saveHandle( ActionEvent event )
 	{
-		
+		goalArray.saveGoalArray( "goals.csv", goalArray );
 	}
 	
 	public Node getNodeByRowColumnIndex( int row, int column) {
@@ -137,28 +137,21 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	    return result;
 	}
 	
-	public void createGoals( int row, Node n )
+	public void addGoaltoArray( int row )
 	{
 		
 		TextField text = (TextField) getNodeByRowColumnIndex( row, 0 );
 		String goalTitle = text.getText();
-		System.out.println(goalTitle);
 		
 		TextField amt = (TextField) getNodeByRowColumnIndex( row, 1 );
 		String goalAmt = amt.getText();
 		
 		ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
 		String timeframe = time.getValue();
-		/*
-		ObservableList<Node> children = goalGrid.getChildren();
+
+		Goal goal = goalArray.generateGoal( goalTitle, goalAmt, timeframe);
 		
-		for( Node n : children )
-		{
-			if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) == 0 )
-				n.
-		}*/
-		
-			
+		goalArray.addGoal(goal);
 	}
 	
 	/**
@@ -179,6 +172,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		goalGrid.getChildren().remove(button);
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 */
 	public void removeGridRow( int row )
 	{
 		ObservableList<Node> children = goalGrid.getChildren();
@@ -187,32 +184,14 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		for( Node n : children)
 		{
 			if(GridPane.getRowIndex(n) == row )
-			{
-				
+			{	
 				temp.add(n);
-				//tempRemove.addAll(n);
-				
-				//goalGrid.getChildren().remove(n);
 			}
-			//goalGrid.getChildren().removeIf(node -> GridPane.getRowIndex(n) == row);
 		}
-		
+
 		goalGrid.getChildren().removeAll(temp);
 	}
-	
-	public void addGridRow()
-	{
-		TextField goal = new TextField();
-		TextField amount = new TextField();
-		ChoiceBox<Object> time = new ChoiceBox<Object>();
 		
-		goalGrid.add(goal, 0, MAX_ROWS - 1);
-		goalGrid.add(amount, 1, MAX_ROWS - 1);
-		goalGrid.add(time, 2, MAX_ROWS - 1);
-	}
-	
-
-	
 	/**
 	 * 
 	 * @param row
@@ -356,6 +335,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		amount.setPromptText("Enter Amount");
 		amount.setId("amount");
 		amount.setMaxWidth(110.0);
+		//amount.setValue(new Double());
 		amount.setStyle("-fx-font: 15px \"Segoe UI\";");
 		goalGrid.add(amount, 1, row);
 		GridPane.setHalignment(amount, HPos.CENTER);

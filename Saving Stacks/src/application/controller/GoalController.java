@@ -45,8 +45,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
 	public static final int MAX_COLS = 6;
+	private String filename = "goals.csv";
+	private String filePath = "data/" + filename;
+	private File file;
 	GoalSet goalArray = new GoalSet();
-	File file;
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -58,11 +61,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		else
 			Main.settings.setValueWithProperty("monthly_budget", monthlyLimit.getText());
 		
-		String filePathString = "data/goals.csv";
-		Path path = Paths.get(filePathString);
+		Path path = Paths.get(filePath);
 		
 		if( Files.exists(path))
-			file = new File("goals.csv");
+			file = new File(filePath);
 			/*
 			//TODO: This likely inhibits the loading performance *but* it is better than before. Possible to thread?
 			for (int i = 0; i < MAX_ROWS; i++)
@@ -122,7 +124,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	
 	public void saveHandle( ActionEvent event )
 	{
-		goalArray.saveGoalArray( "goals.csv", goalArray );
+		goalArray.saveGoalArray( filePath, goalArray );
 	}
 	
 	public Node getNodeByRowColumnIndex( int row, int column) {

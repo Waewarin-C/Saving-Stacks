@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -38,6 +39,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	private TextField monthlyLimit;
 	@FXML
 	private GridPane gridPane;
+	@FXML
+	private Label goalError;
 	
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
@@ -106,6 +109,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	public void saveHandle(ActionEvent event)
 	{
 		
+	}
+	
+	public void checkFields( int row )
+	{
+				
 	}
 
 	public void setGUIRowVisible( int row )

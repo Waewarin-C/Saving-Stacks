@@ -32,18 +32,18 @@
           	<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="goal0" onAction="#handle" promptText="Enter Goal" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <TextField fx:id="goal1" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-            <TextField fx:id="goal2" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-            <TextField fx:id="goal3" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-            <TextField fx:id="goal4" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-            <TextField fx:id="goal5" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-            <TextField fx:id="goal6" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="6" GridPane.columnIndex="0" />
-            <TextField fx:id="goal7" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="7" GridPane.columnIndex="0" />
-            <TextField fx:id="goal8" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="8" GridPane.columnIndex="0" />
-            <TextField fx:id="goal9" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="9" GridPane.columnIndex="0" />
+            <TextField fx:id="goal0" onAction="#handle" promptText="Enter Goal" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="goal1" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="goal2" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="goal3" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="goal4" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="goal5" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <TextField fx:id="goal6" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <TextField fx:id="goal7" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <TextField fx:id="goal8" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+            <TextField fx:id="goal9" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="9" />
            
-            <TextField fx:id="amount0" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.rowIndex="0" />
+            <TextField fx:id="amount0" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER" />
             <TextField fx:id="amount1" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <TextField fx:id="amount2" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <TextField fx:id="amount3" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
@@ -82,5 +82,10 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Label fx:id="goalError" layoutX="110.0" layoutY="665.0" text="Please enter valid entries for all three fields prior to continuing." textFill="#ee0a0a" visible="false">
+         <font>
+            <Font name="Segoe UI" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

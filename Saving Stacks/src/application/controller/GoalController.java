@@ -2,10 +2,14 @@ package application.controller;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -28,9 +33,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	
 	@FXML
 	private GridPane goalGrid;
-		
 	@FXML
 	private AnchorPane goalAnchor;
+	@FXML
+	private TextField monthlyLimit;
 	
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
@@ -41,11 +47,25 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		// sets the Bottom Bar.
 		BottomBarController.attachBottomBar(goalAnchor.getChildren(), controllerID);
 		
+		if( monthlyLimit.getText().equals(""))
+			Main.settings.setValueWithProperty("monthly_budget", "0.00");
+		else
+			Main.settings.setValueWithProperty("monthly_budget", monthlyLimit.getText());
+		
+		String filePathString = "data/goals.csv";
+		Path path = Paths.get(filePathString);
+		
+		if( Files.exists(path))
+			file = new File("goals.csv");
+		else
+			generateRowIcons(0, null);
+		
+		/*
 		//TODO: This likely inhibits the loading performance *but* it is better than before. Possible to thread?
 		for (int i = 0; i < MAX_ROWS; i++)
 		{
 			generateRowIcons(i, null);
-		}
+		}*/
 
 		
 	}

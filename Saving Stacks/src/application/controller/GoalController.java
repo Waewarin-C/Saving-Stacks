@@ -73,6 +73,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		
 	}
 	
+	/**
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		
@@ -92,9 +94,9 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			if( row < MAX_ROWS - 2 )
 				addAddIcon( row + 1 );
 		}
-		else if( id.equals("delete"))
+		else if( id.equals("remove"))
 		{
-			
+			System.out.println("remove");
 		}
 		else if( id.equals("lock"))
 		{
@@ -111,69 +113,90 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		}		
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	public void saveHandle(ActionEvent event)
 	{
 		
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 */
 	public void checkFields( int row )
 	{
 				
 	}
 
+	/**
+	 * 
+	 * @param row
+	 */
 	public void setGUIRowVisible( int row )
 	{
 		ObservableList<Node> children = goalGrid.getChildren();
 		
 		for( Node n : children )
 		{
-			
 			if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) < MAX_COLS - 3)
 			{
-				System.out.println(n);
 				n.setVisible(true);
-			}
-				
+			}	
 		}
 	}
 	
+	/**
+	 * 
+	 * @param button
+	 */
 	public void removeButton( Button button )
 	{
 		goalGrid.getChildren().remove(button);
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 */
 	public void lockTextField( int row )
 	{
 		ObservableList<Node> children = goalGrid.getChildren();
 		
 		for( Node n : children )
-		{
-			
+		{	
 			if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) < MAX_COLS - 3 )
 			{
-				System.out.println(n);
 				n.setDisable(true);
 			}
 				
 		}
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 */
 	public void unlockTextField( int row )
 	{
 		ObservableList<Node> children = goalGrid.getChildren();
 		
 		for( Node n : children )
-		{
-			
+		{	
 			if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) < MAX_COLS - 3 )
 			{
-				System.out.println(n);
 				n.setDisable(false);
 			}
 				
 		}
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 */
 	public void addUnlockIcon( int row )
 	{
 		Button unlock = new Button();
@@ -186,6 +209,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		goalGrid.add(unlock, 3, row);
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 */
 	public void addLockIcon( int row )
 	{
 		Button lock = new Button();
@@ -198,6 +225,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		goalGrid.add(lock, 3, row);
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 */
 	public void addRemoveIcon( int row )
 	{
 		Button remove = new Button();
@@ -205,11 +236,15 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		removePath.setContent("M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z");
 		remove.setGraphic(removePath);
 		remove.setId("remove");
-		remove.setOnAction(this);
+		remove.setOnAction(e->System.out.println("remove"));
 		remove.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));		
-		goalGrid.add(removePath, 4, row);	
+		goalGrid.add(remove, 4, row);	
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 */
 	public void addAddIcon( int row )
 	{
 		Button add = new Button();

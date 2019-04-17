@@ -10,14 +10,14 @@
 
 <AnchorPane fx:id="goalAnchor" maxHeight="800.0" maxWidth="800.0" minHeight="800.0" minWidth="800.0" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GoalController">
    <children>
-      <GridPane fx:id="gridPane" layoutX="44.0" layoutY="125.0" maxHeight="615.0" maxWidth="715.0" minHeight="615.0" minWidth="715.0" prefHeight="615.0" prefWidth="715.0">
+      <GridPane fx:id="goalGrid" layoutX="43.0" layoutY="72.0" maxHeight="615.0" maxWidth="715.0" minHeight="615.0" minWidth="715.0" prefHeight="615.0" prefWidth="715.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="318.0" minWidth="10.0" prefWidth="280.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" />
-         	<ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-          	<ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="125.0" prefWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="100.0" prefWidth="129.0" />
+         	<ColumnConstraints hgrow="SOMETIMES" maxWidth="72.0" minWidth="42.0" prefWidth="65.0" />
+          	<ColumnConstraints hgrow="SOMETIMES" maxWidth="67.0" minWidth="28.0" prefWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="22.0" prefWidth="65.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -42,257 +42,7 @@
             <TextField fx:id="goal7" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="7" />
             <TextField fx:id="goal8" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="8" />
             <TextField fx:id="goal9" onAction="#handle" promptText="Enter Goal" visible="false" GridPane.rowIndex="9" />
-            
-            
-            
-            
-            <ImageView fx:id="lock0" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="lock1" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="lock2" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>               
-            </ImageView>
-            <ImageView fx:id="lock3" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>               
-            </ImageView>
-            <ImageView fx:id="lock4" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>               
-            </ImageView>
-            <ImageView fx:id="lock5" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>               
-            </ImageView>
-            <ImageView fx:id="lock6" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>               
-            </ImageView>
-            <ImageView fx:id="lock7" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>               
-            </ImageView>
-            <ImageView fx:id="lock8" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>               
-            </ImageView>
-            <ImageView fx:id="lock9" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#lockPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_lock_open_black_18dp.png" />
-               </image>               
-            </ImageView>
-            
-            
-            
-            
-            <ImageView fx:id="remove0" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin> 
-               <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>                        
-            </ImageView>
-            <ImageView fx:id="remove1" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="remove2" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="remove3" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="remove4" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="remove5" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-                <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>               
-            </ImageView>
-            <ImageView fx:id="remove6" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="remove7" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="remove8" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="remove9" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#removePressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_remove_circle_outline_black_18dp.png" />
-               </image>                
-            </ImageView>
-            
-            
-            
-             <ImageView fx:id="add0" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin> 
-               <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>                        
-            </ImageView>
-            <ImageView fx:id="add1" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="add2" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="add3" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="add4" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="add5" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-                <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>               
-            </ImageView>
-            <ImageView fx:id="add6" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="add7" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="add8" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>                
-            </ImageView>
-            <ImageView fx:id="add9" fitHeight="25.0" fitWidth="25.0" nodeOrientation="RIGHT_TO_LEFT" onMousePressed="#addPressed" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <image>
-               		<Image url="outline_add_black_18dp.png" />
-               </image>                
-            </ImageView>
+           
             <TextField fx:id="amount0" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <TextField fx:id="amount1" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <TextField fx:id="amount2" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
@@ -303,7 +53,7 @@
             <TextField fx:id="amount7" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
             <TextField fx:id="amount8" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
             <TextField fx:id="amount9" maxWidth="110.0" onAction="#handle" promptText="Enter Amount" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-            <ChoiceBox fx:id="timeframe0" maxWidth="110.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <ChoiceBox fx:id="timeframe0" maxWidth="89.0" prefHeight="25.0" prefWidth="89.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <ChoiceBox fx:id="timeframe1" maxWidth="110.0" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <ChoiceBox fx:id="timeframe2" maxWidth="110.0" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <ChoiceBox fx:id="timeframe3" maxWidth="110.0" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
@@ -316,7 +66,7 @@
             
          </children>
       </GridPane>
-      <Label fx:id="title" layoutX="65.0" layoutY="47.0" text="Your Goals...">
+      <Label fx:id="title" layoutX="43.0" layoutY="21.0" text="Goals">
          <font>
             <Font name="Segoe UI Bold" size="36.0" />
          </font>

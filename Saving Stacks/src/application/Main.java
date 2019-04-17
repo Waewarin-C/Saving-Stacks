@@ -2,12 +2,14 @@ package application;
 
 import java.io.IOException;
 
+
 import application.model.SettingsManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
 
 public class Main extends Application{
@@ -15,25 +17,30 @@ public class Main extends Application{
 	public static Stage stage;
 	public static SettingsManager settings;
 	
-	
 	@Override
 	public void start(Stage primaryStage) {
 		
 		Parent root = null;
 		stage = primaryStage;
-		
-		//TODO: May need to load resource for CSS components later on. TBA.
-		
+		//TODO: Edit the icon and title name
+		stage.getIcons().add(new Image("file:./data/logo.png"));
+		stage.setTitle("Saving Stacks");
+				
 		try {
 			
-			SettingsManager settingManager = SettingsManager.loadSettings("data/SettingsManagerConfig");
 			
-			if (!settingManager.getBooleanValueWithProperty("welcome_shown_once"))
+			
+			if (!settings.getBooleanValueWithProperty("welcome_shown_once"))
 			{
 				
 				root = FXMLLoader.load(getClass().getResource("view/Welcome.fxml"));
-				settingManager.setValueWithBooleanProperty("welcome_shown_once", true);
+				settings.setValueWithBooleanProperty("welcome_shown_once", true);
 				
+			}
+			else if (!settings.getValueWithProperty("user_password").equals("unset") && settings.getBooleanValueWithProperty("is_login_active"))
+			{
+				//The user password equals flag is meant for debug purposes.
+				root = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
 			}
 			else
 			{
@@ -43,7 +50,7 @@ public class Main extends Application{
 			primaryStage.setScene(new Scene(root, 800, 800));
 			primaryStage.show();
 
-			settings = settingManager;
+
 			
 			
 		} catch(Exception e) {
@@ -56,11 +63,22 @@ public class Main extends Application{
 	
 	
 	public static void main(String[] args) {
-		launch(args);
+		
+		
+		SettingsManager settingManager = null;
+		//load settings right before launch. Required for settings to remain persistent.
 		try {
+			
+			settingManager = SettingsManager.loadSettings("data/SettingsManagerConfig");
+			
+			settings = settingManager;
+		
+			launch(args);
+			
 			SettingsManager.saveSettings(settings, "data/SettingsManagerConfig");
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

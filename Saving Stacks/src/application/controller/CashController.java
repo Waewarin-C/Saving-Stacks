@@ -65,7 +65,6 @@ public class CashController implements Initializable {
 		        }
 		    }
 		});
-		
 		CashView.setItems(FXCollections.observableList(F));
 		
 		if(nameitem.getText()== "clubbing"){

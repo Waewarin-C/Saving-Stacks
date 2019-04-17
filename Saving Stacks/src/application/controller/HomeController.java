@@ -22,10 +22,17 @@ public class HomeController implements Initializable {
 	Pane spendPane, goalPane, switchPane;
 	
 	@FXML
-	Label moneyPrompt, spendingPrompt, goalPrompt;
+	Label moneyPrompt, spendingPrompt, goalPrompt, budget;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		budget.setText("$" + Main.settings.getValueWithProperty("monthly_budget"));
+		
+		
+		Double budgetRemaining = Double.valueOf(Main.settings.getValueWithProperty("monthly_budget"));
+		
+		
 		
 		
 		goalPrompt.textFillProperty().bind(moneyPrompt.textFillProperty());
@@ -39,8 +46,18 @@ public class HomeController implements Initializable {
 			moneyPrompt.setStyle("-fx-text-fill: white");
 			switchPane.setStyle("-fx-background-color: #25282f; -fx-background-radius: 30");
 			
+			budget.setStyle("-fx-text-fill: #60ad5e");
+		}
+		else
+		{
+			budget.setStyle("-fx-text-fill: #005005");
 		}
 
+		if (budgetRemaining <= 0)
+		{
+			budget.setStyle("-fx-text-fill: red");
+		}
+		
 		BottomBarController.attachBottomBar(homeAnchor.getChildren(), controllerID);
 		
 	}

@@ -12,7 +12,7 @@
       <Pane fx:id="spendPane" layoutX="14.0" layoutY="345.0" prefHeight="338.0" prefWidth="379.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
       <Pane fx:id="goalPane" layoutX="407.0" layoutY="345.0" prefHeight="338.0" prefWidth="379.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
       <Pane fx:id="switchPane" layoutX="400.0" layoutY="28.0" prefHeight="61.0" prefWidth="379.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
-      <Label fx:id="moneyPrompt" layoutX="42.0" layoutY="28.0" prefHeight="37.0" prefWidth="203.0" text="Monthly Remaining:">
+      <Label fx:id="moneyPrompt" layoutX="42.0" layoutY="28.0" prefHeight="37.0" prefWidth="203.0" text="Budget Remaining:">
          <font>
             <Font size="20.0" />
          </font>
@@ -25,6 +25,11 @@
       <Label fx:id="goalPrompt" alignment="CENTER" layoutX="488.0" layoutY="302.0" prefHeight="37.0" prefWidth="203.0" text="Goal Progress">
          <font>
             <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="budget" layoutX="42.0" layoutY="72.0" prefHeight="61.0" prefWidth="340.0" text="Label">
+         <font>
+            <Font name="Roboto" size="38.0" />
          </font>
       </Label>
    </children>

@@ -12,7 +12,7 @@ Initial Assignments:
  *  Dakota - Cash Transactions
 
 Login:
-* Password only
+* Password only, hash the password
 * save user password into the settings file
 
 Goals:

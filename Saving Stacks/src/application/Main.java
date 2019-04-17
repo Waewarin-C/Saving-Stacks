@@ -69,13 +69,13 @@ public class Main extends Application{
 		//load settings right before launch. Required for settings to remain persistent.
 		try {
 			
-			settingManager = SettingsManager.loadSettings("data/SettingsManagerConfig");
+			settingManager = SettingsManager.loadSettings("data/SettingsManagerConfig.txt");
 			
 			settings = settingManager;
 		
 			launch(args);
 			
-			SettingsManager.saveSettings(settings, "data/SettingsManagerConfig");
+			SettingsManager.saveSettings(settings, "data/SettingsManagerConfig.txt");
 			
 		} catch (IOException e) {
 			

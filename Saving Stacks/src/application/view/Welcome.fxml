@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -10,88 +12,92 @@
    <children>
       <Pane prefHeight="800.0" prefWidth="800.0">
          <children>
-            <Label layoutX="65.0" layoutY="69.0" text="Welcome to Saving Stacks!">
+            <Label layoutX="34.0" layoutY="69.0" text="Welcome to">
                <font>
                   <Font name="Segoe UI Bold Italic" size="35.0" />
                </font>
             </Label>
-            <Button layoutX="561.0" layoutY="696.0" mnemonicParsing="false" onAction="#handle" prefHeight="68.0" prefWidth="198.0" style="-fx-background-color: black;" text="Get Started" textFill="WHITE">
+            <Button fx:id="startButton" layoutX="65.0" layoutY="717.0" mnemonicParsing="false" onAction="#handle" prefHeight="43.0" prefWidth="198.0" style="-fx-background-color: #177ea4;" text="Get Started" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold Italic" size="24.0" />
                </font>
             </Button>
-            <Label layoutX="65.0" layoutY="190.0" text="Home">
+            <Label layoutX="131.0" layoutY="149.0" text="Home" textFill="#177ea4">
+               <font>
+                  <Font name="Segoe UI Bold" size="30.0" />
+               </font></Label>
+            <Label layoutX="131.0" layoutY="271.0" text="Goals" textFill="#177ea4">
+               <font>
+                  <Font name="Segoe UI Bold" size="30.0" />
+               </font></Label>
+            <Label layoutX="131.0" layoutY="389.0" text="Cash Transactions and" textFill="#177ea4">
+               <font>
+                  <Font name="Segoe UI Bold" size="30.0" />
+               </font></Label>
+            <Label layoutX="131.0" layoutY="559.0" text="Settings" textFill="#177ea4">
+               <font>
+                  <Font name="Segoe UI Bold" size="30.0" />
+               </font></Label>
+            <Label layoutX="131.0" layoutY="344.0" text="ones to help organize your finances">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font></Label>
-            <Label layoutX="65.0" layoutY="350.0" text="Goals">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font></Label>
-            <Label layoutX="65.0" layoutY="448.0" text="Upload Statements and Cash Transactions">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font></Label>
-            <Label layoutX="65.0" layoutY="573.0" text="Settings">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font></Label>
-            <Label layoutX="89.0" layoutY="471.0" text="- Upload your bank statements to contribute to your goals">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font></Label>
-            <Label layoutX="89.0" layoutY="217.0" text="- Track the progress on your goals">
+            <Label layoutX="131.0" layoutY="199.0" text="Track the progress of your goals">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="111.0" layoutY="244.0" text="- Weekly">
+            <Label layoutX="131.0" layoutY="222.0" text="weekly, monthly, or yearly">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="111.0" layoutY="271.0" text="- Monthly">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="111.0" layoutY="298.0" text="- Yearly">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="89.0" layoutY="373.0" text="- Create Goals">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="89.0" layoutY="396.0" text="- Update Existing Goals">
+            <Label layoutX="131.0" layoutY="321.0" text="Create goals and update existing">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font></Label>
-            <Label layoutX="89.0" layoutY="494.0" text="- Purchases/Earnings in cash? No problem">
+            <Label layoutX="131.0" layoutY="469.0" text="Upload bank statements to contribute towards">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font></Label>
-            <Label layoutX="111.0" layoutY="517.0" text="- You can manually enter them">
+            <Label layoutX="131.0" layoutY="492.0" text="your goals. Manually enter cash purchases/">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font></Label>
-            <Label layoutX="89.0" layoutY="596.0" text="- Personalize the color scheme">
+            <Label layoutX="131.0" layoutY="515.0" text="earnings any time">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="89.0" layoutY="619.0" text="- Set a password to secure your information">
+            <Label layoutX="131.0" layoutY="616.0" text="Password protection and theme">
                <font>
                   <Font name="Segoe UI" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="65.0" layoutY="132.0" text="What to Expect:">
+            <Label layoutX="131.0" layoutY="639.0" text="customization">
                <font>
-                  <Font name="Segoe UI Italic" size="25.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
+            <Pane fx:id="goalsIcon" layoutX="65.0" layoutY="279.0" prefHeight="50.0" prefWidth="50.0" />
+            <Pane fx:id="cashIcon" layoutX="65.0" layoutY="398.0" prefHeight="50.0" prefWidth="50.0" />
+            <Pane fx:id="settingsIcon" layoutX="65.0" layoutY="567.0" prefHeight="50.0" prefWidth="50.0" />
+            <Label layoutX="131.0" layoutY="417.0" text="Upload Files" textFill="#177ea4">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="242.0" layoutY="69.0" text="Saving Stacks" textFill="#177ea4">
+               <font>
+                  <Font name="Segoe UI Bold Italic" size="35.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="127.0" fitWidth="155.0" layoutX="636.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../data/logo.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="homeIcon" layoutX="65.0" layoutY="155.0" prefHeight="50.0" prefWidth="50.0" />
          </children>
       </Pane>
    </children>

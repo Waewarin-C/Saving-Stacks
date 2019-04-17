@@ -87,7 +87,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		{
 			n.setVisible(false);
 			setGUIRowVisible( row + 1 );
-			addUnlockIcon( row +1 );
+			addUnlockIcon( row + 1 );
 			addRemoveIcon( row + 1 );
 			if( row < MAX_ROWS - 2 )
 				addAddIcon( row + 1 );
@@ -98,10 +98,15 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		}
 		else if( id.equals("lock"))
 		{
-			
+			removeButton(btn);
+			unlockTextField( row );
+			addUnlockIcon( row );
 		}
 		else if(id.equals("unlock"))
 		{
+			removeButton(btn);
+			lockTextField( row );
+			addLockIcon( row );
 			
 		}		
 	}
@@ -127,6 +132,43 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			{
 				System.out.println(n);
 				n.setVisible(true);
+			}
+				
+		}
+	}
+	
+	public void removeButton( Button button )
+	{
+		goalGrid.getChildren().remove(button);
+	}
+	
+	public void lockTextField( int row )
+	{
+		ObservableList<Node> children = goalGrid.getChildren();
+		
+		for( Node n : children )
+		{
+			
+			if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) < MAX_COLS - 3 )
+			{
+				System.out.println(n);
+				n.setDisable(true);
+			}
+				
+		}
+	}
+	
+	public void unlockTextField( int row )
+	{
+		ObservableList<Node> children = goalGrid.getChildren();
+		
+		for( Node n : children )
+		{
+			
+			if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) < MAX_COLS - 3 )
+			{
+				System.out.println(n);
+				n.setDisable(false);
 			}
 				
 		}

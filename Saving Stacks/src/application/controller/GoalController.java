@@ -4,15 +4,21 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import application.Main;
+import application.model.Goal;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -36,8 +42,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	private Label goalError;
 	
 	public static final String controllerID = "GOALS";
+	public static ArrayList<Goal> goalArray;
 	public static final int MAX_ROWS = 10;
 	public static final int MAX_COLS = 6;
+	
 	File file;
 
 	@Override
@@ -63,10 +71,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			}*/
 		else
 		{
-			setGUIRowVisible( 0 );
-			addUnlockIcon( 0 );
-			addRemoveIcon( 0 );
-			addAddIcon( 0 );
+			generateRow(0);
 		}
 
 
@@ -88,15 +93,15 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		if(id.equals("add"))
 		{
 			n.setVisible(false);
-			setGUIRowVisible( row + 1 );
-			addUnlockIcon( row + 1 );
-			addRemoveIcon( row + 1 );
-			if( row < MAX_ROWS - 2 )
-				addAddIcon( row + 1 );
+			generateRow( row + 1 );
 		}
 		else if( id.equals("remove"))
 		{
-			System.out.println("remove");
+			if ( row > 0 )
+				addAddIcon( row - 1 );
+			removeGridRow( row );
+			System.out.println(n);
+			//addGridRow();
 		}
 		else if( id.equals("lock"))
 		{
@@ -109,17 +114,51 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			removeButton(btn);
 			lockTextField( row );
 			addLockIcon( row );
+			createGoals( row, n );
+			//goalArray.add(goal);
 			
 		}		
 	}
 	
-	/**
-	 * 
-	 * @param event
-	 */
-	public void saveHandle(ActionEvent event)
+	public void saveHandle( ActionEvent event )
 	{
 		
+	}
+	
+	public Node getNodeByRowColumnIndex( int row, int column) {
+	    Node result = null;
+	    ObservableList<Node> childrens = goalGrid.getChildren();
+	    for(Node node : childrens) {
+	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+	            result = node;
+	            break;
+	        }
+	    }
+	    return result;
+	}
+	
+	public void createGoals( int row, Node n )
+	{
+		
+		TextField text = (TextField) getNodeByRowColumnIndex( row, 0 );
+		String goalTitle = text.getText();
+		System.out.println(goalTitle);
+		
+		TextField amt = (TextField) getNodeByRowColumnIndex( row, 1 );
+		String goalAmt = amt.getText();
+		
+		ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
+		String timeframe = time.getValue();
+		/*
+		ObservableList<Node> children = goalGrid.getChildren();
+		
+		for( Node n : children )
+		{
+			if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) == 0 )
+				n.
+		}*/
+		
+			
 	}
 	
 	/**
@@ -130,23 +169,6 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	{
 				
 	}
-
-	/**
-	 * 
-	 * @param row
-	 */
-	public void setGUIRowVisible( int row )
-	{
-		ObservableList<Node> children = goalGrid.getChildren();
-		
-		for( Node n : children )
-		{
-			if(GridPane.getRowIndex(n) == row && GridPane.getColumnIndex(n) < MAX_COLS - 3)
-			{
-				n.setVisible(true);
-			}	
-		}
-	}
 	
 	/**
 	 * 
@@ -156,6 +178,40 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	{
 		goalGrid.getChildren().remove(button);
 	}
+	
+	public void removeGridRow( int row )
+	{
+		ObservableList<Node> children = goalGrid.getChildren();
+		ObservableList<Node> temp = FXCollections.observableArrayList();
+		
+		for( Node n : children)
+		{
+			if(GridPane.getRowIndex(n) == row )
+			{
+				
+				temp.add(n);
+				//tempRemove.addAll(n);
+				
+				//goalGrid.getChildren().remove(n);
+			}
+			//goalGrid.getChildren().removeIf(node -> GridPane.getRowIndex(n) == row);
+		}
+		
+		goalGrid.getChildren().removeAll(temp);
+	}
+	
+	public void addGridRow()
+	{
+		TextField goal = new TextField();
+		TextField amount = new TextField();
+		ChoiceBox<Object> time = new ChoiceBox<Object>();
+		
+		goalGrid.add(goal, 0, MAX_ROWS - 1);
+		goalGrid.add(amount, 1, MAX_ROWS - 1);
+		goalGrid.add(time, 2, MAX_ROWS - 1);
+	}
+	
+
 	
 	/**
 	 * 
@@ -175,6 +231,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		}
 	}
 	
+	
+	
 	/**
 	 * 
 	 * @param row
@@ -191,6 +249,20 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			}
 				
 		}
+	}
+	
+	/**
+	 * 
+	 * @param row
+	 */
+	public void generateRow( int row )
+	{
+		createGoalTextField( row );
+		createAmtTextField( row );
+		createChoiceBox( row );
+		addUnlockIcon( row );
+		addRemoveIcon( row );
+		addAddIcon( row );
 	}
 	
 	/**
@@ -236,7 +308,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		removePath.setContent("M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z");
 		remove.setGraphic(removePath);
 		remove.setId("remove");
-		remove.setOnAction(e->System.out.println("remove"));
+		remove.setOnAction(this);
 		remove.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));		
 		goalGrid.add(remove, 4, row);	
 	}
@@ -247,15 +319,61 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 */
 	public void addAddIcon( int row )
 	{
-		Button add = new Button();
-		SVGPath addPath = new SVGPath();
-		addPath.setContent("M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z");
-		add.setGraphic(addPath);
-		add.setId("add");
-		add.setOnAction(this);
-		add.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));		
-		goalGrid.add(add, 5, row);
-		
+		if( row < MAX_ROWS - 2 )
+		{
+			Button add = new Button();
+			SVGPath addPath = new SVGPath();
+			addPath.setContent("M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z");
+			add.setGraphic(addPath);
+			add.setId("add");
+			add.setOnAction(this);
+			add.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));		
+			goalGrid.add(add, 5, row);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param row
+	 */
+	public void createGoalTextField( int row )
+	{
+		TextField goal = new TextField();
+		goal.setPromptText("Enter Your Goal");
+		goal.setStyle("-fx-font: 15px \"Segoe UI\";");
+		goal.setId("goal");
+		goalGrid.add(goal, 0, row);
+
+	}
+	
+	/**
+	 * 
+	 * @param row
+	 */
+	public void createAmtTextField( int row )
+	{
+		TextField amount = new TextField();
+		amount.setPromptText("Enter Amount");
+		amount.setId("amount");
+		amount.setMaxWidth(110.0);
+		amount.setStyle("-fx-font: 15px \"Segoe UI\";");
+		goalGrid.add(amount, 1, row);
+		GridPane.setHalignment(amount, HPos.CENTER);
+	}
+	
+	/**
+	 * 
+	 * @param row
+	 */
+	public void createChoiceBox( int row )
+	{
+		ChoiceBox<String> time = new ChoiceBox<String>();
+		time.getItems().addAll("Weekly", "Monthly", "Yearly");
+		time.setId("time");
+		time.setMaxWidth(110.0);
+		time.setStyle("-fx-font: 15px \"Segoe UI\";");
+		goalGrid.add(time, 2, row);
+		GridPane.setHalignment(time, HPos.CENTER);
 	}
 
 }

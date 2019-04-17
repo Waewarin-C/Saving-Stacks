@@ -73,6 +73,12 @@ public class GoalSet {
 		}		
 	}
 	
+	public Goal createGoal()
+	{
+		Goal goal = new Goal(null, null, 0);
+		return goal;
+	}
+	
 	/**
 	 * @return the goalArray
 	 */

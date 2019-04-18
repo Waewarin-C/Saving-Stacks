@@ -76,24 +76,20 @@ public class GoalSet {
 	
 	public static Goal generateGoal( String title, String dollarAmt, String time )
 	{
-		System.out.println("0");
 		LocalDate date = LocalDate.now(); 
-		System.out.println("1");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
-		System.out.println("2");
 	    String strDate = date.format(formatter);
-	    System.out.println("3");
 		double amount = Double.valueOf(dollarAmt);
-		System.out.println("4");
 		Goal goal = new Goal( title, time, strDate, amount);
 		
-		System.out.println("5");
 		return goal;
 	}
 	
-	//TODO: update Goal in array
-	
-	//TODO: remove Goal from array
+	//TODO: remove Goal from Hashmap.
+	public void removeGoal()
+	{
+		
+	}
 	
 	/**
 	 * @return the goalMap

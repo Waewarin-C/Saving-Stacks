@@ -49,11 +49,25 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	private File file;	
 	GoalSet goalMap = new GoalSet();
 
+	/**
+	 * 
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// sets the Bottom Bar.
 		BottomBarController.attachBottomBar(goalAnchor.getChildren(), controllerID);
 		
+		//TODO: set lock/unlock to the Monthly Spending Limit
+		
+		//TODO: set color scene and light/dark settings
+		
+		/*
+		 * TODO: Error Handling
+		 * 		Unlock/Lock -> will not lock unless selection is made in all 3 fields.
+		 * 		Plus -> cannot click add unless lock has been selected.
+		 * 		Save -> cannot save unless lock is clicked.
+		 */
+	
 		if( monthlyLimit.getText().equals(""))
 			Main.settings.setValueWithProperty("monthly_budget", "0.00");
 		else
@@ -73,7 +87,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			}
 			else
 			{	
-				setGoalstoScene( file );
+				setGoalstoScene();
 			}
 		}
 		else
@@ -106,11 +120,12 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		}
 		else if( id.equals("remove"))
 		{
-			if ( row > 0 )
+			//TODO: fix the remove functionality.
+			Node node = getNodeByRowColumnIndex( row + 1, 0 );
+			if ( node == null )
 				addAddIcon( row - 1 );
 			removeGridRow( row );
-			System.out.println(n);
-			//addGridRow();
+			setGoalstoScene();
 		}
 		else if( id.equals("lock"))
 		{
@@ -127,6 +142,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		}		
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	public void saveHandle( ActionEvent event )
 	{
 		GoalSet.saveGoalArray( filePath, goalMap );
@@ -137,12 +156,13 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 * @param file
 	 * @param goalArray
 	 */
-	public void setGoalstoScene( File file )
+	public void setGoalstoScene()
 	{				
 		if(goalMap.getGoalMap().size() > 10 )
 			System.out.println("Too many goals exist.");
 		
-		for(int i = 0; i < goalMap.getGoalMap().size(); i++ )
+		int i;
+		for( i = 0; i < goalMap.getGoalMap().size(); i++ )
 		{
 			String tTitle = goalMap.getGoalMap().get(i).getTitle();
 			double tAmt = goalMap.getGoalMap().get(i).getAmount();
@@ -151,6 +171,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			lockTextField( i );
 			addLockIcon( i );
 		}
+		
+		addAddIcon( i - 1 );
+		
+		
 	}
 	
 	/**
@@ -220,9 +244,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		ObservableList<Node> temp = FXCollections.observableArrayList();
 		
 		for( Node n : children)
-		{
+		{		
 			if(GridPane.getRowIndex(n) == row )
 			{	
+				n.setDisable(true);
 				temp.add(n);
 			}
 		}
@@ -395,6 +420,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		time.setId("time");
 		time.setMaxWidth(110.0);
 		time.setStyle("-fx-font: 15px \"Segoe UI\";");
+		time.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
 		if( timeframe.length() != 0)
 			time.setValue(timeframe);
 		goalGrid.add(time, 2, row);

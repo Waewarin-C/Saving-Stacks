@@ -7,10 +7,10 @@ public class Goal {
 	
 	private String title;
 	private String time;
-	private LocalDate date;
+	private String date;
 	private double amount;
 	
-	public Goal( String title, String time, LocalDate date, double amount)
+	public Goal( String title, String time, String date, double amount)
 	{
 		this.title = title;
 		this.time = time;
@@ -49,14 +49,14 @@ public class Goal {
 	/**
 	 * @param date the date to set
 	 */
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
 	/**
 	 * @return the date
 	 */
-	public LocalDate getDate() {
+	public String getDate() {
 		return this.date;
 	}
 	

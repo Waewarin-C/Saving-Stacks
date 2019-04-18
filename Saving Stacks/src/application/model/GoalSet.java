@@ -3,6 +3,7 @@ package application.model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -45,20 +46,20 @@ public class GoalSet {
 	/**
 	 * @param the file File of the goal information.
 	 */
-	public void loadGoals( File file )
+	public void loadGoals( String filepath )
 	{		
 		
 		try {	
 			
+			File file = new File( filepath );
 			Scanner scan = new Scanner( file );
 			
 			while(scan.hasNextLine())
 			{
 				String line = scan.nextLine();
 				String[] tokens = line.split(",");
-				double dollarAmt = Double.parseDouble(tokens[2]);
-				LocalDate date = LocalDate.parse(tokens[2]);
-				Goal newGoal = new Goal(tokens[0], tokens[1], date, dollarAmt );
+				double dollarAmt = Double.parseDouble(tokens[3]);
+				Goal newGoal = new Goal(tokens[0], tokens[1], tokens[2], dollarAmt );
 				
 				this.goalArray.add(newGoal);
 			}
@@ -74,12 +75,18 @@ public class GoalSet {
 	
 	public Goal generateGoal( String title, String dollarAmt, String time )
 	{
-		LocalDate date = LocalDate.now();
+		LocalDate date = LocalDate.now(); 
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
+	    String strDate = date.format(formatter);
 		double amount = Double.valueOf(dollarAmt);
-		Goal goal = new Goal( title, time, date, amount);
+		Goal goal = new Goal( title, time, strDate, amount);
 		
 		return goal;
 	}
+	
+	//TODO: update Goal in array
+	
+	//TODO: remove Goal from array
 	
 	/**
 	 * @return the goalArray

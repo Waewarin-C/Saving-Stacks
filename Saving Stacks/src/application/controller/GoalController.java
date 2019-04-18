@@ -4,6 +4,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import application.Main;
@@ -64,16 +65,14 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		Path path = Paths.get(filePath);
 		
 		if( Files.exists(path))
+		{
 			file = new File(filePath);
-			/*
-			//TODO: This likely inhibits the loading performance *but* it is better than before. Possible to thread?
-			for (int i = 0; i < MAX_ROWS; i++)
-			{
-				generateRowIcons(i, null);
-			}*/
+			goalArray.loadGoals( filePath );
+			setGoalstoScene( file, goalArray );
+		}
 		else
 		{
-			generateRow(0);
+			generateRow(0, "", 0.0, "");
 		}
 
 
@@ -95,7 +94,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		if(id.equals("add"))
 		{
 			n.setVisible(false);
-			generateRow( row + 1 );
+			generateRow( row + 1, "", 0.0, "" );
 		}
 		else if( id.equals("remove"))
 		{
@@ -116,9 +115,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			removeButton(btn);
 			lockTextField( row );
 			addLockIcon( row );
-			addGoaltoArray( row );
-			//goalArray.add(goal);
-			
+			addGoaltoArray( row );			
 		}		
 	}
 	
@@ -127,18 +124,31 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		goalArray.saveGoalArray( filePath, goalArray );
 	}
 	
-	public Node getNodeByRowColumnIndex( int row, int column) {
-	    Node result = null;
-	    ObservableList<Node> childrens = goalGrid.getChildren();
-	    for(Node node : childrens) {
-	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
-	            result = node;
-	            break;
-	        }
-	    }
-	    return result;
+	/**
+	 * 
+	 * @param file
+	 * @param goalArray
+	 */
+	public void setGoalstoScene( File file, GoalSet array )
+	{				
+		if(array.getGoalArray().size() > 10 )
+			System.out.println("Too many goals exist.");
+		
+		for(int i = 0; i < array.getGoalArray().size(); i++ )
+		{
+			String tTitle = array.getGoalArray().get(i).getTitle();
+			double tAmt = array.getGoalArray().get(i).getAmount();
+			String tTime = array.getGoalArray().get(i).getTime();
+			generateRow(i, tTitle, tAmt, tTime);
+			lockTextField( i );
+			addLockIcon( i );
+		}
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 */
 	public void addGoaltoArray( int row )
 	{
 		
@@ -154,6 +164,24 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		Goal goal = goalArray.generateGoal( goalTitle, goalAmt, timeframe);
 		
 		goalArray.addGoal(goal);
+	}
+	
+	/**
+	 * 
+	 * @param row
+	 * @param column
+	 * @return
+	 */
+	public Node getNodeByRowColumnIndex( int row, int column) {
+	    Node result = null;
+	    ObservableList<Node> childrens = goalGrid.getChildren();
+	    for(Node node : childrens) {
+	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+	            result = node;
+	            break;
+	        }
+	    }
+	    return result;
 	}
 	
 	/**
@@ -212,8 +240,6 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		}
 	}
 	
-	
-	
 	/**
 	 * 
 	 * @param row
@@ -236,11 +262,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 * 
 	 * @param row
 	 */
-	public void generateRow( int row )
+	public void generateRow( int row, String title, double dollarAmount, String timeframe )
 	{
-		createGoalTextField( row );
-		createAmtTextField( row );
-		createChoiceBox( row );
+		createGoalTextField( row, title );
+		createAmtTextField( row, dollarAmount );
+		createChoiceBox( row, timeframe );
 		addUnlockIcon( row );
 		addRemoveIcon( row );
 		addAddIcon( row );
@@ -317,28 +343,36 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 * 
 	 * @param row
 	 */
-	public void createGoalTextField( int row )
+	public void createGoalTextField( int row, String title )
 	{
 		TextField goal = new TextField();
 		goal.setPromptText("Enter Your Goal");
 		goal.setStyle("-fx-font: 15px \"Segoe UI\";");
 		goal.setId("goal");
+		if( title.length() != 0 )
+		{
+			goal.setText(title);
+		}
 		goalGrid.add(goal, 0, row);
-
 	}
 	
 	/**
 	 * 
 	 * @param row
 	 */
-	public void createAmtTextField( int row )
+	public void createAmtTextField( int row, double dollarAmt )
 	{
 		TextField amount = new TextField();
 		amount.setPromptText("Enter Amount");
 		amount.setId("amount");
 		amount.setMaxWidth(110.0);
-		//amount.setValue(new Double());
 		amount.setStyle("-fx-font: 15px \"Segoe UI\";");
+		if( dollarAmt > 0)
+		{
+			DecimalFormat df = new DecimalFormat("#.00");
+			String dollarText = df.format(dollarAmt);
+			amount.setText(dollarText);
+		}
 		goalGrid.add(amount, 1, row);
 		GridPane.setHalignment(amount, HPos.CENTER);
 	}
@@ -347,13 +381,15 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 * 
 	 * @param row
 	 */
-	public void createChoiceBox( int row )
+	public void createChoiceBox( int row, String timeframe )
 	{
 		ChoiceBox<String> time = new ChoiceBox<String>();
 		time.getItems().addAll("Weekly", "Monthly", "Yearly");
 		time.setId("time");
 		time.setMaxWidth(110.0);
 		time.setStyle("-fx-font: 15px \"Segoe UI\";");
+		if( timeframe.length() != 0)
+			time.setValue(timeframe);
 		goalGrid.add(time, 2, row);
 		GridPane.setHalignment(time, HPos.CENTER);
 	}

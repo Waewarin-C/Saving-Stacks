@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import application.Main;
 import application.model.Goal;
@@ -17,7 +16,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -48,9 +46,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	public static final int MAX_COLS = 6;
 	private String filename = "goals.csv";
 	private String filePath = "data/" + filename;
-	private File file;
-	GoalSet goalArray = new GoalSet();
-	
+	private File file;	
+	GoalSet goalMap = new GoalSet();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -67,12 +64,22 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		if( Files.exists(path))
 		{
 			file = new File(filePath);
-			goalArray.loadGoals( filePath );
-			setGoalstoScene( file, goalArray );
+			goalMap.loadGoals( filePath );
+			
+			if(goalMap.getGoalMap().size() == 0)
+			{
+				generateRow(0, "", 0.0, "");
+				addAddIcon( 0 );
+			}
+			else
+			{	
+				setGoalstoScene( file );
+			}
 		}
 		else
 		{
 			generateRow(0, "", 0.0, "");
+			addAddIcon( 0 );
 		}
 
 
@@ -95,6 +102,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		{
 			n.setVisible(false);
 			generateRow( row + 1, "", 0.0, "" );
+			addAddIcon( row + 1 );
 		}
 		else if( id.equals("remove"))
 		{
@@ -115,13 +123,13 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			removeButton(btn);
 			lockTextField( row );
 			addLockIcon( row );
-			addGoaltoArray( row );			
+			addGoaltoMap( row );			
 		}		
 	}
 	
 	public void saveHandle( ActionEvent event )
 	{
-		goalArray.saveGoalArray( filePath, goalArray );
+		GoalSet.saveGoalArray( filePath, goalMap );
 	}
 	
 	/**
@@ -129,16 +137,16 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 * @param file
 	 * @param goalArray
 	 */
-	public void setGoalstoScene( File file, GoalSet array )
+	public void setGoalstoScene( File file )
 	{				
-		if(array.getGoalArray().size() > 10 )
+		if(goalMap.getGoalMap().size() > 10 )
 			System.out.println("Too many goals exist.");
 		
-		for(int i = 0; i < array.getGoalArray().size(); i++ )
+		for(int i = 0; i < goalMap.getGoalMap().size(); i++ )
 		{
-			String tTitle = array.getGoalArray().get(i).getTitle();
-			double tAmt = array.getGoalArray().get(i).getAmount();
-			String tTime = array.getGoalArray().get(i).getTime();
+			String tTitle = goalMap.getGoalMap().get(i).getTitle();
+			double tAmt = goalMap.getGoalMap().get(i).getAmount();
+			String tTime = goalMap.getGoalMap().get(i).getTime();
 			generateRow(i, tTitle, tAmt, tTime);
 			lockTextField( i );
 			addLockIcon( i );
@@ -149,9 +157,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 * 
 	 * @param row
 	 */
-	public void addGoaltoArray( int row )
+	public void addGoaltoMap( int row )
 	{
-		
 		TextField text = (TextField) getNodeByRowColumnIndex( row, 0 );
 		String goalTitle = text.getText();
 		
@@ -161,9 +168,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
 		String timeframe = time.getValue();
 
-		Goal goal = goalArray.generateGoal( goalTitle, goalAmt, timeframe);
+		System.out.println( goalTitle + goalAmt + timeframe);
+		Goal goal = GoalSet.generateGoal( goalTitle, goalAmt, timeframe);
 		
-		goalArray.addGoal(goal);
+		goalMap.getGoalMap().put(row, goal);
 	}
 	
 	/**
@@ -269,7 +277,6 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		createChoiceBox( row, timeframe );
 		addUnlockIcon( row );
 		addRemoveIcon( row );
-		addAddIcon( row );
 	}
 	
 	/**
@@ -326,7 +333,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 */
 	public void addAddIcon( int row )
 	{
-		if( row < MAX_ROWS - 2 )
+		if( row < MAX_ROWS - 1 )
 		{
 			Button add = new Button();
 			SVGPath addPath = new SVGPath();

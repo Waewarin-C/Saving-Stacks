@@ -41,6 +41,8 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		try
 		{
 			throw new IOException("TODO: Remove when implemented");
+			//TODO: Use FileChooser to have user upload the csv file
+			//When they click on the button
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

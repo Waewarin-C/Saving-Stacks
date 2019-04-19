@@ -7,5 +7,5 @@ user_question=What is your dog's name?
 user_answer=dog
 default_tint_color_dark=#FFFFFF
 default_tint_color_light=#000000
-defined_tint_color=#005005
+defined_tint_color=#002f6c
 monthly_budget=0.00

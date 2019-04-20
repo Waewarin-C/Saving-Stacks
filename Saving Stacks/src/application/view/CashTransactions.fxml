@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane fx:id="cashAnchor" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CashController">
    <children>
       <Label layoutX="14.0" prefHeight="75.0" prefWidth="324.0" text="Cash Transactions">
          <font>
@@ -19,10 +18,10 @@
            <Font size="11.0" />
          </font>
       </Label>
-      <Button layoutX="527.0" layoutY="536.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="59.0" text="Add" />
-      <DatePicker layoutX="387.0" layoutY="536.0" prefHeight="27.0" prefWidth="128.0" />
-      <TextField layoutX="14.0" layoutY="536.0" promptText="Name Of Item" />
-      <TextField layoutX="202.0" layoutY="536.0" promptText="Cost Of Item" />
-      <ListView layoutX="272.0" layoutY="227.0" prefHeight="200.0" prefWidth="303.0" />
+      <Button fx:id="addbutton" layoutX="527.0" layoutY="536.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="59.0" text="Add" />
+      <DatePicker fx:id="date" layoutX="387.0" layoutY="536.0" prefHeight="27.0" prefWidth="128.0" />
+      <TextField fx:id="nameitem" layoutX="14.0" layoutY="536.0" promptText="Name Of Item" />
+      <TextField fx:id="costitem" layoutX="202.0" layoutY="536.0" promptText="Cost Of Item" />
+      <ListView fx:id="CashView" layoutX="272.0" layoutY="227.0" prefHeight="200.0" prefWidth="303.0" />
    </children>
 </AnchorPane>

@@ -1,6 +1,6 @@
 package application.controller;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,17 +10,23 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 public class UploadController implements EventHandler<ActionEvent>, Initializable{
 
-	@FXML AnchorPane uploadAnchor;
+	@FXML private AnchorPane uploadAnchor;
 	
-	@FXML ChoiceBox<String> choice1, choice2, choice3;
+	@FXML private ChoiceBox<String> choice1, choice2, choice3;
 	
-	@FXML Label csvPrompt;
+	@FXML private Label csvPrompt;
+	
+	@FXML private Button fileButton;
 	
 	private String token1, token2, token3;
 	
@@ -30,7 +36,6 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	@Override
 	public void handle(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		UploadManager um = new UploadManager();
 		
 		if (token1 == null || token2 == null || token3 == null)
 		{
@@ -38,22 +43,17 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		}
 		
 		
-		try
-		{
-			throw new IOException("TODO: Remove when implemented");
-			//TODO: Use FileChooser to have user upload the csv file
-			//When they click on the button
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		FileChooser fc = new FileChooser();
+		fc.getExtensionFilters().add(new ExtensionFilter("CSV Files", "*.csv"));
+		fc.setTitle("Select File to Upload.");
+		UploadManager.readFile(fc.showOpenDialog(new Stage()));
 	}
 
 	
 	public void set(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	
 		
-		
+		fileButton.setDisable(false);
 		
 		
 		token1 = choice1.getValue();
@@ -76,7 +76,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		}
 
 		csvPrompt.setVisible(false);
-		
+		fileButton.setDisable(true);
 		
 		BottomBarController.attachBottomBar(uploadAnchor.getChildren(), controllerID);
 		

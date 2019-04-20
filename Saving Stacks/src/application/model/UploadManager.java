@@ -1,5 +1,6 @@
 package application.model;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +22,7 @@ public class UploadManager {
 	private static String format;
 	
 	//Static method to read the csv file
-	public static void readFile()
+	public static void readFile(File chosenFile) 
 	{
 		
 	}

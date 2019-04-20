@@ -8,17 +8,17 @@
 
 <AnchorPane fx:id="uploadAnchor" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UploadController">
    <children>
-      <Label layoutX="38.0" layoutY="31.0" prefHeight="53.0" prefWidth="170.0" text="UPLOAD FILES">
+      <Label fx:id="uploadPrompt" layoutX="38.0" layoutY="31.0" prefHeight="53.0" prefWidth="170.0" text="UPLOAD FILES">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="582.0" layoutY="35.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Select From Filesystem" textFill="WHITE">
+      <Button fx:id="fileButton" layoutX="582.0" layoutY="35.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Select From Filesystem" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label layoutX="38.0" layoutY="137.0" prefHeight="45.0" prefWidth="662.0" text="Before uploading, please provide the data format of your bank's csv file in the order it appears." wrapText="true">
+      <Label fx:id="warning" layoutX="38.0" layoutY="137.0" prefHeight="45.0" prefWidth="662.0" text="Before uploading, please provide the data format of your bank's csv file in the order it appears." wrapText="true">
          <font>
             <Font size="15.0" />
          </font>

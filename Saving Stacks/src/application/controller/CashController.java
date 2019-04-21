@@ -92,14 +92,50 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 	}
 	
+	@Override
+	public void handle(ActionEvent event) {
+		
+		int id = Transaction.establishTransId();
+		LocalDate entryDate = LocalDate.now(); 
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
+	    String strDate = entryDate.format(formatter);
+	    String transDate = date.getText();
+	    String name = nameitem.getText();
+	    CheckBox c = getCheckBoxSelected();
+	    String tag = c.getText();
+	    double amount = Double.parseDouble(costitem.getText());
+		Transaction trans = new Transaction(id, strDate, transDate, name, tag, amount);
+		
+		Transaction.saveTransaction( trans );
+		
+		resetScene();
+	}
+	
 	public void clearScene()
 	{
 		errorMsg.setVisible(false);
-	    
+		date.setText("");
+		nameitem.setText("");
+		costitem.setText("");
+		
 		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
 		{
 			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
 			n.setVisible(false);
+			n.setSelected(false);
+		}
+	}
+	
+	public void resetScene()
+	{
+		errorMsg.setVisible(false);
+		date.setText("");
+		nameitem.setText("");
+		costitem.setText("");
+		
+		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
+		{
+			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
 			n.setSelected(false);
 		}
 	}
@@ -130,23 +166,6 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 		
 		return null;
-	}
-
-	@Override
-	public void handle(ActionEvent event) {
-		
-		int id = Transaction.establishTransId();
-		LocalDate entryDate = LocalDate.now(); 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
-	    String strDate = entryDate.format(formatter);
-	    String transDate = date.getText();
-	    String name = nameitem.getText();
-	    CheckBox c = getCheckBoxSelected();
-	    String tag = c.getText();
-	    double amount = Double.parseDouble(costitem.getText());
-		Transaction trans = new Transaction(id, strDate, transDate, name, tag, amount);
-		
-		Transaction.saveTransaction( trans );
 	}
 	
 }

@@ -18,7 +18,7 @@ public class Transaction {
 	private String tag;
 	private double amount;
 	
-	private String transFilename = "data/transactions.csv";
+	private static String transFilename = "data/transactions.csv";
 	private static String idFilename = "data/transId.csv";
 	
 	public Transaction(int idNumber, String entryDate, String transDate, String name, String tag, double amount)
@@ -34,14 +34,46 @@ public class Transaction {
 	//TODO: add addTransaction function
 	public static void saveTransaction( Transaction transaction )
 	{
-			
+		Path path = Paths.get(transFilename);
+		
+		
+		if( Files.exists(path))
+		{
+	
+		}
+		else
+		{
+			saveTransToNewFile(transaction);
+		}
 	}
 	
 	public static void saveTransaction( ArrayList<Transaction> transArray )
 	{
+		Path path = Paths.get(transFilename);
 		
+		
+		if( Files.exists(path))
+		{
+	
+		}
+		else
+		{
+		
+		}
 	}
 
+	public static void saveTransToNewFile( Transaction transaction )
+	{
+		try {
+			// open the file for writing	
+			FileWriter writer = new FileWriter( new File( transFilename ) );		
+			writer.write( transaction.toString() );
+			writer.close();			
+		}catch( IOException e ) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static int establishTransId()
 	{
 		Path path = Paths.get(idFilename);
@@ -72,6 +104,14 @@ public class Transaction {
 			e.printStackTrace();
 		}
 	}
+	
+	public String toString()
+	{
+		String ret = this.transId + "," + this.entryDate + "," + this.name + "," + this.transDate + ",";
+		ret += this.amount + "," + this.tag;
+		return ret;
+	}
+	
 	/**
 	 * @return the entryDate
 	 */

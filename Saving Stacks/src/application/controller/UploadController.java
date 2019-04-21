@@ -30,6 +30,8 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	
 	private String token1, token2, token3;
 	
+	private String format;
+	
 	private static final String controllerID = "UPLOAD";
 	
 	
@@ -63,6 +65,10 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		
 		csvPrompt.setText(String.format("%s %s,%s,%s", "Specified csv format: ", token1.toLowerCase(), token2.toLowerCase(), token3.toLowerCase()));
 		csvPrompt.setVisible(true);
+		
+		//Set format
+		format = token1.toLowerCase() + "," + token2.toLowerCase() + "," + token3.toLowerCase();
+		UploadManager.setFormat(format);
 		
 	}
 	

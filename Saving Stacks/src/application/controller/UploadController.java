@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,7 +36,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	
 	@Override
 	public void handle(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		
 		
 		if (token1 == null || token2 == null || token3 == null)
 		{
@@ -75,7 +74,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
 			uploadAnchor.setStyle("-fx-background-color: #33333d");

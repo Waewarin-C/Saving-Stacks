@@ -22,10 +22,11 @@ public class Main extends Application{
 		
 		Parent root = null;
 		stage = primaryStage;
-		//TODO: Edit the icon and title name
+
 		stage.getIcons().add(new Image("file:./data/logo.png"));
 		stage.setTitle("Saving Stacks");
 				
+		
 		try {
 			
 			
@@ -56,7 +57,6 @@ public class Main extends Application{
 		} catch(Exception e) {
 			
 			e.printStackTrace();
-			
 		}
 	}
 	
@@ -66,6 +66,7 @@ public class Main extends Application{
 		
 		
 		SettingsManager settingManager = null;
+		
 		//load settings right before launch. Required for settings to remain persistent.
 		try {
 			

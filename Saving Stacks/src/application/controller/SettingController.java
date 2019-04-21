@@ -30,17 +30,17 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	private Button settingButton;
 	
 	@FXML
-	AnchorPane settingAnchor;
+	private AnchorPane settingAnchor;
 	@FXML
-	Label title, security, customization, accentPrompt, passMsg;
+	private Label title, security, customization, accentPrompt, passMsg;
 	@FXML
-	RadioButton passwordRadio;
+	private RadioButton passwordRadio;
 	@FXML
-	TextField password;
+	private TextField password;
 	@FXML
-	Pane accents;
+	private Pane accents;
 	@FXML
-	Button darkMode, lightMode, tint0, tint1, tint2, tint3, tint4, saveButton;
+	private Button darkMode, lightMode, tint0, tint1, tint2, tint3, tint4, saveButton;
 
 	
 	@Override
@@ -102,9 +102,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			
 			title.setStyle("-fx-text-fill: black");
 			password.setStyle("-fx-background-color: #F5F5F5; -fx-background-radius: 30");
-			
-			
-			//TODO: Also set up dark color options. Also put these into a data structure to navigate easier.
+
 			tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_light"));
 			tint1.setStyle("-fx-background-color: #002f6c");
 			tint2.setStyle("-fx-background-color: #b71c1c");
@@ -145,7 +143,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 
 					
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		
@@ -159,7 +157,6 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		passMsg.setVisible(true);
 		
 
-		//TODO: Display message with successful password change.
 	}
 	
 	

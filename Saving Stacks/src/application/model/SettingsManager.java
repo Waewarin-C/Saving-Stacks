@@ -23,10 +23,11 @@ import java.util.Scanner;
  */
 public class SettingsManager {
 	
-	LinkedHashMap<String, String> properties;
+	private LinkedHashMap<String, String> properties;
 	
 	/**
 	 * Constructs a new LaunchManager.
+	 * 
 	 * Visibility private due to only internal use of the object creation.
 	 */
 	private SettingsManager()

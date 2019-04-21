@@ -8,20 +8,89 @@
 
 <AnchorPane fx:id="cashAnchor" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CashController">
    <children>
-      <Label layoutX="14.0" prefHeight="75.0" prefWidth="324.0" text="Cash Transactions">
+      <Label layoutX="35.0" layoutY="11.0" prefHeight="75.0" prefWidth="324.0" text="Cash Transactions">
          <font>
             <Font size="34.0" />
          </font>
       </Label>
-      <Label layoutX="4.0" layoutY="65.0" prefHeight="48.0" prefWidth="593.0" text="To enter your cash transactions enter the name of your item, the price of it, and the date it was purchased. Then by clicking add you will see your item being displayed. " wrapText="true">
+      <Label layoutX="35.0" layoutY="75.0" prefHeight="48.0" prefWidth="580.0" text="To enter your cash transactions enter the name of your item, the price of it, and the date it was purchased. Then by clicking add you will see your item being displayed. " wrapText="true">
          <font>
            <Font size="11.0" />
          </font>
       </Label>
-      <Button fx:id="addbutton" layoutX="527.0" layoutY="536.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="59.0" text="Add" />
-      <DatePicker fx:id="date" layoutX="387.0" layoutY="536.0" prefHeight="27.0" prefWidth="128.0" />
-      <TextField fx:id="nameitem" layoutX="14.0" layoutY="536.0" promptText="Name Of Item" />
-      <TextField fx:id="costitem" layoutX="202.0" layoutY="536.0" promptText="Cost Of Item" />
-      <ListView fx:id="CashView" layoutX="272.0" layoutY="227.0" prefHeight="200.0" prefWidth="303.0" />
+      <Button fx:id="handle" layoutX="652.0" layoutY="612.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="59.0" text="Add" />
+      <TextField fx:id="nameitem" layoutX="35.0" layoutY="612.0" prefHeight="31.0" prefWidth="291.0" promptText="Enter Transaction" />
+      <TextField fx:id="costitem" layoutX="348.0" layoutY="612.0" prefHeight="31.0" prefWidth="125.0" promptText="Enter Total" />
+      <ListView fx:id="CashView" layoutX="35.0" layoutY="178.0" prefHeight="341.0" prefWidth="448.0" />
+      <GridPane fx:id="goalCheckBox" layoutX="517.0" layoutY="173.0" prefHeight="352.0" prefWidth="141.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="8">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" prefHeight="48.0" prefWidth="111.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="9">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </GridPane>
+      <TextField fx:id="date" layoutX="489.0" layoutY="612.0" prefHeight="31.0" prefWidth="116.0" promptText="Enter Date" />
    </children>
 </AnchorPane>

@@ -64,11 +64,19 @@ public class Transaction {
 		
 		if( Files.exists(path))
 		{
-	
+			for( int i = 0; i < transArray.size(); i++ )
+			{
+				Transaction temp = transArray.get(i);
+				appendTransToFile( temp );
+			}
 		}
 		else
 		{
-		
+			for( int i = 0; i < transArray.size(); i++ )
+			{
+				Transaction temp = transArray.get(i);
+				saveTransToNewFile( temp );
+			}		
 		}
 	}
 

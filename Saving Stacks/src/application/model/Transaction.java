@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//TODO: param notes
 public class Transaction {
 	
 	private int transId;
@@ -24,6 +25,15 @@ public class Transaction {
 	private static String idFilename = "data/" + idFile;
 	static File file;
 	
+	/**
+	 * 
+	 * @param idNumber
+	 * @param entryDate
+	 * @param transDate
+	 * @param name
+	 * @param tag
+	 * @param amount
+	 */
 	public Transaction(int idNumber, String entryDate, String transDate, String name, String tag, double amount)
 	{
 		this.transId = idNumber;

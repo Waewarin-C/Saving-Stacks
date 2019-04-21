@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,12 +22,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-/**
- *  NOTES AND TODO	
- * 
- * So I have check boxes for the goals, but does this return a int or string? aka is this idNumber or tag?
- * I plan on doing a return true and such for the checkboxes and that will tell what goal they click.
- * can I leave the text as goal or do I need to grab the goals name? I think you all only set it as ints.     
+
+//TODO: implement text area 
+//TODO: user data error handling
+//TODO: param notes need to be added.
+/**   
  * 
  * @author dakotakuczenski
  */
@@ -111,6 +109,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		resetScene();
 	}
 	
+	/**
+	 * 
+	 */
 	public void clearScene()
 	{
 		errorMsg.setVisible(false);
@@ -126,6 +127,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void resetScene()
 	{
 		errorMsg.setVisible(false);
@@ -140,6 +144,12 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 * @param column
+	 * @return
+	 */
 	public Node getNodeByRowColumnIndex( int row, int column) {
 		
 	    Node result = null;
@@ -156,6 +166,10 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	    return result;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public CheckBox getCheckBoxSelected()
 	{
 		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
@@ -172,42 +186,3 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 //while(!scan.hasNextInt()) scan.next();
 //int demoInt = scan.nextInt();
 // idea for date
-
-
-/*
-public void addbutton(ActionEvent event) {
-	//costitem is messy I need it to be viewed as a int.ValueOf is messy. I will need to test this when I push. or before lol. 
-	money = new Transaction(0, null, date.getText(), nameitem.getText(), null, valueOf(costitem.getText()) );
-	setViews(money);
-	
-	//ensures that costitem is a int. people dumb. 
-	costitem.textProperty().addListener(new ChangeListener<String>() {
-	    @Override
-	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
-	        String newValue) {
-	        if (!newValue.matches("\\d*")) {
-	            costitem.setText(newValue.replaceAll("[^\\d]", ""));
-	        }
-	    }
-	});
-	CashView.setItems(FXCollections.observableList(F));
-	
-	if(nameitem.getText()== "clubbing"){
-		easteregg.setText("Bands to make her dance!");
-	}
-}
-
-	private double valueOf(String costitem) {
-	return valueOf(costitem);
-}
-
-//transaction was to cashtransaction
-void setViews(Transaction money ){
-	cashArray.add(money);
-	F.add(money.toString());	
-}
-*
-*
-*
-*
-*/

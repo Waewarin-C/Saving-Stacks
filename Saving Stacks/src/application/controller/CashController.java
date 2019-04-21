@@ -5,27 +5,20 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import application.Main;
 import application.model.GoalSet;
 import application.model.Transaction;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -97,18 +90,6 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		{
 			errorMsg.setVisible(true);
 		}
-
-		
-		//F = new ArrayList<String>();
-		
-
-		
-		//CashView.setItems(FXCollections.observableList(F));
-		//total may or may not be used. but would be interesting, hard part being does it only show whats added? 
-		//another thing I question but would have to see if I could, is a remove button... 
-		//total.setText();
-
-		
 	}
 	
 	public void clearScene()
@@ -138,49 +119,73 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	    }
 	    return result;
 	}
-	/*
-	public void addbutton(ActionEvent event) {
-		//costitem is messy I need it to be viewed as a int.ValueOf is messy. I will need to test this when I push. or before lol. 
-		money = new Transaction(0, null, date.getText(), nameitem.getText(), null, valueOf(costitem.getText()) );
-		setViews(money);
-		
-		//ensures that costitem is a int. people dumb. 
-		costitem.textProperty().addListener(new ChangeListener<String>() {
-		    @Override
-		    public void changed(ObservableValue<? extends String> observable, String oldValue, 
-		        String newValue) {
-		        if (!newValue.matches("\\d*")) {
-		            costitem.setText(newValue.replaceAll("[^\\d]", ""));
-		        }
-		    }
-		});
-		CashView.setItems(FXCollections.observableList(F));
-		
-		if(nameitem.getText()== "clubbing"){
-			easteregg.setText("Bands to make her dance!");
+	
+	public CheckBox getCheckBoxSelected()
+	{
+		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
+		{
+			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
+			if( n.isSelected() == true)
+				return n;
 		}
+		
+		return null;
 	}
-	
-		private double valueOf(String costitem) {
-		return valueOf(costitem);
-	}
-	
-	//transaction was to cashtransaction
-	void setViews(Transaction money ){
-		cashArray.add(money);
-		F.add(money.toString());	
-	}
-	*
-	*
-	*
-	*
-	*/
 
 	@Override
 	public void handle(ActionEvent event) {
-		// TODO Auto-generated method stub
+		
+		int id = Transaction.establishTransId();
+		LocalDate entryDate = LocalDate.now(); 
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
+	    String strDate = entryDate.format(formatter);
+	    String transDate = date.getText();
+	    String name = nameitem.getText();
+	    CheckBox c = getCheckBoxSelected();
+	    String tag = c.getText();
+	    double amount = Double.parseDouble(costitem.getText());
+		Transaction trans = new Transaction(id, strDate, transDate, name, tag, amount);
+		
 		
 	}
 	
 }
-// nanana shortay is a melodyyy 2:12am
+
+
+/*
+public void addbutton(ActionEvent event) {
+	//costitem is messy I need it to be viewed as a int.ValueOf is messy. I will need to test this when I push. or before lol. 
+	money = new Transaction(0, null, date.getText(), nameitem.getText(), null, valueOf(costitem.getText()) );
+	setViews(money);
+	
+	//ensures that costitem is a int. people dumb. 
+	costitem.textProperty().addListener(new ChangeListener<String>() {
+	    @Override
+	    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+	        String newValue) {
+	        if (!newValue.matches("\\d*")) {
+	            costitem.setText(newValue.replaceAll("[^\\d]", ""));
+	        }
+	    }
+	});
+	CashView.setItems(FXCollections.observableList(F));
+	
+	if(nameitem.getText()== "clubbing"){
+		easteregg.setText("Bands to make her dance!");
+	}
+}
+
+	private double valueOf(String costitem) {
+	return valueOf(costitem);
+}
+
+//transaction was to cashtransaction
+void setViews(Transaction money ){
+	cashArray.add(money);
+	F.add(money.toString());	
+}
+*
+*
+*
+*
+*/

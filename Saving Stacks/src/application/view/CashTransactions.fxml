@@ -13,7 +13,7 @@
             <Font size="34.0" />
          </font>
       </Label>
-      <Button fx:id="handle" layoutX="634.0" layoutY="597.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="59.0" text="Add" />
+      <Button layoutX="634.0" layoutY="597.0" mnemonicParsing="false" onAction="#handle" prefHeight="27.0" prefWidth="59.0" text="Add" />
       <TextField fx:id="nameitem" layoutX="50.0" layoutY="597.0" prefHeight="31.0" prefWidth="291.0" promptText="Enter Transaction" />
       <TextField fx:id="costitem" layoutX="358.0" layoutY="597.0" prefHeight="31.0" prefWidth="125.0" promptText="Enter Total" />
       <ListView fx:id="CashView" layoutX="50.0" layoutY="174.0" prefHeight="364.0" prefWidth="469.0" />

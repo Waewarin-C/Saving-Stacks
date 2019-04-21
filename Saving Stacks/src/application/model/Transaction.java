@@ -1,6 +1,7 @@
 package application.model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +20,9 @@ public class Transaction {
 	private double amount;
 	
 	private static String transFilename = "data/transactions.csv";
-	private static String idFilename = "data/transId.csv";
+	private static String idFile = "transId.csv";
+	private static String idFilename = "data/" + idFile;
+	static File file;
 	
 	public Transaction(int idNumber, String entryDate, String transDate, String name, String tag, double amount)
 	{
@@ -31,7 +34,10 @@ public class Transaction {
 		this.amount = amount;
 	}
 	
-	//TODO: add addTransaction function
+	/**
+	 * 
+	 * @param transaction
+	 */
 	public static void saveTransaction( Transaction transaction )
 	{
 		Path path = Paths.get(transFilename);
@@ -39,7 +45,7 @@ public class Transaction {
 		
 		if( Files.exists(path))
 		{
-	
+			appendTransToFile( transaction );
 		}
 		else
 		{
@@ -47,6 +53,10 @@ public class Transaction {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param transArray
+	 */
 	public static void saveTransaction( ArrayList<Transaction> transArray )
 	{
 		Path path = Paths.get(transFilename);
@@ -62,6 +72,10 @@ public class Transaction {
 		}
 	}
 
+	/**
+	 * 
+	 * @param transaction
+	 */
 	public static void saveTransToNewFile( Transaction transaction )
 	{
 		try {
@@ -74,41 +88,80 @@ public class Transaction {
 		}
 	}
 	
-	public static int establishTransId()
-	{
-		Path path = Paths.get(idFilename);
-		int id = 0;
-		
-		if( Files.exists(path))
-		{
-			Scanner scan = new Scanner(idFilename);
-			id = scan.nextInt();
-			id = id++;	
-		}
-		else
-		{
-			id = 1;
-		}
-		
-		return id;
-	}
-	
-	public void saveTransId( int id )
+	/**
+	 * 
+	 * @param transaction
+	 */
+	public static void appendTransToFile( Transaction transaction )
 	{
 		try {
 			// open the file for writing	
-			FileWriter writer = new FileWriter( new File( idFilename ) );
-			writer.write( id );
+			FileWriter writer = new FileWriter( new File( transFilename ), true );		
+			writer.write( transaction.toString() );
 			writer.close();			
 		}catch( IOException e ) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public static int establishTransId()
+	{
+		Path path = Paths.get(idFilename);
+		int id = 0;
+		Scanner scan;
+		
+		if( Files.exists(path))
+		{
+			file = new File(idFilename);
+			
+			try {
+				scan = new Scanner(file);
+				String idString = scan.nextLine();
+				String tokens[] = idString.split(",");
+				id = Integer.parseInt(tokens[0]);
+				id = id + 1;
+				scan.close();
+			} catch (FileNotFoundException e) {
+			
+				e.printStackTrace();
+			}
+		}
+		else
+		{
+			id = 1;
+		}
+		saveTransId( id );	
+		return id;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 */
+	public static void saveTransId( int id )
+	{
+		try {
+			// open the file for writing	
+			FileWriter writer = new FileWriter( new File( idFilename ) );
+			String idString = String.valueOf(id);
+			writer.write( idString );
+			writer.close();			
+		}catch( IOException e ) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 */
 	public String toString()
 	{
 		String ret = this.transId + "," + this.entryDate + "," + this.name + "," + this.transDate + ",";
-		ret += this.amount + "," + this.tag;
+		ret += this.amount + "," + this.tag + "\n";
 		return ret;
 	}
 	

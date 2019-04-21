@@ -150,6 +150,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 }
+//while(!scan.hasNextInt()) scan.next();
+//int demoInt = scan.nextInt();
+// idea for date
 
 
 /*

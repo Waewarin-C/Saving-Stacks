@@ -121,10 +121,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		else if( id.equals("remove"))
 		{
 			//TODO: fix the remove functionality.
-			Node node = getNodeByRowColumnIndex( row + 1, 0 );
-			if ( node == null )
-				addAddIcon( row - 1 );
 			removeGridRow( row );
+			clearRow( goalMap );
+			goalMap = goalMap.removeGoal( goalMap, row );
+			GoalSet.saveGoalArray( filePath, goalMap );
+			
 			setGoalstoScene();
 		}
 		else if( id.equals("lock"))
@@ -151,6 +152,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 		GoalSet.saveGoalArray( filePath, goalMap );
 	}
 	
+	
 	/**
 	 * 
 	 * @param file
@@ -172,9 +174,18 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 			addLockIcon( i );
 		}
 		
-		addAddIcon( i - 1 );
+		addAddIcon( i - 1 );		
+	}
+	
+	public void clearRow( GoalSet goal )
+	{
+		int row = goal.getGoalMap().size() - 1;
 		
-		
+		for(int i = 0; i < MAX_COLS; i++)
+		{
+			Node n = getNodeByRowColumnIndex( row, i);
+			goalGrid.getChildren().remove(n);
+		}
 	}
 	
 	/**
@@ -204,11 +215,14 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 * @param column
 	 * @return
 	 */
-	public Node getNodeByRowColumnIndex( int row, int column) {
+	public Node getNodeByRowColumnIndex( int row, int column) 
+	{
 	    Node result = null;
 	    ObservableList<Node> childrens = goalGrid.getChildren();
-	    for(Node node : childrens) {
-	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+	    for(Node node : childrens) 
+	    {
+	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) 
+	        {
 	            result = node;
 	            break;
 	        }
@@ -216,14 +230,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	    return result;
 	}
 	
-	/**
-	 * 
-	 * @param row
-	 */
-	public void checkFields( int row )
-	{
-				
-	}
+
 	
 	/**
 	 * 

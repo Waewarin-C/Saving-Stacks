@@ -5,8 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 public class GoalSet {
 	
@@ -74,6 +77,9 @@ public class GoalSet {
 		}		
 	}
 	
+	/*
+	 * 
+	 */
 	public static Goal generateGoal( String title, String dollarAmt, String time )
 	{
 		LocalDate date = LocalDate.now(); 
@@ -86,9 +92,27 @@ public class GoalSet {
 	}
 	
 	//TODO: remove Goal from Hashmap.
-	public void removeGoal()
+	public GoalSet removeGoal( GoalSet goalMap, int row )
 	{
+		goalMap.getGoalMap().remove(row);
 		
+		Set<Integer> keys = goalMap.getGoalMap().keySet();
+		ArrayList<Goal> values = new ArrayList<Goal>();
+		GoalSet tempHash = new GoalSet();
+		
+		for( Integer k : keys)
+		{
+			Goal g = goalMap.getGoalMap().get(k);
+			values.add(g);
+		}
+		
+		for(int i = 0; i < values.size(); i++ )
+		{
+			Goal g = values.get(i);
+			tempHash.getGoalMap().put(i, g);
+		}
+		
+		return tempHash;
 	}
 	
 	/**

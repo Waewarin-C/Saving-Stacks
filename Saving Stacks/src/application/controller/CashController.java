@@ -146,7 +146,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	    double amount = Double.parseDouble(costitem.getText());
 		Transaction trans = new Transaction(id, strDate, transDate, name, tag, amount);
 		
-		
+		Transaction.saveTransaction( trans );
 	}
 	
 }

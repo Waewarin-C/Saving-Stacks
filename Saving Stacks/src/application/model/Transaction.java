@@ -32,13 +32,12 @@ public class Transaction {
 	}
 	
 	//TODO: add addTransaction function
-	public void saveTransaction( Transaction transaction )
+	public static void saveTransaction( Transaction transaction )
 	{
-
-		
+			
 	}
 	
-	public void saveTransaction( ArrayList<Transaction> transArray )
+	public static void saveTransaction( ArrayList<Transaction> transArray )
 	{
 		
 	}

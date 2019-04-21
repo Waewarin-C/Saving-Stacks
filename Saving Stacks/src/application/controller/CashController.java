@@ -52,6 +52,8 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	private TextField nameitem;
 	@FXML
 	private GridPane goalCheckBox;
+	@FXML
+	private Label errorMsg;
 	
 	GoalSet goals = new GoalSet();
 	private String filename = "goals.csv";
@@ -68,6 +70,8 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 			cashAnchor.setStyle("-fx-background-color: #33333d");
 		}
 		
+		clearScene();
+		
 		Path path = Paths.get(filePath);
 		
 		if( Files.exists(path))
@@ -76,14 +80,10 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 			
 			if(goals.getGoalMap().size() == 0)
 			{
-				System.out.println("Please enter goals.");
-			}
-			else if(goals.getGoalMap().size() > 10 )
-			{
-				System.out.print("Too many goals");
+				errorMsg.setVisible(true);
 			}
 			else
-			{	
+			{					
 				for(int i = 0; i < goals.getGoalMap().size(); i ++ )
 				{
 					String goal = goals.getGoalMap().get(i).getTitle();
@@ -95,7 +95,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 		else
 		{
-			System.out.println("Please enter goals.");
+			errorMsg.setVisible(true);
 		}
 
 		
@@ -111,13 +111,27 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		
 	}
 	
+	public void clearScene()
+	{
+		errorMsg.setVisible(false);
+	    
+		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
+		{
+			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
+			n.setVisible(false);
+			n.setSelected(false);
+		}
+	}
+	
 	public Node getNodeByRowColumnIndex( int row, int column) {
 		
 	    Node result = null;
 	    ObservableList<Node> childrens = goalCheckBox.getChildren();
 	    
-	    for(Node node : childrens) {
-	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+	    for(Node node : childrens) 
+	    {
+	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) 
+	        {
 	            result = node;
 	            break;
 	        }

@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -86,9 +87,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 				for(int i = 0; i < goals.getGoalMap().size(); i ++ )
 				{
 					String goal = goals.getGoalMap().get(i).getTitle();
-					Node n = (Node) getNodeByRowColumnIndex( i , 0 );
+					CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
 					n.setVisible(true);
-					//Checkbox box = n.getId();
+					n.setText(goal);
 				}
 			}
 		}

@@ -2,6 +2,8 @@ package application.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,16 +24,13 @@ public class UploadManager {
 
 	private static ArrayList<Transaction> transactions;
 	private static String format;
-	private static int id;
 	
 	//Static method to read the csv file
 	public static void readFile(File chosenFile) 
 	{
-		
 		if (chosenFile == null)
 			return;
-		
-		id = 0;
+
 		try
 		{
 			//Tokenize the specified format to read the file and load the data correctly
@@ -39,6 +38,12 @@ public class UploadManager {
 			
 			String fileName = chosenFile.getName();
 			Scanner scan = new Scanner(new File(fileName));
+			
+			String transDate = "";
+			double amount = 0.00;
+			String name = "";
+			int id = Transaction.establishTransId();
+			id++;
 			
 			while(scan.hasNextLine())
 			{
@@ -48,60 +53,68 @@ public class UploadManager {
 				//Load the data based on format
 				if(formatToken[0].equals("date"))
 				{
-					String date = tokens[0];
+					transDate = tokens[0];
 				}
 				else if(formatToken[0].equals("amount"))
 				{
-					String amount = tokens[0];
+					amount = Double.parseDouble(tokens[0]);
 				}
 				else if(formatToken[0].equals("title"))
 				{
-					String title = tokens[0];
+					name = tokens[0];
 				}
 				
 				
 				if(formatToken[1].equals("date"))
 				{
-					String date = tokens[0];
+					transDate = tokens[0];
 				}
 				else if(formatToken[1].equals("amount"))
 				{
-					String amount = tokens[0];
+					amount = Double.parseDouble(tokens[0]);
 				}
 				else if(formatToken[1].equals("title"))
 				{
-					String title = tokens[0];
+					name = tokens[0];
 				}
 				
 				
 				if(formatToken[2].equals("date"))
 				{
-					String date = tokens[0];
+					transDate = tokens[0];
 				}
 				else if(formatToken[2].equals("amount"))
 				{
-					String amount = tokens[0];
+					amount = Double.parseDouble(tokens[0]);
 				}
 				else if(formatToken[2].equals("title"))
 				{
-					String title = tokens[0];
+					name = tokens[0];
 				}
 				
+				LocalDate entryDate = LocalDate.now(); 
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
+				
+			    String strDate = entryDate.format(formatter);
 			
 				//Create new transaction object
 				
-				/**Any parameters in the list that still have its type are the ones
-				 * that have not been figured out yet
+				/**
+				 * For now the tag is an empty string
+				 * That needs to be figured out later
+				 * when the UploadController is worked on
 				 */
 				
-				//Transaction temp = new Transaction(id, String entryDate, date, title, String tag, amount);
+				Transaction temp = new Transaction(id, strDate, transDate, name, "", amount);
 				
 				//Add transaction to ArrayList
-				//transactions.add(temp);
+				transactions.add(temp);
 				
 				//Increment id
 				id++;
 			}
+			//Keep track of the last transaction id used
+			Transaction.saveTransId(id - 1);
 			
 			scan.close();
 		}

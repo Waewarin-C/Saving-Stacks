@@ -2,11 +2,11 @@
 Saving Stacks
 
 # Contributors #
-Gabriel Morales: Gabiel-Morales
-Waewarin Chindarassmi: Waewarin-C
-Moses Arocha: moses-a
-Dakota Kuczenski: Dakotakuczenski
-Chelsea Flores-Young: ChelseaFlores
+* Gabriel Morales: Gabiel-Morales
+* Waewarin Chindarassami: Waewarin-C
+* Moses Arocha: moses-a
+* Dakota Kuczenski: Dakotakuczenski
+* Chelsea Flores-Young: ChelseaFlores
 
 # Motivation #
 Obtain financial freedom with Saving Stacks: Your Financial Organization App. Our intuitive, easy-to-use application allows you to organize your cash flow and generate weekly, monthly and yearly financial goals. For those of us who find tracking our finances and maintaining saving plans next to impossible, download our desktop app to get started.
@@ -17,7 +17,6 @@ Saving Stacks is a personal financial application that allows users to upload tr
 Many, we are trying.
 * Cash transactions
 * File upload
-Cash Transactions, file upload
 
 # Installations #
 1. Clone the repo

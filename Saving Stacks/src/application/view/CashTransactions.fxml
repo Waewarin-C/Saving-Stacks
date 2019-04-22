@@ -92,5 +92,8 @@
             <Font name="Segoe UI" size="15.0" />
          </font>
       </Label>
+      <Label contentDisplay="CENTER" layoutX="500.0" layoutY="631.0" prefHeight="17.0" prefWidth="118.0" text="XX/XX/XX format" />
+      <Label fx:id="whoopsdate" layoutX="502.0" layoutY="545.0" prefHeight="49.0" prefWidth="109.0" wrapText="true" />
+      <Label fx:id="whoopsprice" layoutX="366.0" layoutY="545.0" prefHeight="49.0" prefWidth="109.0" wrapText="true" />
    </children>
 </AnchorPane>

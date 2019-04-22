@@ -10,9 +10,9 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import java.util.concurrent.*;
 
-
-public class Main extends Application{
+public class Main extends Application {
 	
 	public static Stage stage;
 	public static SettingsManager settings;
@@ -65,15 +65,31 @@ public class Main extends Application{
 	public static void main(String[] args) {
 		
 		
-		SettingsManager settingManager = null;
 		
 		//load settings right before launch. Required for settings to remain persistent.
-		try {
+		Runnable task = new Runnable() {
+
+			@Override
+			public void run() {
+				
+				try {
+					settings = SettingsManager.loadSettings("data/SettingsManagerConfig.txt");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			
-			settingManager = SettingsManager.loadSettings("data/SettingsManagerConfig.txt");
-			
-			settings = settingManager;
+		};
 		
+		
+		try {
+		
+			ExecutorService executorservice = Executors.newCachedThreadPool();
+			executorservice.execute(task);
+			
+			executorservice.shutdown();
+			
 			launch(args);
 			
 			SettingsManager.saveSettings(settings, "data/SettingsManagerConfig.txt");

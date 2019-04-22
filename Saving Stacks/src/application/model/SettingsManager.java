@@ -21,9 +21,10 @@ import java.util.Scanner;
  * be done internally, with minimal calls externally.
  *
  */
-public class SettingsManager {
+public class SettingsManager{
 	
 	private LinkedHashMap<String, String> properties;
+	private static SettingsManager settings;
 	
 	/**
 	 * Constructs a new LaunchManager.
@@ -34,6 +35,8 @@ public class SettingsManager {
 	{
 		this.properties = new LinkedHashMap<String, String>();
 	}
+	
+
 	
 	/**
 	 * Loads the config from the "LaunchManagerConfig" file located in the data folder.

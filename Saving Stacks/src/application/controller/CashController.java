@@ -7,6 +7,9 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import application.Main;
 import application.model.GoalSet;
 import application.model.Transaction;
@@ -45,6 +48,10 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	private GridPane goalCheckBox;
 	@FXML
 	private Label errorMsg;
+	@FXML
+	private Label whoopsdate;
+	@FXML
+	private Label whoopsprice;
 	
 	GoalSet goals = new GoalSet();
 	private String filename = "goals.csv";
@@ -92,6 +99,24 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	
 	@Override
 	public void handle(ActionEvent event) {
+		
+		
+		//datematching
+		String dateregex =("[0-9][0-9]\\[0-9][0-9]\\[0-9][0-9]");	 
+		if (!date.getText().matches(dateregex))
+		{
+			whoopsdate.setText("Wrong date format");
+		}
+		//datematching
+		
+		//price matching
+		String priceregex =("[0-9]*\\.?[0-9][0-9]");
+		if (costitem.getText().matches(priceregex))
+		{
+			whoopsprice.setText("Wrong price format");
+		}
+		//price matching
+		
 		
 		int id = Transaction.establishTransId();
 		LocalDate entryDate = LocalDate.now(); 
@@ -166,22 +191,40 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	    return result;
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
 	public CheckBox getCheckBoxSelected()
 	{
+		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
+		{
+			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
+			if (n.isSelected() == false)
+				n.setDisable(true);
+		}	
 		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
 		{
 			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
 			if( n.isSelected() == true)
 				return n;
 		}
-		
 		return null;
 	}
+	
+
+
+	//public void  formatter()
+	//{
+		/*
+		date.getText().addListener((arg0, oldValue, newValue) -> {
+	    if (!newValue) { //when focus lost
+	        if(!textField.getText().matches("[0-9][0-9]\\[0-9][0-9]|\\[0-9][0-9]")){
+	            textField.setText("");
+	        }
+	    }
+		});
+		*/
+	//}
 }
+
+
 
 // to deal with the check boxes I will make a boolean that will return one true and the others false from my previous lab. 
 

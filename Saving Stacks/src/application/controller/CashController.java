@@ -183,6 +183,18 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 }
+
+//textField.date().addListener((arg0, oldValue, newValue) -> {
+    //if (!newValue) { //when focus lost
+        //if(!textField.getText().matches("[0-9][0-9]\/[0-9][0-9]|\/[0-9][0-9]")){
+            //when it not matches the pattern (XX/XX/XX)
+            //set the textField empty
+            //textField.setText("");
+        //}
+    //}
+//});
+
+
 //while(!scan.hasNextInt()) scan.next();
 //int demoInt = scan.nextInt();
 // idea for date

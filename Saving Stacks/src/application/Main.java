@@ -60,7 +60,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		
 		
-		
 		//load settings right before launch. Required for settings to remain persistent.
 		Runnable task = new Runnable() {
 
@@ -73,9 +72,6 @@ public class Main extends Application {
 			
 		};
 		
-		
-
-		
 		ExecutorService executorservice = Executors.newCachedThreadPool();
 		executorservice.execute(task);
 			
@@ -83,8 +79,7 @@ public class Main extends Application {
 		launch(args);
 			
 		SettingsManager.saveSettings(settings, "data/SettingsManagerConfig.txt");
-			
-		
+				
 	}
 
 }

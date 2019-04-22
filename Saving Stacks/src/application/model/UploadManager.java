@@ -27,6 +27,10 @@ public class UploadManager {
 	//Static method to read the csv file
 	public static void readFile(File chosenFile) 
 	{
+		
+		if (chosenFile == null)
+			return;
+		
 		id = 0;
 		try
 		{

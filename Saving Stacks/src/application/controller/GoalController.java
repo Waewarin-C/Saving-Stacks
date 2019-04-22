@@ -28,7 +28,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 
-public class GoalController implements EventHandler<ActionEvent>, Initializable{
+public class GoalController implements EventHandler<ActionEvent>, Initializable {
 	
 	@FXML
 	private GridPane goalGrid;
@@ -44,9 +44,14 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
 	public static final int MAX_COLS = 6;
+	
+	private static final String INPUT_FIELD_STYLE = "-fx-background-color: #25282f; -fx-background-radius: 30; -fx-text-fill: white";
+	private static final String BACKGROUND_COLOR_STYLE = "-fx-background-color: #33333d";
+	
 	private String filename = "goals.csv";
 	private String filePath = "data/" + filename;
 	private File file;	
+	
 	GoalSet goalMap = new GoalSet();
 
 	/**
@@ -54,6 +59,13 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
+		{
+			goalAnchor.setStyle(BACKGROUND_COLOR_STYLE);
+			monthlyLimit.setStyle(INPUT_FIELD_STYLE);
+		}
+		
 		// sets the Bottom Bar.
 		BottomBarController.attachBottomBar(goalAnchor.getChildren(), controllerID);
 		

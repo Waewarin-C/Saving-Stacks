@@ -23,7 +23,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	
 	@FXML private ChoiceBox<String> choice1, choice2, choice3;
 	
-	@FXML private Label csvPrompt;
+	@FXML private Label csvPrompt, warning, uploadPrompt;
 	
 	@FXML private Button fileButton;
 	
@@ -31,6 +31,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	
 	private String format;
 	
+	private static final String BACKGROUND_COLOR_STYLE = "-fx-background-color: #33333d";
 	private static final String controllerID = "UPLOAD";
 	
 	
@@ -77,7 +78,22 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
-			uploadAnchor.setStyle("-fx-background-color: #33333d");
+			uploadAnchor.setStyle(BACKGROUND_COLOR_STYLE);
+			
+			uploadPrompt.setStyle("-fx-text-fill: white");
+			csvPrompt.textFillProperty().bind(uploadPrompt.textFillProperty());
+			warning.textFillProperty().bind(uploadPrompt.textFillProperty());
+			
+			choice1.setStyle("");
+			choice1.getStylesheets().add(getClass().getResource("../view/choice_dark.css").toExternalForm());
+			
+			
+			
+			choice2.setStyle("");
+			choice2.getStylesheets().add(getClass().getResource("../view/choice_dark.css").toExternalForm());
+			
+			choice3.setStyle("");
+			choice3.getStylesheets().add(getClass().getResource("../view/choice_dark.css").toExternalForm());
 		}
 
 		csvPrompt.setVisible(false);

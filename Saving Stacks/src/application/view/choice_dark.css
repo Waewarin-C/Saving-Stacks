@@ -1,0 +1,33 @@
+.choice-box {
+	
+	-fx-background-color: #25282f; 
+	-fx-background-radius: 30; 
+	-fx-mark-color: white;
+  	
+}
+
+
+.choice-box .context-menu {
+
+	-fx-background-color: #25282f;
+	
+}
+
+.choice-box .menu-item > .label { 
+
+	-fx-text-fill: white; 
+
+}
+
+.choice-box .menu-item:focused { 
+
+	-fx-background-color: black; 
+
+}
+
+
+.choice-box > .label { 
+
+-fx-text-fill: white; 
+
+}

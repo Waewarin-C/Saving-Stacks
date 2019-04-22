@@ -110,91 +110,91 @@ public class WelcomeController implements EventHandler<ActionEvent>, Initializab
 		}
 		
 		//Add parallel fade transition
-		FadeTransition welcomeFT = new FadeTransition(Duration.millis(3500), welcome);
+		FadeTransition welcomeFT = new FadeTransition(Duration.millis(2000), welcome);
 		welcomeFT.setFromValue(0.0);
 		welcomeFT.setToValue(1.0);
 		
-		FadeTransition nameFT = new FadeTransition(Duration.millis(3500), name);
+		FadeTransition nameFT = new FadeTransition(Duration.millis(2000), name);
 		nameFT.setFromValue(0.0);
 		nameFT.setToValue(1.0);
 		
-		FadeTransition logoFT = new FadeTransition(Duration.millis(3500), logo);
+		FadeTransition logoFT = new FadeTransition(Duration.millis(2000), logo);
 		logoFT.setFromValue(0.0);
 		logoFT.setToValue(1.0);
 		
-		FadeTransition homeIconFT = new FadeTransition(Duration.millis(3500), homeIcon);
+		FadeTransition homeIconFT = new FadeTransition(Duration.millis(2000), homeIcon);
 		homeIconFT.setFromValue(0.0);
 		homeIconFT.setToValue(1.0);
 		
-		FadeTransition homeLabelFT = new FadeTransition(Duration.millis(3500), homeLabel);
+		FadeTransition homeLabelFT = new FadeTransition(Duration.millis(2000), homeLabel);
 		homeLabelFT.setFromValue(0.0);
 		homeLabelFT.setToValue(1.0);
 		
-		FadeTransition homeLine1FT = new FadeTransition(Duration.millis(3500), homeLine1);
+		FadeTransition homeLine1FT = new FadeTransition(Duration.millis(2000), homeLine1);
 		homeLine1FT.setFromValue(0.0);
 		homeLine1FT.setToValue(1.0);
 		
-		FadeTransition homeLine2FT = new FadeTransition(Duration.millis(3500), homeLine2);
+		FadeTransition homeLine2FT = new FadeTransition(Duration.millis(2000), homeLine2);
 		homeLine2FT.setFromValue(0.0);
 		homeLine2FT.setToValue(1.0);
 		
-		FadeTransition goalsIconFT = new FadeTransition(Duration.millis(3500), goalsIcon);
+		FadeTransition goalsIconFT = new FadeTransition(Duration.millis(2000), goalsIcon);
 		goalsIconFT.setFromValue(0.0);
 		goalsIconFT.setToValue(1.0);
 		
-		FadeTransition goalsLabelFT = new FadeTransition(Duration.millis(3500), goalsLabel);
+		FadeTransition goalsLabelFT = new FadeTransition(Duration.millis(2000), goalsLabel);
 		goalsLabelFT.setFromValue(0.0);
 		goalsLabelFT.setToValue(1.0);
 		
-		FadeTransition goalsLine1FT = new FadeTransition(Duration.millis(3500), goalsLine1);
+		FadeTransition goalsLine1FT = new FadeTransition(Duration.millis(2000), goalsLine1);
 		goalsLine1FT.setFromValue(0.0);
 		goalsLine1FT.setToValue(1.0);
 		
-		FadeTransition goalsLine2FT = new FadeTransition(Duration.millis(3500), goalsLine2);
+		FadeTransition goalsLine2FT = new FadeTransition(Duration.millis(2000), goalsLine2);
 		goalsLine2FT.setFromValue(0.0);
 		goalsLine2FT.setToValue(1.0);
 		
-		FadeTransition cashIconFT = new FadeTransition(Duration.millis(3500), cashIcon);
+		FadeTransition cashIconFT = new FadeTransition(Duration.millis(2000), cashIcon);
 		cashIconFT.setFromValue(0.0);
 		cashIconFT.setToValue(1.0);
 		
-		FadeTransition cashLabelFT = new FadeTransition(Duration.millis(3500), cashLabel);
+		FadeTransition cashLabelFT = new FadeTransition(Duration.millis(2000), cashLabel);
 		cashLabelFT.setFromValue(0.0);
 		cashLabelFT.setToValue(1.0);
 		
-		FadeTransition uploadLabelFT = new FadeTransition(Duration.millis(3500), uploadLabel);
+		FadeTransition uploadLabelFT = new FadeTransition(Duration.millis(2000), uploadLabel);
 		uploadLabelFT.setFromValue(0.0);
 		uploadLabelFT.setToValue(1.0);
 		
-		FadeTransition cashLine1FT = new FadeTransition(Duration.millis(3500), cashLine1);
+		FadeTransition cashLine1FT = new FadeTransition(Duration.millis(2000), cashLine1);
 		cashLine1FT.setFromValue(0.0);
 		cashLine1FT.setToValue(1.0);
 		
-		FadeTransition cashLine2FT = new FadeTransition(Duration.millis(3500), cashLine2);
+		FadeTransition cashLine2FT = new FadeTransition(Duration.millis(2000), cashLine2);
 		cashLine2FT.setFromValue(0.0);
 		cashLine2FT.setToValue(1.0);
 		
-		FadeTransition cashLine3FT = new FadeTransition(Duration.millis(3500), cashLine3);
+		FadeTransition cashLine3FT = new FadeTransition(Duration.millis(2000), cashLine3);
 		cashLine3FT.setFromValue(0.0);
 		cashLine3FT.setToValue(1.0);
 		
-		FadeTransition settingsIconFT = new FadeTransition(Duration.millis(3500), settingsIcon);
+		FadeTransition settingsIconFT = new FadeTransition(Duration.millis(2000), settingsIcon);
 		settingsIconFT.setFromValue(0.0);
 		settingsIconFT.setToValue(1.0);
 		
-		FadeTransition settingsLabelFT = new FadeTransition(Duration.millis(3500), settingsLabel);
+		FadeTransition settingsLabelFT = new FadeTransition(Duration.millis(2000), settingsLabel);
 		settingsLabelFT.setFromValue(0.0);
 		settingsLabelFT.setToValue(1.0);
 		
-		FadeTransition settingsLine1FT = new FadeTransition(Duration.millis(3500), settingsLine1);
+		FadeTransition settingsLine1FT = new FadeTransition(Duration.millis(2000), settingsLine1);
 		settingsLine1FT.setFromValue(0.0);
 		settingsLine1FT.setToValue(1.0);
 		
-		FadeTransition settingsLine2FT = new FadeTransition(Duration.millis(3500), settingsLine2);
+		FadeTransition settingsLine2FT = new FadeTransition(Duration.millis(2000), settingsLine2);
 		settingsLine2FT.setFromValue(0.0);
 		settingsLine2FT.setToValue(1.0);
 		
-		FadeTransition startButtonFT = new FadeTransition(Duration.millis(3500), startButton);
+		FadeTransition startButtonFT = new FadeTransition(Duration.millis(2000), startButton);
 		startButtonFT.setFromValue(0.0);
 		startButtonFT.setToValue(1.0);
 		

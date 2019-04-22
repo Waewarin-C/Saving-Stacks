@@ -24,7 +24,6 @@ import java.util.Scanner;
 public class SettingsManager{
 	
 	private LinkedHashMap<String, String> properties;
-	private static SettingsManager settings;
 	
 	/**
 	 * Constructs a new LaunchManager.
@@ -48,23 +47,36 @@ public class SettingsManager{
 	 * @return LaunchManger - A LaunchManager object for use with settings and/or launch prep.
 	 * @throws IOException
 	 */
-	public static SettingsManager loadSettings(String file) throws IOException
+	public static SettingsManager loadSettings(String file)
 	{
 		
-		SettingsManager launchManager = new SettingsManager();
-		Scanner scan = new Scanner(new File(file));
+		Scanner scan = null;
+		SettingsManager launchManager = null;
 		
-		while (scan.hasNextLine())
-		{
+		try {
+		
+			launchManager = new SettingsManager();
+			scan = new Scanner(new File(file));
+		
+			while (scan.hasNextLine())
+			{
 			
-			String line = scan.nextLine().trim();
-			String[] tokens = line.split("=");
+				String line = scan.nextLine().trim();
+				String[] tokens = line.split("=");
 			
-			launchManager.getProperties().put(tokens[0], tokens[1]);
+				launchManager.getProperties().put(tokens[0], tokens[1]);
 			
+			}
+		
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			scan.close();
 		}
 		
-		scan.close();
 		
 		return launchManager;
 	}
@@ -79,27 +91,38 @@ public class SettingsManager{
 	 * @param file String - File to open.
 	 * @throws IOException
 	 */
-	public static void saveSettings(SettingsManager launchManager, String file) throws IOException
+	public static void saveSettings(SettingsManager launchManager, String file) 
 	{
 		
-		FileWriter fileWrite = new FileWriter(new File(file));
-			
-		ArrayList<String> hashStrings = new ArrayList<>(launchManager.getProperties().keySet());
+		FileWriter fileWrite = null;
 		
-		for (String s : hashStrings)
-		{
-			if (s == hashStrings.get(hashStrings.size() - 1))
+		try {
+		
+			fileWrite = new FileWriter(new File(file));
+			
+			ArrayList<String> hashStrings = new ArrayList<>(launchManager.getProperties().keySet());
+		
+			for (String s : hashStrings)
 			{
-				fileWrite.write(String.format("%s=%s", s, launchManager.getProperties().get(s)));
+				if (s == hashStrings.get(hashStrings.size() - 1))
+				{
+					fileWrite.write(String.format("%s=%s", s, launchManager.getProperties().get(s)));
+				}
+				else
+				{
+					fileWrite.write(String.format("%s=%s%n", s, launchManager.getProperties().get(s)));
+				}
 			}
-			else
-			{
-				fileWrite.write(String.format("%s=%s%n", s, launchManager.getProperties().get(s)));
-			}
+		
+			fileWrite.close();
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+			
 		}
 		
 		
-		fileWrite.close();
 	}
 	
 	/**

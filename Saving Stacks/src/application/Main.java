@@ -1,7 +1,5 @@
 package application;
 
-import java.io.IOException;
-
 
 import application.model.SettingsManager;
 import javafx.application.Application;
@@ -50,10 +48,7 @@ public class Main extends Application {
 			
 			primaryStage.setScene(new Scene(root, 800, 800));
 			primaryStage.show();
-
-
-			
-			
+	
 		} catch(Exception e) {
 			
 			e.printStackTrace();
@@ -72,32 +67,24 @@ public class Main extends Application {
 			@Override
 			public void run() {
 				
-				try {
-					settings = SettingsManager.loadSettings("data/SettingsManagerConfig.txt");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				settings = SettingsManager.loadSettings("data/SettingsManagerConfig.txt");
+				
 			}
 			
 		};
 		
 		
-		try {
+
 		
-			ExecutorService executorservice = Executors.newCachedThreadPool();
-			executorservice.execute(task);
+		ExecutorService executorservice = Executors.newCachedThreadPool();
+		executorservice.execute(task);
 			
-			executorservice.shutdown();
+		executorservice.shutdown();
+		launch(args);
 			
-			launch(args);
+		SettingsManager.saveSettings(settings, "data/SettingsManagerConfig.txt");
 			
-			SettingsManager.saveSettings(settings, "data/SettingsManagerConfig.txt");
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
+		
 	}
 
 }

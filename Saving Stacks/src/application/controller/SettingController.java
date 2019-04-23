@@ -44,7 +44,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	@FXML
 	private Pane accents;
 	@FXML
-	private Button darkMode, lightMode, tint0, tint1, tint2, tint3, tint4, saveButton, saveButton2;
+	private Button darkMode, lightMode, tint0, tint1, tint2, tint3, tint4, saveButton, saveButton2, logoutButton;
 
 	
 	@Override
@@ -79,6 +79,16 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 		accents.backgroundProperty().bind(password.backgroundProperty());
 		
+		
+		
+		if (!Main.settings.getBooleanValueWithProperty("is_protection_enabled") || Main.settings.getValueWithProperty("user_password").equals("unset"))
+		{
+			logoutButton.setDisable(true);
+		}
+		else
+		{
+			logoutButton.setDisable(false);
+		}
 		
 		for (Button b :bottomBar.getBarButtons())
 		{
@@ -417,16 +427,20 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	public void radioToggle(ActionEvent event)
 	{
 		
+		
+		
 		if (passwordRadio.isSelected())
 		{
 			Main.settings.setValueWithBooleanProperty("is_protection_enabled", true);
 			Main.settings.setValueWithBooleanProperty("is_login_active", true);
+			logoutButton.setDisable(false);
 		}
 		else
 		{
 			Main.settings.setValueWithBooleanProperty("is_protection_enabled", false);
 			Main.settings.setValueWithBooleanProperty("is_login_active", false);
 			passMsg.setVisible(false);
+			logoutButton.setDisable(true);
 		}
 	}
 

@@ -10,17 +10,17 @@
 
 <AnchorPane fx:id="settingAnchor" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SettingController">
    <children>
-      <Label fx:id="title" alignment="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="52.0" prefWidth="221.0" text="SETTINGS">
+      <Label fx:id="title" alignment="CENTER" layoutX="14.0" layoutY="31.0" prefHeight="52.0" prefWidth="221.0" text="SETTINGS" visible="false">
          <font>
             <Font name="Segoe UI" size="28.0" />
          </font>
       </Label>
-      <RadioButton fx:id="passwordRadio" layoutX="70.0" layoutY="198.0" mnemonicParsing="false" onAction="#radioToggle" prefHeight="27.0" prefWidth="263.0" text="Enable Password Protection" />
-      <TextField fx:id="password" layoutX="67.0" layoutY="263.0" onAction="#handle" prefHeight="42.0" prefWidth="385.0" promptText="Set Password" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
+      <RadioButton fx:id="passwordRadio" layoutX="70.0" layoutY="126.0" mnemonicParsing="false" onAction="#radioToggle" prefHeight="27.0" prefWidth="263.0" text="Enable Password Protection" />
+      <TextField fx:id="password" layoutX="67.0" layoutY="191.0" onAction="#handle" prefHeight="42.0" prefWidth="503.0" promptText="Set Password" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <Label fx:id="security" layoutX="67.0" layoutY="148.0" text="Security">
+      <Label fx:id="security" layoutX="67.0" layoutY="68.0" text="Security">
          <font>
             <Font size="20.0" />
          </font>
@@ -45,11 +45,22 @@
          </children></Pane>
       <Button fx:id="lightMode" layoutX="67.0" layoutY="418.0" mnemonicParsing="false" onAction="#lightHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20; -fx-border-color: #BDBDBD; -fx-border-radius: 20; -fx-border-width: 2;" text="Light " />
       <Button fx:id="darkMode" layoutX="260.0" layoutY="418.0" mnemonicParsing="false" onAction="#darkHandle" prefHeight="63.0" prefWidth="127.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Dark" textFill="WHITE" />
-      <Button fx:id="saveButton" layoutX="474.0" layoutY="263.0" mnemonicParsing="false" onAction="#handle" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Save" textFill="WHITE" />
-      <Label fx:id="passMsg" layoutX="77.0" layoutY="315.0" prefHeight="28.0" prefWidth="221.0" text="Password successfully set!">
+      <Button fx:id="saveButton" layoutX="594.0" layoutY="191.0" mnemonicParsing="false" onAction="#handle" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Save" textFill="WHITE" />
+      <Label fx:id="passMsg" layoutX="77.0" layoutY="315.0" prefHeight="28.0" prefWidth="509.0" text="Password successfully set!">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <TextField fx:id="securityQ" layoutX="68.0" layoutY="259.0" prefHeight="42.0" prefWidth="221.0" promptText="Security Question" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="saveButton2" layoutX="594.0" layoutY="259.0" mnemonicParsing="false" onAction="#setSecurityQuestion" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Save" textFill="WHITE" />
+      <TextField fx:id="securityAns" layoutX="311.0" layoutY="259.0" prefHeight="42.0" prefWidth="263.0" promptText="Answer" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

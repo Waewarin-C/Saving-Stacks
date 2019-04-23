@@ -36,11 +36,11 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	@FXML
 	private RadioButton passwordRadio;
 	@FXML
-	private TextField password;
+	private TextField password, securityQ, securityAns;
 	@FXML
 	private Pane accents;
 	@FXML
-	private Button darkMode, lightMode, tint0, tint1, tint2, tint3, tint4, saveButton;
+	private Button darkMode, lightMode, tint0, tint1, tint2, tint3, tint4, saveButton, saveButton2;
 
 	
 	@Override
@@ -66,7 +66,15 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		password.visibleProperty().bind(passwordRadio.selectedProperty());
 		saveButton.visibleProperty().bind(passwordRadio.selectedProperty());
 		
+		securityQ.visibleProperty().bind(passwordRadio.selectedProperty());
+		securityAns.visibleProperty().bind(passwordRadio.selectedProperty());
+		saveButton2.visibleProperty().bind(passwordRadio.selectedProperty());
+		
+		securityAns.disableProperty().bind(securityQ.textProperty().isEmpty());
+		
 		accents.backgroundProperty().bind(password.backgroundProperty());
+		
+		
 		
 		for (Button b :bottomBar.getBarButtons())
 		{
@@ -86,7 +94,8 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			
 			title.setStyle("-fx-text-fill: white");
 			password.setStyle("-fx-background-color: #25282f; ; -fx-background-radius: 30; -fx-text-fill: white");
-			
+			securityQ.setStyle("-fx-background-color: #25282f; ; -fx-background-radius: 30; -fx-text-fill: white");
+			securityAns.setStyle("-fx-background-color: #25282f; ; -fx-background-radius: 30; -fx-text-fill: white");
 			
 			tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_dark"));
 			tint1.setStyle("-fx-background-color: #4f83cc");
@@ -102,7 +111,10 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			
 			title.setStyle("-fx-text-fill: black");
 			password.setStyle("-fx-background-color: #F5F5F5; -fx-background-radius: 30");
-
+			securityQ.setStyle("-fx-background-color: #F5F5F5; -fx-background-radius: 30");
+			securityAns.setStyle("-fx-background-color: #F5F5F5; -fx-background-radius: 30");
+			
+			
 			tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_light"));
 			tint1.setStyle("-fx-background-color: #002f6c");
 			tint2.setStyle("-fx-background-color: #b71c1c");
@@ -123,6 +135,30 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 	}
 
+	
+	public void setSecurityQuestion(ActionEvent arg0)
+	{
+		
+		if(securityQ.getText().isEmpty())
+		{
+			Main.settings.setValueWithProperty("user_question", "unset");
+			Main.settings.setValueWithProperty("user_answer", "unset");
+			return;
+		}
+		
+		
+		Main.settings.setValueWithProperty("user_question", securityQ.getText());
+		Main.settings.setValueWithProperty("user_answer", securityAns.getText());
+		
+		securityQ.clear();
+		securityAns.clear();
+		
+		passMsg.setText("Security question successfully set!");
+		passMsg.setVisible(true);
+		
+	}
+	
+	
 	@Override
 	public void handle(ActionEvent arg0) {
 		
@@ -154,6 +190,7 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			Main.settings.setValueWithBooleanProperty("is_login_active", false);
 		
 		password.clear();
+		passMsg.setText("Password successfully set!");
 		passMsg.setVisible(true);
 		
 
@@ -220,9 +257,13 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		ColorTransition passwordColor = new ColorTransition(Duration.millis(500), password, Color.web("F5F5F5"), 
 				Color.web("25282f"), "-fx-text-fill: white; -fx-background-radius: 30; -fx-background-color: ");
 		
+		ColorTransition securityQColor = new ColorTransition(Duration.millis(500), securityQ, Color.web("F5F5F5"), 
+				Color.web("25282f"), "-fx-text-fill: white; -fx-background-radius: 30; -fx-background-color: ");
 		
+		ColorTransition securityAnsColor = new ColorTransition(Duration.millis(500), securityAns, Color.web("F5F5F5"), 
+				Color.web("25282f"), "-fx-text-fill: white; -fx-background-radius: 30; -fx-background-color: ");
 		
-		ParallelTransition pt = new ParallelTransition(bottomBarTransition, textColor, passwordColor);
+		ParallelTransition pt = new ParallelTransition(bottomBarTransition, textColor, passwordColor, securityQColor, securityAnsColor );
 		
 		darkMode.setDisable(true);
 		lightMode.setDisable(false);
@@ -282,7 +323,13 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		ColorTransition passwordColor = new ColorTransition(Duration.millis(500), password, Color.web("25282f"), 
 				Color.web("F5F5F5"), "-fx-background-radius: 30; -fx-background-color: ");
 		
-		ParallelTransition pt = new ParallelTransition(bottomBarTransition, textColor, passwordColor);
+		ColorTransition securityQColor = new ColorTransition(Duration.millis(500), securityQ, Color.web("25282f"), 
+				Color.web("F5F5F5"), "-fx-background-radius: 30; -fx-background-color: ");
+		
+		ColorTransition securityAnsColor = new ColorTransition(Duration.millis(500), securityAns, Color.web("25282f"), 
+				Color.web("F5F5F5"), "-fx-background-radius: 30; -fx-background-color: ");
+		
+		ParallelTransition pt = new ParallelTransition(bottomBarTransition, textColor, passwordColor, securityQColor, securityAnsColor);
 
 		darkMode.setDisable(false);
 		lightMode.setDisable(true);

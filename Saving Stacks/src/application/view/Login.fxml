@@ -28,7 +28,7 @@
                   </Lighting>
                </effect>
             </ImageView>
-            <PasswordField fx:id="passwordField" layoutX="192.0" layoutY="361.0" prefHeight="46.0" prefWidth="416.0" promptText="Please Enter Your Password:" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
+            <PasswordField fx:id="passwordField" layoutX="192.0" layoutY="361.0" onAction="#handle" prefHeight="46.0" prefWidth="416.0" promptText="Please Enter Your Password:" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
                <font>
                   <Font size="18.0" />
                </font>

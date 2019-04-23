@@ -87,13 +87,12 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			choice1.setStyle("");
 			choice1.getStylesheets().add(getClass().getResource("../view/choice_dark.css").toExternalForm());
 			
-			
-			
 			choice2.setStyle("");
 			choice2.getStylesheets().add(getClass().getResource("../view/choice_dark.css").toExternalForm());
 			
 			choice3.setStyle("");
 			choice3.getStylesheets().add(getClass().getResource("../view/choice_dark.css").toExternalForm());
+			
 		}
 
 		csvPrompt.setVisible(false);

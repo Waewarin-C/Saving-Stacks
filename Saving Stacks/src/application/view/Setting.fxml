@@ -20,9 +20,9 @@
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <Label fx:id="security" layoutX="67.0" layoutY="68.0" text="Security">
+      <Label fx:id="security" layoutX="67.0" layoutY="68.0" prefHeight="30.0" prefWidth="88.0" text="Security">
          <font>
-            <Font size="20.0" />
+            <Font size="23.0" />
          </font>
       </Label>
       <Label fx:id="customization" layoutX="67.0" layoutY="367.0" text="UI Look and Feel">
@@ -62,5 +62,6 @@
             <Font size="18.0" />
          </font>
       </TextField>
+      <Button fx:id="logoutButton" layoutX="672.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Logout" textFill="WHITE" />
    </children>
 </AnchorPane>

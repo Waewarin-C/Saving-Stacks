@@ -96,8 +96,10 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 			while (hashtext.length() < 32) {
 				hashtext = "0" + hashtext;
 			}
+			
+			
 
-			if(hashtext.equals(stored_password) || stored_answer.equals(password)) {
+			if(hashtext.equals(stored_password) || stored_answer.equals(hashtext)) {
 				
 				Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
 				Main.stage.setScene(new Scene(root, 800, 800));

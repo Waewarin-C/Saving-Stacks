@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -12,7 +13,10 @@ import javafx.animation.ParallelTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -146,9 +150,28 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			return;
 		}
 		
+		String new_security_answer = securityAns.getText();
 		
-		Main.settings.setValueWithProperty("user_question", securityQ.getText());
-		Main.settings.setValueWithProperty("user_answer", securityAns.getText());
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			byte[] messageDigest = md.digest(new_security_answer.getBytes());
+			
+			BigInteger num = new BigInteger(1, messageDigest);
+			String hashtext = num.toString(16);
+			
+			while (hashtext.length() < 32) {
+				hashtext = "0" + hashtext;
+			}
+			
+			Main.settings.setValueWithProperty("user_question", securityQ.getText());
+			Main.settings.setValueWithProperty("user_answer", hashtext);
+			
+		 } catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+		 }
+			
+		
+		
 		
 		securityQ.clear();
 		securityAns.clear();
@@ -196,6 +219,20 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 
 	}
 	
+	/*
+	 * Handles the logout button in settings
+	 */
+	public void handleLogout(ActionEvent arg0) {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
+			Main.stage.setScene(new Scene(root, 800, 800));
+			Main.stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public void tintHandle(ActionEvent arg0)
 	{

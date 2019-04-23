@@ -32,17 +32,20 @@
           	<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Label fx:id="title" layoutX="43.0" layoutY="28.0" prefHeight="50.0" prefWidth="170.0" text="GOALS">
+      <Label fx:id="title" layoutX="43.0" layoutY="28.0" prefHeight="50.0" prefWidth="170.0" text="GOALS" visible="false">
          <font>
             <Font name="Segoe UI" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="486.0" layoutY="41.0" text="Monthly Spending Limit">
+      <Label fx:id="budgetLabel" layoutX="43.0" layoutY="34.0" prefHeight="31.0" prefWidth="240.0" text="Monthly Spending Limit">
          <font>
-            <Font name="Segoe UI" size="18.0" />
+            <Font name="Segoe UI" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="monthlyLimit" layoutX="461.0" layoutY="81.0" prefHeight="31.0" prefWidth="240.0" promptText="Enter Spending Limit" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
+      <TextField fx:id="monthlyLimit" layoutX="43.0" layoutY="85.0" prefHeight="37.0" prefWidth="240.0" promptText="Enter Spending Limit" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
       <Button fx:id="saveGoals" layoutX="657.0" layoutY="659.0" mnemonicParsing="false" onAction="#saveHandle" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Save Goals" textFill="WHITE">
          <font>
             <Font size="15.0" />
@@ -53,12 +56,12 @@
             <Font name="Segoe UI" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="718.0" layoutY="81.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Save" textFill="WHITE">
+      <Button layoutX="306.0" layoutY="85.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="55.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Save" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="lockError" layoutX="43.0" layoutY="122.0" text="Oops! Make sure to lock in your goal before moving on." textFill="#f80000" visible="false">
+      <Label fx:id="lockError" layoutX="43.0" layoutY="147.0" text="Oops! Make sure to lock in your goal before moving on." textFill="#f80000" visible="false">
          <font>
             <Font name="Segoe UI" size="15.0" />
          </font>

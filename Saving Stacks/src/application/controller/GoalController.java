@@ -43,6 +43,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	private Label goalError;
 	@FXML
 	private Label lockError;
+	@FXML
+	private Label title, budgetLabel;
 	
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
@@ -67,6 +69,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		{
 			goalAnchor.setStyle(BACKGROUND_COLOR_STYLE);
 			monthlyLimit.setStyle(INPUT_FIELD_STYLE);
+			title.setTextFill(Color.WHITE);
+			budgetLabel.setTextFill(Color.WHITE);
 		}
 		
 		// sets the Bottom Bar.
@@ -383,6 +387,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		Button unlock = new Button();
 		SVGPath unlockPath = new SVGPath();
 		unlockPath.setContent("M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h2c0-1.66 1.34-3 3-3s3 1.34 3 3v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z");
+		unlockPath.fillProperty().bind(title.textFillProperty());
 		unlock.setGraphic(unlockPath);
 		unlock.setId("unlock");
 		unlock.setOnAction(this);
@@ -399,6 +404,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		Button lock = new Button();
 		SVGPath lockPath = new SVGPath();
 		lockPath.setContent("M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z");
+		lockPath.fillProperty().bind(title.textFillProperty());
 		lock.setGraphic(lockPath);
 		lock.setId("lock");
 		lock.setOnAction(this);
@@ -415,6 +421,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		Button remove = new Button();
 		SVGPath removePath = new SVGPath();
 		removePath.setContent("M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z");
+		removePath.fillProperty().bind(title.textFillProperty());
 		remove.setGraphic(removePath);
 		remove.setId("remove");
 		remove.setOnAction(this);
@@ -433,10 +440,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			Button add = new Button();
 			SVGPath addPath = new SVGPath();
 			addPath.setContent("M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z");
+			addPath.fillProperty().bind(title.textFillProperty());
 			add.setGraphic(addPath);
 			add.setId("add");
 			add.setOnAction(this);
-			add.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));		
+			add.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
 			goalGrid.add(add, 5, row);
 		}
 	}
@@ -449,7 +457,14 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	{
 		TextField goal = new TextField();
 		goal.setPromptText("Enter Your Goal");
-		goal.setStyle("-fx-font: 15px \"Segoe UI\";");
+		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
+		{
+			goal.setStyle("-fx-font: 15px \"Segoe UI\"; -fx-text-fill: white; -fx-background-color: #25282f; -fx-background-radius: 30");
+		}
+		else
+		{
+			goal.setStyle("-fx-font: 15px \"Segoe UI\"; -fx-text-fill: white; -fx-background-color: #F5F5F5; -fx-background-radius: 30");
+		}
 		goal.setId("goal");
 		if( title.length() != 0 )
 		{
@@ -468,7 +483,16 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		amount.setPromptText("Enter Amount");
 		amount.setId("amount");
 		amount.setMaxWidth(110.0);
-		amount.setStyle("-fx-font: 15px \"Segoe UI\";");
+		
+		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
+		{
+			amount.setStyle("-fx-font: 15px \"Segoe UI\"; -fx-text-fill: white; -fx-background-color: #25282f; -fx-background-radius: 30");
+		}
+		else
+		{
+			amount.setStyle("-fx-font: 15px \"Segoe UI\"; -fx-text-fill: white; -fx-background-color: #F5F5F5; -fx-background-radius: 30");
+		}
+		
 		if( dollarAmt > 0)
 		{
 			DecimalFormat df = new DecimalFormat("#.00");
@@ -489,7 +513,15 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		time.getItems().addAll("Weekly", "Monthly", "Yearly");
 		time.setId("time");
 		time.setMaxWidth(110.0);
-		time.setStyle("-fx-font: 15px \"Segoe UI\";");
+		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
+		{
+			time.getStylesheets().add(getClass().getResource("../view/choice_dark.css").toExternalForm());
+		}
+		else
+		{
+			time.setStyle("-fx-font: 15px \"Segoe UI\"; -fx-background-color: #F5F5F5; -fx-background-radius: 30");
+		}
+		
 		time.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
 		if( timeframe.length() != 0)
 			time.setValue(timeframe);

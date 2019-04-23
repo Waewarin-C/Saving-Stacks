@@ -1,5 +1,5 @@
-is_login_active=false
-is_protection_enabled=false
+is_login_active=true
+is_protection_enabled=true
 welcome_shown_once=true
 is_dark_mode_enabled=true
 user_password=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918

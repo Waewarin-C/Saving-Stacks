@@ -71,9 +71,9 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		saveButton2.visibleProperty().bind(passwordRadio.selectedProperty());
 		
 		securityAns.disableProperty().bind(securityQ.textProperty().isEmpty());
+		saveButton2.disableProperty().bind(securityQ.textProperty().isEmpty());
 		
 		accents.backgroundProperty().bind(password.backgroundProperty());
-		
 		
 		
 		for (Button b :bottomBar.getBarButtons())

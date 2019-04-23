@@ -58,5 +58,10 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Label fx:id="lockError" layoutX="43.0" layoutY="122.0" text="Oops! Make sure to lock in your goal before moving on." textFill="#f80000" visible="false">
+         <font>
+            <Font name="Segoe UI" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

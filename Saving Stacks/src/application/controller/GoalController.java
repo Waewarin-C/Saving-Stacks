@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -40,6 +41,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	private GridPane gridPane;
 	@FXML
 	private Label goalError;
+	@FXML
+	private Label lockError;
 	
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
@@ -126,9 +129,17 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		
 		if(id.equals("add"))
 		{
-			n.setVisible(false);
-			generateRow( row + 1, "", 0.0, "" );
-			addAddIcon( row + 1 );
+			if( checkLock( row ) == true)
+			{
+				n.setVisible(false);
+				generateRow( row + 1, "", 0.0, "" );
+				addAddIcon( row + 1 );
+			}
+			else
+			{
+				lockError.setVisible(true);
+			}
+
 		}
 		else if( id.equals("remove"))
 		{
@@ -148,6 +159,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		}
 		else if(id.equals("unlock"))
 		{
+			System.out.println(checkFields( row ));
+			lockError.setVisible(false);
 			removeButton(btn);
 			lockTextField( row );
 			addLockIcon( row );
@@ -182,6 +195,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			double tAmt = goalMap.getGoalMap().get(i).getAmount();
 			String tTime = goalMap.getGoalMap().get(i).getTime();
 			generateRow(i, tTitle, tAmt, tTime);
+			Button btn = (Button) getNodeByRowColumnIndex( i, 3);
+			removeButton(btn);
 			lockTextField( i );
 			addLockIcon( i );
 		}
@@ -198,6 +213,42 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			Node n = getNodeByRowColumnIndex( row, i);
 			goalGrid.getChildren().remove(n);
 		}
+	}
+	
+	public Boolean checkLock( int row )
+	{
+		Boolean result = null;
+		Node n = getNodeByRowColumnIndex( row, 3);
+		String id = n.getId();
+		if(id.equalsIgnoreCase("unlock"))
+			result = false;
+		else if(id.equalsIgnoreCase("lock"))
+			result = true;
+		
+		return result;
+	}
+	
+	public Boolean checkFields( int row )
+	{
+		Boolean result = null;
+		
+		TextField title = (TextField) getNodeByRowColumnIndex( row, 0);
+		TextField amount = (TextField) getNodeByRowColumnIndex( row, 1);
+		ChoiceBox<String> timeframe = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2);
+		String t = title.getText();
+		System.out.println(t);
+		String a = amount.getText();
+		System.out.println(a);
+		String f = timeframe.getValue();
+		System.out.println(f);
+		
+		/*
+		if(t.length() < 1 && a.length() < 1 || f.equals("") )
+			result = false;
+		else
+			result = true;*/
+		
+		return result;
 	}
 	
 	/**

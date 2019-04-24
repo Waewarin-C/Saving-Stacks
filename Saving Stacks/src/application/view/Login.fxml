@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
    <children>
-      <Pane fx:id="loginAnchor" layoutX="-1.0" layoutY="-4.0" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: FFFFFF;">
+      <Pane fx:id="loginAnchor" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: FFFFFF;">
          <children>
             <ImageView fitHeight="276.0" fitWidth="365.0" layoutX="218.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -63,7 +63,7 @@
                   <Font name="Bodoni MT" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="loginError" layoutX="107.0" layoutY="491.0" prefHeight="28.0" prefWidth="591.0" textAlignment="CENTER" textFill="#c30c0c">
+            <Label fx:id="loginError" layoutX="105.0" layoutY="499.0" prefHeight="28.0" prefWidth="591.0" textAlignment="CENTER" textFill="#c30c0c">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>

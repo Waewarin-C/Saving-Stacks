@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 
 
@@ -96,8 +97,22 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		name.setText(System.getProperty("user.name") + "!");
-
 		
-	}	
+		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
+		{
+			name.setTextFill(Color.WHITE);
+			greeting.setTextFill(Color.WHITE);
+			forgotPasswordLabel.setTextFill(Color.WHITE);
+			questionLabel.setTextFill(Color.WHITE);
+			loginAnchor.setStyle("-fx-background-color: #33333d");
+			forgotPassword.setStyle("-fx-background-color: #33333d; -fx-text-fill: white");
+			
+			passwordField.setStyle("-fx-background-color: #25282f; -fx-text-fill: white; -fx-background-radius: 30"); 
+			
+		}	
+		
+		
+		
+	}
 	
 }

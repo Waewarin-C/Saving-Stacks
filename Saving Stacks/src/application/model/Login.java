@@ -12,19 +12,26 @@ import application.Main;
 public class Login {
 	
 	private String secretValue;
+	private int loginAttempts;
 	
 
 	public Login(String secretValue) {
 		this.secretValue = secretValue;
 	}
-		
+	
+	
+	public Login(String secretValue, int loginAttempts) {
+		this.secretValue = secretValue;
+		this.loginAttempts = loginAttempts;
+	}
+	
 	
 	public boolean checkHashValue() throws InterruptedException{
 		
 		String stored_password = Main.settings.getValueWithProperty("user_password");
 		String stored_answer = Main.settings.getValueWithProperty("user_answer");
 		
-		int loginAttempts = Integer.parseInt(Main.settings.getValueWithProperty("login_attempts"));
+		loginAttempts = Integer.parseInt(Main.settings.getValueWithProperty("login_attempts"));
 		
 
 		try {
@@ -87,6 +94,7 @@ public class Login {
 		
 	}
 	
+	
 	public void setPassword() {
 		
 		try {
@@ -134,6 +142,24 @@ public class Login {
 	public void setSecretValue(String secretValue) {
 		this.secretValue = secretValue;
 	}
+
+
+	/**
+	 * @return the loginAttempts
+	 */
+	public int getLoginAttempts() {
+		return loginAttempts;
+	}
+
+
+	/**
+	 * @param loginAttempts the loginAttempts to set
+	 */
+	public void setLoginAttempts(int loginAttempts) {
+		this.loginAttempts = loginAttempts;
+	}
+	
+	
 	
 }
 

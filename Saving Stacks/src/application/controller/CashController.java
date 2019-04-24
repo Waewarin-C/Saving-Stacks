@@ -18,12 +18,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 
 //TODO: implement text area 
@@ -47,11 +51,15 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private GridPane goalCheckBox;
 	@FXML
-	private Label errorMsg, title;
+	private Label errorMsg, title, cashLabel, linkLabel;
 	@FXML
 	private Label whoopsdate;
 	@FXML
 	private Label whoopsprice;
+	@FXML
+	private ListView<String> cashView;
+	@FXML
+	private Button addButton;
 	
 	GoalSet goals = new GoalSet();
 	private String filename = "goals.csv";
@@ -67,6 +75,16 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		{
 			cashAnchor.setStyle("-fx-background-color: #33333d");
 			title.setStyle("-fx-text-fill: white");
+			
+			cashLabel.textFillProperty().bind(title.textFillProperty());
+			linkLabel.textFillProperty().bind(title.textFillProperty());
+			
+			date.setStyle("-fx-background-color: #25282f; -fx-background-radius: 30; -fx-text-fill: white");
+			costitem.setStyle("-fx-background-color: #25282f; -fx-background-radius: 30; -fx-text-fill: white");
+			nameitem.setStyle("-fx-background-color: #25282f; -fx-background-radius: 30; -fx-text-fill: white");
+			
+			cashView.setStyle("-fx-background-color: #25282f");
+			
 		}
 		
 		clearScene();
@@ -80,6 +98,11 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 			if(goals.getGoalMap().size() == 0)
 			{
 				errorMsg.setVisible(true);
+				date.setDisable(true);
+				costitem.setDisable(true);
+				nameitem.setDisable(true);
+				cashView.setDisable(true);
+				addButton.setDisable(true);
 			}
 			else
 			{					
@@ -87,6 +110,16 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 				{
 					String goal = goals.getGoalMap().get(i).getTitle();
 					CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
+					
+					if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
+					{
+						n.setTextFill(Color.WHITE);
+					}
+					else
+					{
+						n.setTextFill(Color.BLACK);
+					}
+					
 					n.setVisible(true);
 					n.setText(goal);
 				}
@@ -95,6 +128,11 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		else
 		{
 			errorMsg.setVisible(true);
+			date.setDisable(true);
+			costitem.setDisable(true);
+			nameitem.setDisable(true);
+			cashView.setDisable(true);
+			addButton.setDisable(true);
 		}
 	}
 	

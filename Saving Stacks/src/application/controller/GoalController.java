@@ -40,9 +40,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private GridPane gridPane;
 	@FXML
-	private Label lockError, entryError, fieldError, goalError;
+	private Label lockError, entryError, fieldError, goalError, monLimError;
 	@FXML
 	private Label title, budgetLabel;
+	@FXML
+	private Button monthlyLimitSave;
 	
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
@@ -82,12 +84,6 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		 * TODO: Error Handling
 		 * 		Save -> cannot save unless lock is clicked.
 		 */
-	
-		if( monthlyLimit.getText().equals(""))
-			Main.settings.setValueWithProperty("monthly_budget", "0.00");
-		else
-			Main.settings.setValueWithProperty("monthly_budget", monthlyLimit.getText());
-		
 		Path path = Paths.get(filePath);
 		
 		if( Files.exists(path))
@@ -143,7 +139,6 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		}
 		else if( id.equals("remove"))
 		{
-			//TODO: fix the remove functionality.
 			removeGridRow( row );
 			clearRow( goalMap );
 			goalMap = goalMap.removeGoal( goalMap, row );
@@ -164,13 +159,13 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			fieldError.setVisible(false);
 			entryError.setVisible(false);
 			
-			if( !isValidNum )
+			if( !isValidNum || !isFilledOut )
 			{
-				entryError.setVisible(true);
-			}
-			else if( !isFilledOut )
-			{
-				fieldError.setVisible(true);
+				if( !isFilledOut )
+					fieldError.setVisible(true);
+				
+				if( !isValidNum )
+					entryError.setVisible(true);
 			}
 			else
 			{
@@ -178,8 +173,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 				removeButton(btn);
 				lockTextField( row );
 				addLockIcon( row );
-				addGoaltoMap( row );
-				
+				addGoaltoMap( row );	
 			}	
 		}		
 	}
@@ -193,6 +187,44 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		GoalSet.saveGoalArray( filePath, goalMap );
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void saveMonthlyHandle( ActionEvent event )
+	{
+		monLimError.setVisible(false);
+		String strAmount = monthlyLimit.getText();
+		Boolean isNum = isDouble( strAmount );
+	    
+	    if( isNum )
+	    {
+	    	DecimalFormat df = new DecimalFormat("#.00"); 
+	    	strAmount = df.format(Double.parseDouble(strAmount));
+	    	Main.settings.setValueWithProperty("monthly_budget", strAmount);
+	    }
+	    else
+	    {
+	    	monLimError.setVisible(true);
+	    }	
+	}
+	
+	/**
+	 * 
+	 * @param strNum
+	 * @return
+	 */
+	public Boolean isDouble( String strNum )
+	{
+		Boolean number = true;
+	    try {
+	    	double value = Double.valueOf(strNum);	
+	    }catch(NumberFormatException e) {
+	    	number = false;
+	    }	
+	    
+	    return number;
+	}
 	
 	/**
 	 * 
@@ -255,14 +287,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	
 	public Boolean checkDollarEntry( int row )
 	{
-		Boolean result = true;
+		
 		TextField amount = (TextField) getNodeByRowColumnIndex( row, 1);
 		String amountText = amount.getText();
-	    try {
-	    	double value = Double.valueOf(amountText);	    	
-	    }catch(NumberFormatException e) {
-	    	result = false;
-	    }
+		Boolean result = isDouble( amountText );
 		return result;
 	}
 	
@@ -350,17 +378,35 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	{
 		ObservableList<Node> children = goalGrid.getChildren();
 		ObservableList<Node> temp = FXCollections.observableArrayList();
+		//Node node = getNodeByRowColumnIndex( row + 1, 0 );
 		
-		for( Node n : children)
-		{		
-			if(GridPane.getRowIndex(n) == row )
-			{	
-				n.setDisable(true);
-				temp.add(n);
-			}
+		if( row == 0 )
+		{
+			TextField text = (TextField) getNodeByRowColumnIndex( row, 0 );
+			text.setText("");
+			
+			TextField amt = (TextField) getNodeByRowColumnIndex( row, 1 );
+			amt.setText("");
+			
+			ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
+			time.setValue("");
+			
+			Button btn = (Button) getNodeByRowColumnIndex( row, 3 );
+			removeButton(btn);
+			unlockTextField( row );
+			addUnlockIcon( row );
 		}
-
-		goalGrid.getChildren().removeAll(temp);
+		else
+		{
+			for( Node n : children)
+			{		
+				if(GridPane.getRowIndex(n) == row )
+				{	
+					temp.add(n);
+				}
+			}	
+			goalGrid.getChildren().removeAll(temp);
+		}
 	}
 		
 	/**
@@ -445,7 +491,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		lock.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));	
 		goalGrid.add(lock, 3, row);
 	}
-	
+		
 	/**
 	 * 
 	 * @param row

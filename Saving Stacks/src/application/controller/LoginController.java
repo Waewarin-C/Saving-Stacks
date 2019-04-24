@@ -105,6 +105,10 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 		{
 			Image img = new Image("file:./data/savinglogo_dark.jpg");
 			logoImage.setImage(img);
+			logoImage.setFitWidth(265);
+			logoImage.setFitHeight(180);
+			logoImage.setX(85);
+			logoImage.setY(44);
 			
 			name.setTextFill(Color.WHITE);
 			greeting.setTextFill(Color.WHITE);
@@ -117,6 +121,15 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 			
 			
 		}		
+		else
+		{
+			Image img = new Image("file:./data/logo.jpg");
+			logoImage.setImage(img);
+			logoImage.setFitWidth(265);
+			logoImage.setFitHeight(180);
+			logoImage.setX(85);
+			logoImage.setY(44);
+		}
 		
 		
 	}

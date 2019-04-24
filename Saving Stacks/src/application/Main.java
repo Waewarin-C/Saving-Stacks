@@ -21,7 +21,11 @@ public class Main extends Application {
 		Parent root = null;
 		stage = primaryStage;
 
+		
 		stage.getIcons().add(new Image("file:./data/logo.png"));
+		
+		
+		
 		stage.setTitle("Saving Stacks");
 		
 		try {

@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Gabriel Morales (woc797)
@@ -28,6 +30,12 @@ public class UploadManager {
 	//Static method to read the csv file
 	public static void readFile(File chosenFile) 
 	{
+		
+		Pattern datePattern = Pattern.compile("");
+		Pattern titlePattern = Pattern.compile("[0-9]");
+		Pattern amountPattern = Pattern.compile("");
+		
+		
 		if (chosenFile == null)
 			return;
 
@@ -35,9 +43,8 @@ public class UploadManager {
 		{
 			//Tokenize the specified format to read the file and load the data correctly
 			String[] formatToken = UploadManager.getFormat().split(",");
-			
-			String fileName = chosenFile.getName();
-			Scanner scan = new Scanner(new File(fileName));
+
+			Scanner scan = new Scanner(chosenFile);
 			
 			String transDate = "";
 			double amount = 0.00;
@@ -49,6 +56,7 @@ public class UploadManager {
 			{
 				String line = scan.nextLine();
 				String[] tokens = line.split(",");
+				
 				
 				//Load the data based on format
 				if(formatToken[0].equals("date"))

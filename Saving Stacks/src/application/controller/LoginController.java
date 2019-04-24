@@ -1,13 +1,11 @@
 package application.controller;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 import application.Main;
+import application.model.Login;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -81,37 +79,21 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 		// Handles the Password Login
 		String password = passwordField.getText();
 		
-		String stored_password = Main.settings.getValueWithProperty("user_password");
-		
-		//TODO: Hash the answer as well
-		String stored_answer = Main.settings.getValueWithProperty("user_answer");
+		Login login = new Login(password);
 		
 		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			byte[] messageDigest = md.digest(password.getBytes());
-			
-			BigInteger num = new BigInteger(1, messageDigest);
-			String hashtext = num.toString(16);
-			
-			while (hashtext.length() < 32) {
-				hashtext = "0" + hashtext;
-			}
-			
-			
-
-			if(hashtext.equals(stored_password) || stored_answer.equals(hashtext)) {
-				
+			if (login.checkHashValue()) {
 				Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
 				Main.stage.setScene(new Scene(root, 800, 800));
 				Main.stage.show();
 			}
-			else
-			{
-				//TODO add error message, etc
+			else {
+				
 			}
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

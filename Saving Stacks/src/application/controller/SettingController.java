@@ -1,14 +1,12 @@
 package application.controller;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 import application.Main;
 import application.model.ColorTransition;
+import application.model.Login;
 import javafx.animation.ParallelTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -160,28 +158,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			return;
 		}
 		
+		String new_security_question = securityQ.getText();
 		String new_security_answer = securityAns.getText();
 		
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			byte[] messageDigest = md.digest(new_security_answer.getBytes());
-			
-			BigInteger num = new BigInteger(1, messageDigest);
-			String hashtext = num.toString(16);
-			
-			while (hashtext.length() < 32) {
-				hashtext = "0" + hashtext;
-			}
-			
-			Main.settings.setValueWithProperty("user_question", securityQ.getText());
-			Main.settings.setValueWithProperty("user_answer", hashtext);
-			
-		 } catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-		 }
-			
-		
-		
+		Login login = new Login("password");
+		login.setSecQuestion(new_security_question, new_security_answer);
+					
 		
 		securityQ.clear();
 		securityAns.clear();
@@ -197,25 +179,9 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 		String new_password = password.getText();
 		
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			byte[] messageDigest = md.digest(new_password.getBytes());
-			
-			BigInteger num = new BigInteger(1, messageDigest);
-			String hashtext = num.toString(16);
-			
-			while (hashtext.length() < 32) {
-				hashtext = "0" + hashtext;
-			}
-			
-			Main.settings.setValueWithProperty("user_password", hashtext);
-
-					
-		} catch (NoSuchAlgorithmException e) {
+		Login login = new Login(new_password);
 		
-			e.printStackTrace();
-		}
-		
+		login.setPassword();
 		
 		if (!password.getText().isEmpty())
 			Main.settings.setValueWithBooleanProperty("is_login_active", true);

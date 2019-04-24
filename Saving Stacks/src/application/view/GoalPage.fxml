@@ -61,7 +61,12 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="lockError" layoutX="43.0" layoutY="147.0" text="Oops! Make sure to lock in your goal before moving on." textFill="#f80000" visible="false">
+      <Label fx:id="lockError" layoutX="45.0" layoutY="155.0" text="Oops! Make sure to lock in your goal before moving on." textFill="#f80000" visible="false">
+         <font>
+            <Font name="Segoe UI" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="fieldError" layoutX="45.0" layoutY="135.0" text="Oops! Make sure all the fields are entered." textFill="#f80000" visible="false">
          <font>
             <Font name="Segoe UI" size="15.0" />
          </font>

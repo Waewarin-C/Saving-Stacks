@@ -44,7 +44,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private Label lockError;
 	@FXML
-	private Label title, budgetLabel;
+	private Label title, budgetLabel,fieldError;
 	
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
@@ -163,12 +163,21 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		}
 		else if(id.equals("unlock"))
 		{
-			System.out.println(checkFields( row ));
-			lockError.setVisible(false);
-			removeButton(btn);
-			lockTextField( row );
-			addLockIcon( row );
-			addGoaltoMap( row );			
+			Boolean isFilledOut = checkFields( row );
+			fieldError.setVisible(false);
+			
+			if( isFilledOut )
+			{
+				lockError.setVisible(false);
+				removeButton(btn);
+				lockTextField( row );
+				addLockIcon( row );
+				addGoaltoMap( row );			
+			}
+			else
+			{
+				fieldError.setVisible(true);
+			}	
 		}		
 	}
 	
@@ -240,18 +249,14 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		TextField amount = (TextField) getNodeByRowColumnIndex( row, 1);
 		ChoiceBox<String> timeframe = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2);
 		String t = title.getText();
-		System.out.println(t);
 		String a = amount.getText();
-		System.out.println(a);
-		String f = timeframe.getValue();
-		System.out.println(f);
+		String f = timeframe.getValue();		
 		
-		/*
-		if(t.length() < 1 && a.length() < 1 || f.equals("") )
-			result = false;
+		if(t != null && a != null && f != null )
+			result = true;
 		else
-			result = true;*/
-		
+			result = false;
+
 		return result;
 	}
 	

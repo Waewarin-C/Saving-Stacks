@@ -463,7 +463,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		}
 		else
 		{
-			goal.setStyle("-fx-font: 15px \"Segoe UI\"; -fx-text-fill: white; -fx-background-color: #F5F5F5; -fx-background-radius: 30");
+			goal.setStyle("-fx-font: 15px \"Segoe UI\"; -fx-text-fill: black; -fx-background-color: #F5F5F5; -fx-background-radius: 30");
 		}
 		goal.setId("goal");
 		if( title.length() != 0 )
@@ -490,7 +490,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		}
 		else
 		{
-			amount.setStyle("-fx-font: 15px \"Segoe UI\"; -fx-text-fill: white; -fx-background-color: #F5F5F5; -fx-background-radius: 30");
+			amount.setStyle("-fx-font: 15px \"Segoe UI\"; -fx-text-fill: black; -fx-background-color: #F5F5F5; -fx-background-radius: 30");
 		}
 		
 		if( dollarAmt > 0)

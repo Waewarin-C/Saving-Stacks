@@ -82,6 +82,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		/*
 		 * TODO: Error Handling
 		 * 		Save -> cannot save unless lock is clicked.
+		 * 		Delete goal -> deleting the first row.
 		 */
 		Path path = Paths.get(filePath);
 		
@@ -140,7 +141,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		{
 			setVisibleFalseErrMssg();
 			removeGridRow( row );
-			clearRow( goalMap );
+			clearRow( goalMap );	
 			goalMap = goalMap.removeGoal( goalMap, row );
 			GoalSet.saveGoalArray( filePath, goalMap );
 			
@@ -387,35 +388,16 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	{
 		ObservableList<Node> children = goalGrid.getChildren();
 		ObservableList<Node> temp = FXCollections.observableArrayList();
-		//Node node = getNodeByRowColumnIndex( row + 1, 0 );
 		
-		if( row == 0 )
-		{
-			TextField text = (TextField) getNodeByRowColumnIndex( row, 0 );
-			text.setText("");
-			
-			TextField amt = (TextField) getNodeByRowColumnIndex( row, 1 );
-			amt.setText("");
-			
-			ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
-			time.setValue("");
-			
-			Button btn = (Button) getNodeByRowColumnIndex( row, 3 );
-			removeButton(btn);
-			unlockTextField( row );
-			addUnlockIcon( row );
-		}
-		else
-		{
-			for( Node n : children)
-			{		
-				if(GridPane.getRowIndex(n) == row )
-				{	
-					temp.add(n);
-				}
-			}	
+		for( Node n : children)
+		{		
+			if(GridPane.getRowIndex(n) == row )
+			{	
+				temp.add(n);
+			}
+		}	
 			goalGrid.getChildren().removeAll(temp);
-		}
+		
 	}
 	
 	public void setVisibleFalseErrMssg()

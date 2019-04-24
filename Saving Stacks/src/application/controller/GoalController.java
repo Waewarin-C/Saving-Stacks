@@ -75,9 +75,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		
 		// sets the Bottom Bar.
 		BottomBarController.attachBottomBar(goalAnchor.getChildren(), controllerID);
-		
-		//TODO: set lock/unlock to the Monthly Spending Limit
-		
+			
 		//TODO: set color scene and light/dark settings
 		
 		/*
@@ -135,7 +133,6 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			{
 				lockError.setVisible(true);
 			}
-
 		}
 		else if( id.equals("remove"))
 		{
@@ -171,6 +168,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			{
 				lockError.setVisible(false);
 				removeButton(btn);
+				TextField text = (TextField) getNodeByRowColumnIndex( row, 1 );
+				double amount = Double.parseDouble(text.getText());
+				DecimalFormat df = new DecimalFormat("#.00");
+				String strAmt = df.format(amount);
+				text.setText( strAmt );
 				lockTextField( row );
 				addLockIcon( row );
 				addGoaltoMap( row );	
@@ -416,6 +418,12 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	public void lockTextField( int row )
 	{
 		ObservableList<Node> children = goalGrid.getChildren();
+		
+		//TextField text = (TextField) getNodeByRowColumnIndex( row, 1 );
+		//String strText = text.getText();
+		//DecimalFormat df = new DecimalFormat("#.00");
+		//strText = df.format(strText);
+		//text.setText(strText);
 		
 		for( Node n : children )
 		{	

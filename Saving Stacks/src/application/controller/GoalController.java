@@ -75,7 +75,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		
 		// sets the Bottom Bar.
 		BottomBarController.attachBottomBar(goalAnchor.getChildren(), controllerID);
-			
+		
+		setVisibleFalseErrMssg();
 		//TODO: set color scene and light/dark settings
 		
 		/*
@@ -123,6 +124,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		
 		if(id.equals("add"))
 		{
+			setVisibleFalseErrMssg();
 			if( checkLock( row ) == true)
 			{
 				n.setVisible(false);
@@ -136,6 +138,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		}
 		else if( id.equals("remove"))
 		{
+			setVisibleFalseErrMssg();
 			removeGridRow( row );
 			clearRow( goalMap );
 			goalMap = goalMap.removeGoal( goalMap, row );
@@ -153,8 +156,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		{
 			Boolean isFilledOut = checkFields( row );
 			Boolean isValidNum = checkDollarEntry( row );
-			fieldError.setVisible(false);
-			entryError.setVisible(false);
+			setVisibleFalseErrMssg();
 			
 			if( !isValidNum || !isFilledOut )
 			{
@@ -166,7 +168,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			}
 			else
 			{
-				lockError.setVisible(false);
+				setVisibleFalseErrMssg();
 				removeButton(btn);
 				TextField text = (TextField) getNodeByRowColumnIndex( row, 1 );
 				double amount = Double.parseDouble(text.getText());
@@ -287,6 +289,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		return result;
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 * @return
+	 */
 	public Boolean checkDollarEntry( int row )
 	{
 		
@@ -409,6 +416,15 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			}	
 			goalGrid.getChildren().removeAll(temp);
 		}
+	}
+	
+	public void setVisibleFalseErrMssg()
+	{
+		lockError.setVisible(false);
+		entryError.setVisible(false);
+		fieldError.setVisible(false); 
+		goalError.setVisible(false);
+		monLimError.setVisible(false);
 	}
 		
 	/**

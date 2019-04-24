@@ -184,14 +184,20 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		login.setPassword();
 		
 		if (!password.getText().isEmpty())
+		{
 			Main.settings.setValueWithBooleanProperty("is_login_active", true);
+			logoutButton.setDisable(false);
+			password.clear();
+			passMsg.setText("Password successfully set!");
+			passMsg.setVisible(true);
+		}
 		else
+		{
 			Main.settings.setValueWithBooleanProperty("is_login_active", false);
-		
-		password.clear();
-		passMsg.setText("Password successfully set!");
-		passMsg.setVisible(true);
-		
+			Main.settings.setValueWithProperty("user_password", "unset");
+			logoutButton.setDisable(true);
+			password.clear();
+		}
 
 	}
 	

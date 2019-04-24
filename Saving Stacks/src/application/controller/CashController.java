@@ -47,7 +47,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private GridPane goalCheckBox;
 	@FXML
-	private Label errorMsg;
+	private Label errorMsg, title;
 	@FXML
 	private Label whoopsdate;
 	@FXML
@@ -66,6 +66,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
 			cashAnchor.setStyle("-fx-background-color: #33333d");
+			title.setStyle("-fx-text-fill: white");
 		}
 		
 		clearScene();

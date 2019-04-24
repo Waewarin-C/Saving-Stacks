@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import java.util.concurrent.*;
 
@@ -31,9 +30,7 @@ public class Main extends Application {
 			
 			if (!settings.getBooleanValueWithProperty("welcome_shown_once"))
 			{
-				
 				root = FXMLLoader.load(getClass().getResource("view/Welcome.fxml"));
-				root.setEffect(new DropShadow());
 				
 			}
 			else if (!settings.getValueWithProperty("user_password").equals("unset") && settings.getBooleanValueWithProperty("is_login_active"))

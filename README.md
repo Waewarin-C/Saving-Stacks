@@ -16,7 +16,7 @@ Saving Stacks is a personal financial application that allows users to upload tr
 # Known Issues #
 Many, we are trying.
 * Cash transactions
-* File upload
+* Login
 
 # Installations #
 1. Clone the repo
@@ -24,7 +24,7 @@ Many, we are trying.
 
 # License #
 MIT License
-Copyright (c) 2019 Git-Rowdy
+Copyright (c) 2019 UTSA CS-3443 Git-Rowdy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

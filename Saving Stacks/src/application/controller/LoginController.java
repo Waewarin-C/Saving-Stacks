@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -47,9 +49,10 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 	@FXML
 	Pane loginAnchor;
 	
+	@FXML
+	ImageView logoImage;
 	
-	//TODO: Link up to the Login view, check the user's password
-	
+		
 	
 	@Override
 	public void handle(ActionEvent event) {
@@ -85,10 +88,10 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 	public void handleForgotPassword(ActionEvent arg0) {
 		
 		forgotPasswordLabel.setText("Pleae enter the answer to the security question in the password field:");
-		questionLabel.setText(Main.settings.getValueWithProperty("user_question"));
-		
+		questionLabel.setText(Main.settings.getValueWithProperty("user_question"));	
 		
 	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -100,6 +103,9 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 		
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
+			Image img = new Image("file:./data/savinglogo_dark.jpg");
+			logoImage.setImage(img);
+			
 			name.setTextFill(Color.WHITE);
 			greeting.setTextFill(Color.WHITE);
 			forgotPasswordLabel.setTextFill(Color.WHITE);
@@ -109,8 +115,8 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 			
 			passwordField.setStyle("-fx-background-color: #25282f; -fx-text-fill: white; -fx-background-radius: 30"); 
 			
-		}	
-		
+			
+		}		
 		
 		
 	}

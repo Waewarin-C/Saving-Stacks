@@ -80,12 +80,12 @@ public class GoalSet {
 	/*
 	 * 
 	 */
-	public static Goal generateGoal( String title, String dollarAmt, String time )
+	public static Goal generateGoal( String title, String goalAmt, String time )
 	{
 		LocalDate date = LocalDate.now(); 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
 	    String strDate = date.format(formatter);
-		double amount = Double.valueOf(dollarAmt);
+	    double amount = Double.valueOf(goalAmt);
 		Goal goal = new Goal( title, time, strDate, amount);
 		
 		return goal;

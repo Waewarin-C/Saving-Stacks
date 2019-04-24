@@ -40,11 +40,9 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private GridPane gridPane;
 	@FXML
-	private Label goalError;
+	private Label lockError, entryError, fieldError, goalError;
 	@FXML
-	private Label lockError;
-	@FXML
-	private Label title, budgetLabel,fieldError;
+	private Label title, budgetLabel;
 	
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
@@ -82,8 +80,6 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		
 		/*
 		 * TODO: Error Handling
-		 * 		Unlock/Lock -> will not lock unless selection is made in all 3 fields.
-		 * 		Plus -> cannot click add unless lock has been selected.
 		 * 		Save -> cannot save unless lock is clicked.
 		 */
 	
@@ -164,19 +160,26 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		else if(id.equals("unlock"))
 		{
 			Boolean isFilledOut = checkFields( row );
+			Boolean isValidNum = checkDollarEntry( row );
 			fieldError.setVisible(false);
+			entryError.setVisible(false);
 			
-			if( isFilledOut )
+			if( !isValidNum )
+			{
+				entryError.setVisible(true);
+			}
+			else if( !isFilledOut )
+			{
+				fieldError.setVisible(true);
+			}
+			else
 			{
 				lockError.setVisible(false);
 				removeButton(btn);
 				lockTextField( row );
 				addLockIcon( row );
-				addGoaltoMap( row );			
-			}
-			else
-			{
-				fieldError.setVisible(true);
+				addGoaltoMap( row );
+				
 			}	
 		}		
 	}
@@ -217,6 +220,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		addAddIcon( i - 1 );		
 	}
 	
+	/**
+	 * 
+	 * @param goal
+	 */
 	public void clearRow( GoalSet goal )
 	{
 		int row = goal.getGoalMap().size() - 1;
@@ -228,6 +235,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		}
 	}
 	
+	/**
+	 * 
+	 * @param row
+	 * @return
+	 */
 	public Boolean checkLock( int row )
 	{
 		Boolean result = null;
@@ -241,6 +253,24 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		return result;
 	}
 	
+	public Boolean checkDollarEntry( int row )
+	{
+		Boolean result = true;
+		TextField amount = (TextField) getNodeByRowColumnIndex( row, 1);
+		String amountText = amount.getText();
+	    try {
+	    	double value = Double.valueOf(amountText);	    	
+	    }catch(NumberFormatException e) {
+	    	result = false;
+	    }
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param row
+	 * @return
+	 */
 	public Boolean checkFields( int row )
 	{
 		Boolean result = null;
@@ -275,7 +305,6 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
 		String timeframe = time.getValue();
 
-		System.out.println( goalTitle + goalAmt + timeframe);
 		Goal goal = GoalSet.generateGoal( goalTitle, goalAmt, timeframe);
 		
 		goalMap.getGoalMap().put(row, goal);

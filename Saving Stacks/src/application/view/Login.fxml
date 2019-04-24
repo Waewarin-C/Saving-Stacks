@@ -63,7 +63,7 @@
                   <Font name="Bodoni MT" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="loginError" layoutX="137.0" layoutY="494.0" prefHeight="28.0" prefWidth="546.0" textFill="#c30c0c">
+            <Label fx:id="loginError" layoutX="107.0" layoutY="491.0" prefHeight="28.0" prefWidth="591.0" textAlignment="CENTER" textFill="#c30c0c">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>

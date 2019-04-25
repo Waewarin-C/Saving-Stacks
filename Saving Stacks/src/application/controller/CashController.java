@@ -198,6 +198,19 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 	}
 	
+	public void handleChecks( ActionEvent event )
+	{
+		CheckBox c = (CheckBox) event.getSource();
+		
+		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
+		{
+			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
+			n.setSelected(false);
+		}
+		
+		c.setSelected(true);
+	}
+	
 	/**
 	 * 
 	 */

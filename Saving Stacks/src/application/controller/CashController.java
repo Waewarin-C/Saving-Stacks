@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 import application.Main;
 import application.model.GoalSet;
 import application.model.Transaction;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -61,15 +62,17 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private Button addButton;
 	
-	GoalSet goals = new GoalSet();
+	private GoalSet goals = new GoalSet();
 	private String filename = "goals.csv";
 	private String filePath = "data/" + filename;
+	private ObservableList<String> items = FXCollections.observableArrayList();
+
 	
 	private static final String controllerID = "CASH";
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+	
 		BottomBarController.attachBottomBar(cashAnchor.getChildren(), controllerID);
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
@@ -140,21 +143,23 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	public void handle(ActionEvent event) {
 		
 		
-		//datematching
-		String dateregex =("[0-9][0-9]\\[0-9][0-9]\\[0-9][0-9]");	 
-		if (!date.getText().matches(dateregex))
-		{
-			whoopsdate.setText("Wrong date format");
-		}
-		//datematching
-		
-		//price matching
-		String priceregex =("[0-9]*\\.?[0-9][0-9]");
-		if (costitem.getText().matches(priceregex))
-		{
-			whoopsprice.setText("Wrong price format");
-		}
-		//price matching
+			//datematching
+			String dateregex =("[0-9][0-9]\\[0-9][0-9]\\[0-9][0-9]");	 
+			if (!date.getText().matches(dateregex))
+			{
+				whoopsdate.setText("Wrong date format");
+				whoopsdate.setVisible(true);
+			}
+			//datematching
+			
+			//price matching
+			String priceregex =("[0-9]*\\.?[0-9][0-9]");
+			if (costitem.getText().matches(priceregex))
+			{
+				whoopsprice.setText("Wrong price format");
+				whoopsprice.setVisible(true);
+			}
+			//price matching
 		
 		
 		int id = Transaction.establishTransId();
@@ -167,8 +172,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	    String tag = c.getText();
 	    double amount = Double.parseDouble(costitem.getText());
 		Transaction trans = new Transaction(id, strDate, transDate, name, tag, amount);
-		
 		Transaction.saveTransaction( trans );
+		items.add(trans.toStringList());
+		cashView.setItems(items);
 		
 		resetScene();
 	}
@@ -179,6 +185,8 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	public void clearScene()
 	{
 		errorMsg.setVisible(false);
+		whoopsprice.setVisible(false);
+		whoopsdate.setVisible(false);
 		date.setText("");
 		nameitem.setText("");
 		costitem.setText("");
@@ -197,6 +205,8 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	public void resetScene()
 	{
 		errorMsg.setVisible(false);
+		whoopsprice.setVisible(false);
+		whoopsdate.setVisible(false);
 		date.setText("");
 		nameitem.setText("");
 		costitem.setText("");
@@ -230,6 +240,10 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	    return result;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public CheckBox getCheckBoxSelected()
 	{
 		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
@@ -247,7 +261,22 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		return null;
 	}
 	
-
+	/**
+	 * 
+	 * @param strNum
+	 * @return
+	 */
+	public Boolean isDouble( String strNum )
+	{
+		Boolean number = true;
+	    try {
+	    	double value = Double.valueOf(strNum);	
+	    }catch(NumberFormatException e) {
+	    	number = false;
+	    }	
+	    
+	    return number;
+	}
 
 	//public void  formatter()
 	//{

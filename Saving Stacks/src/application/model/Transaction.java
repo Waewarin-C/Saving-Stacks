@@ -175,6 +175,17 @@ public class Transaction {
 	
 	/**
 	 * 
+	 * @return
+	 */
+	public String toStringList()
+	{
+		String ret = this.transId + " - " + this.tag + " - ";
+		ret += this.transDate + " - " + this.name + " - " + this.amount;	
+		return ret;
+	}
+	
+	/**
+	 * 
 	 */
 	public String toString()
 	{

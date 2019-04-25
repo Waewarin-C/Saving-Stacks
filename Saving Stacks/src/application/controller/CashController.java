@@ -198,6 +198,10 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	public void handleChecks( ActionEvent event )
 	{
 		CheckBox c = (CheckBox) event.getSource();

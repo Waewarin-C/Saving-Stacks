@@ -108,12 +108,12 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="linkLabel" alignment="CENTER" layoutX="599.0" layoutY="29.0" prefHeight="36.0" prefWidth="111.0" text="Link Goal">
+      <Label fx:id="linkLabel" alignment="CENTER" layoutX="540.0" layoutY="29.0" prefHeight="36.0" prefWidth="111.0" text="Link Goal">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <Label fx:id="whoopstext" alignment="CENTER" layoutX="36.0" layoutY="608.0" prefHeight="22.0" prefWidth="219.0" textFill="#e41b1b" wrapText="true" />
-      <Label fx:id="whoopsgoal" alignment="CENTER" layoutX="543.0" layoutY="59.0" prefHeight="22.0" prefWidth="219.0" textFill="#e41b1b" wrapText="true" />
+      <Label fx:id="whoopsgoal" alignment="CENTER" layoutX="508.0" layoutY="59.0" prefHeight="22.0" prefWidth="219.0" textFill="#e41b1b" wrapText="true" />
    </children>
 </AnchorPane>

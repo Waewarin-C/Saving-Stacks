@@ -109,6 +109,10 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			securityQ.setStyle("-fx-background-color: #25282f; ; -fx-background-radius: 30; -fx-text-fill: white");
 			securityAns.setStyle("-fx-background-color: #25282f; ; -fx-background-radius: 30; -fx-text-fill: white");
 			
+			passwordRadio.setStyle("");
+			passwordRadio.getStylesheets().add(getClass().getResource("../view/radio_dark.css").toExternalForm());
+			
+			
 			tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_dark"));
 			tint1.setStyle("-fx-background-color: #4f83cc");
 			tint2.setStyle("-fx-background-color: #f05545");
@@ -126,6 +130,8 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 			securityQ.setStyle("-fx-background-color: #F5F5F5; -fx-background-radius: 30");
 			securityAns.setStyle("-fx-background-color: #F5F5F5; -fx-background-radius: 30");
 			
+			passwordRadio.setStyle("");
+			passwordRadio.getStylesheets().add(getClass().getResource("../view/radio_light.css").toExternalForm());
 			
 			tint0.setStyle("-fx-background-color: " + Main.settings.getValueWithProperty("default_tint_color_light"));
 			tint1.setStyle("-fx-background-color: #002f6c");

@@ -115,13 +115,14 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 					String goal = goals.getGoalMap().get(i).getTitle();
 					CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
 					
-					if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
-					{
+					if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))		{
 						n.setTextFill(Color.WHITE);
+						n.getStylesheets().add(getClass().getResource("../view/check_box_dark.css").toExternalForm());
 					}
 					else
 					{
 						n.setTextFill(Color.BLACK);
+						n.getStylesheets().add(getClass().getResource("../view/check_box_light.css").toExternalForm());
 					}
 					
 					n.setVisible(true);

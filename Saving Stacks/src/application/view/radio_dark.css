@@ -1,0 +1,8 @@
+.radio-button .radio {
+
+	-fx-background-color: #25282f;
+	-fx-border-color: white;
+	-fx-border-radius: 40;
+	-fx-mark-color: white;
+}
+

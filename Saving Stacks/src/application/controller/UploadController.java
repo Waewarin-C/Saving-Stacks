@@ -11,11 +11,13 @@ import application.model.Goal;
 import application.model.GoalSet;
 import application.model.Transaction;
 import application.model.UploadManager;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -31,13 +33,13 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 
 	@FXML private AnchorPane uploadAnchor;
 	
-	@FXML private Label warning, uploadPrompt, date, tranTitle, amnt, goalTitle;
+	@FXML private Label warning, uploadPrompt, date, tranTitle, amnt, goalTitle, countLabel;
 	
-	@FXML private Button fileButton, continueButton;
+	@FXML private Button fileButton, continueButton, saveButton;
 
 	@FXML private GridPane gridView;
 	
-	
+	private ActionEvent moveToNextPage;
 	
 	private int arrayIndicator;
 	private ArrayList<Transaction> transactions;
@@ -87,6 +89,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		tranTitle.setVisible(true);
 		amnt.setVisible(true);
 		goalTitle.setVisible(true);
+		saveButton.setVisible(true);
 		
 		//IDEA: Filter in the transactions into an intermediary data structure, and have them 11 at a time
 		//presented to the user. They save, and it recycles to the next set of transactions.
@@ -110,9 +113,9 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			tf.setText(transactions.get(i).getName());
 			
 			ChoiceBox<String> cb = new ChoiceBox<>();
+			cb.getItems().add("Unset");
 			cb.getItems().addAll(goalNames);
-			
-			
+			cb.setValue("Unset");
 			
 			if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 			{
@@ -157,7 +160,8 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			
 		}
 		
-		
+		countLabel.setText(arrayIndicator + "/" + transactions.size());
+		countLabel.setVisible(true);
 		
 	}
 
@@ -165,7 +169,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	public void getNextItems(ActionEvent arg0)
 	{
 		
-		
+		moveToNextPage = arg0;
 		
 		gridView.getChildren().removeAll(choiceBoxes);
 		gridView.getChildren().removeAll(labels);
@@ -195,8 +199,11 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			tf.setText(transactions.get(i).getName());
 			
 			ChoiceBox<String> cb = new ChoiceBox<>();
-			cb.getItems().addAll(goalNames);
 			
+			
+			cb.getItems().add("Unset");
+			cb.getItems().addAll(goalNames);
+			cb.setValue("Unset");
 			
 			
 			if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
@@ -245,10 +252,53 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 
 		
 		if (arrayIndicator == transactions.size() - 1)
+		{
+			countLabel.setText(arrayIndicator + 1 + "/" + transactions.size());
 			continueButton.setVisible(false);
+		}
+		else
+		{
+			countLabel.setText(arrayIndicator + "/" + transactions.size());
+		}
+		
 		
 	}
 
+	
+	public void saveChanges(ActionEvent arg0)
+	{
+		
+		for (int i = 0; i < textFields.size(); i++)
+		{
+			@SuppressWarnings("unchecked")
+			String choice = ((ChoiceBox<String>) getNodeByRowColumnIndex(i, 3)).getValue();
+			if (choice.equals("Unset"))
+			{
+				continue;
+			}
+			transactions.get(i).setName(textFields.get(i).getText());
+			transactions.get(i).setTag(choice);
+		}
+		
+		Transaction.saveTransaction(transactions);
+		getNextItems(moveToNextPage);
+	}
+	
+	
+	public Node getNodeByRowColumnIndex( int row, int column) 
+	{
+	    Node result = null;
+	    ObservableList<Node> childrens = gridView.getChildren();
+	    for(Node node : childrens) 
+	    {
+	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) 
+	        {
+	            result = node;
+	            break;
+	        }
+	    }
+	    return result;
+	}
 	
 	
 	@Override
@@ -262,7 +312,10 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		labels = new ArrayList<>();
 		textFields = new ArrayList<>();
 		
-		
+		GridPane.setHalignment(saveButton,  HPos.CENTER);
+		saveButton.setVisible(false);
+		countLabel.setVisible(false);
+		countLabel.textFillProperty().bind(warning.textFillProperty());
 		
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{

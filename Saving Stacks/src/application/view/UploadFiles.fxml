@@ -45,11 +45,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="continueButton" mnemonicParsing="false" onAction="#getNextItems" prefHeight="25.0" prefWidth="329.0" style="-fx-background-color: white;" text="Next Items..." visible="false" GridPane.columnIndex="1" GridPane.rowIndex="11">
+            <Button fx:id="continueButton" mnemonicParsing="false" onAction="#getNextItems" prefHeight="25.0" prefWidth="329.0" style="-fx-background-color: white;" text="View Next Items..." visible="false" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Button>
+            <Label fx:id="countLabel" alignment="CENTER" prefHeight="47.0" prefWidth="157.0" text="Label" GridPane.rowIndex="11">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="saveButton" alignment="CENTER" mnemonicParsing="false" onAction="#saveChanges" prefHeight="28.0" prefWidth="76.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Save" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="11" />
          </children>
       </GridPane>
       <Label fx:id="date" alignment="CENTER" layoutX="56.0" layoutY="14.0" prefHeight="37.0" prefWidth="115.0" text="Date" visible="false">

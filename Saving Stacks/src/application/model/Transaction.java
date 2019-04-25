@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -180,10 +179,8 @@ public class Transaction {
 	 */
 	public String toStringList()
 	{
-		DecimalFormat df = new DecimalFormat("#.00");
-		String strAmt = df.format(this.amount);
 		String ret = this.transId + " - " + this.tag + " - ";
-		ret += this.transDate + " - " + this.name + " - " + strAmt;	
+		ret += this.transDate + " - " + this.name + " - " + this.amount;	
 		return ret;
 	}
 	
@@ -267,6 +264,11 @@ public class Transaction {
 	 */
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+	
+	public double getAmount()
+	{
+		return amount;
 	}
 
 }

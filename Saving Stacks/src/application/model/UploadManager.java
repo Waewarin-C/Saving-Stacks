@@ -25,15 +25,20 @@ import java.util.regex.Pattern;
 public class UploadManager {
 
 	private static ArrayList<Transaction> transactions;
+	public static String status;
 	
 	//Static method to read the csv file
 	public static void readFile(File chosenFile) 
 	{
 	
+		status = "valid";
+		transactions = new ArrayList<>();
 			
 		if (chosenFile == null)
+		{
+			status = "invalid";
 			return;
-
+		}
 		try
 		{
 			
@@ -93,7 +98,6 @@ public class UploadManager {
 					}
 				}
 				
-				System.out.println("AMOUNT: " + amount);
 				LocalDate entryDate = LocalDate.now(); 
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
 				
@@ -106,7 +110,7 @@ public class UploadManager {
 				 * when the UploadController is worked on
 				 */
 				
-				Transaction temp = new Transaction(id, strDate, transDate, name, "", amount);
+				Transaction temp = new Transaction(id, strDate, transDate, name, " ", amount);
 				
 				//Add transaction to ArrayList
 				transactions.add(temp);

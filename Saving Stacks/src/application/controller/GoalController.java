@@ -153,6 +153,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 				Button button = (Button) getNodeByRowColumnIndex( row, 3 );
 				removeButton( button );
 				addUnlockIcon( 0 );
+				unlockTextField( row );
 			}
 			else
 			{

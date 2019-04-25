@@ -140,12 +140,28 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		else if( id.equals("remove"))
 		{
 			setVisibleFalseErrMssg();
-			removeGridRow( row );
-			clearRow( goalMap );	
-			goalMap = goalMap.removeGoal( goalMap, row );
-			GoalSet.saveGoalArray( filePath, goalMap );
+			Node x = getNodeByRowColumnIndex( row + 1, 0 );
 			
-			setGoalstoScene();
+			if( x == null && row == 0 )
+			{
+				TextField text = (TextField) getNodeByRowColumnIndex( row, 0 );
+				text.setText("");
+				TextField amount = (TextField) getNodeByRowColumnIndex( row, 1 );
+				amount.setText("");
+				ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
+				time.setValue("");
+				Button button = (Button) getNodeByRowColumnIndex( row, 3 );
+				removeButton( button );
+				addUnlockIcon( 0 );
+			}
+			else
+			{
+				int size = goalMap.getGoalMap().size();
+				goalMap = goalMap.removeGoal( goalMap, row );
+				GoalSet.saveGoalArray( filePath, goalMap );
+				clearGrid( size, row );			
+				setGoalstoScene();
+			}
 		}
 		else if( id.equals("lock"))
 		{
@@ -198,7 +214,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	 */
 	public void saveMonthlyHandle( ActionEvent event )
 	{
-		monLimError.setVisible(false);
+		setVisibleFalseErrMssg();
 		String strAmount = monthlyLimit.getText();
 		Boolean isNum = isDouble( strAmount );
 	    
@@ -256,22 +272,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		
 		addAddIcon( i - 1 );		
 	}
-	
-	/**
-	 * 
-	 * @param goal
-	 */
-	public void clearRow( GoalSet goal )
-	{
-		int row = goal.getGoalMap().size() - 1;
-		
-		for(int i = 0; i < MAX_COLS; i++)
-		{
-			Node n = getNodeByRowColumnIndex( row, i);
-			goalGrid.getChildren().remove(n);
-		}
-	}
-	
+
 	/**
 	 * 
 	 * @param row
@@ -384,20 +385,41 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	 * 
 	 * @param row
 	 */
-	public void removeGridRow( int row )
+	public void clearGrid( int size, int row )
 	{
 		ObservableList<Node> children = goalGrid.getChildren();
 		ObservableList<Node> temp = FXCollections.observableArrayList();
 		
 		for( Node n : children)
 		{		
-			if(GridPane.getRowIndex(n) == row )
-			{	
-				temp.add(n);
-			}
+			temp.add(n);
 		}	
 			goalGrid.getChildren().removeAll(temp);
 		
+		/*if( size == 0 && row == 0)
+		{
+			
+		}
+		else if( size == 1 && row == 0 )
+		{
+			TextField text = (TextField) getNodeByRowColumnIndex( row, 0 );
+			text.setText("");
+			TextField amount = (TextField) getNodeByRowColumnIndex( row, 1 );
+			amount.setText("");
+			ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
+			time.setValue("");
+			Button button = (Button) getNodeByRowColumnIndex( row, 3 );
+			removeButton( button );
+			addUnlockIcon( 0 );
+		}
+		else	
+		{
+			for( Node n : children)
+			{		
+				temp.add(n);
+			}	
+				goalGrid.getChildren().removeAll(temp);
+		}*/
 	}
 	
 	public void setVisibleFalseErrMssg()

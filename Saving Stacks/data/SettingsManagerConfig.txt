@@ -1,5 +1,5 @@
 is_login_active=false
-is_protection_enabled=true
+is_protection_enabled=false
 welcome_shown_once=true
 is_dark_mode_enabled=true
 user_password=unset

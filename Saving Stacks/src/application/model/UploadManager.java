@@ -25,88 +25,81 @@ import java.util.regex.Pattern;
 public class UploadManager {
 
 	private static ArrayList<Transaction> transactions;
-	private static String format;
 	
 	//Static method to read the csv file
 	public static void readFile(File chosenFile) 
 	{
-		
-		Pattern datePattern = Pattern.compile("");
-		Pattern titlePattern = Pattern.compile("[0-9]");
-		Pattern amountPattern = Pattern.compile("");
-		
-		
+	
+			
 		if (chosenFile == null)
 			return;
 
 		try
 		{
-			//Tokenize the specified format to read the file and load the data correctly
-			String[] formatToken = UploadManager.getFormat().split(",");
+			
+			Pattern datePattern = Pattern.compile("^(0[1-9]?|[1-9]|1[0-2])/(0[1-9]|[1-9]|1[0-9]|2[0-9]|30|31)/([0-9]{4})$");
+			Pattern titlePattern = Pattern.compile("^[a-zA-Z]+.*");
+			Pattern amountPattern = Pattern.compile("\\$?([-]?[0-9]+\\.[0-9][0-9])");
+			
+			Matcher m = null;
 
 			Scanner scan = new Scanner(chosenFile);
 			
 			String transDate = "";
 			double amount = 0.00;
 			String name = "";
+
 			int id = Transaction.establishTransId();
 			id++;
 			
 			while(scan.hasNextLine())
 			{
 				String line = scan.nextLine();
+				
+				
 				String[] tokens = line.split(",");
 				
 				
-				//Load the data based on format
-				if(formatToken[0].equals("date"))
+				for (String str : tokens)
 				{
-					transDate = tokens[0];
-				}
-				else if(formatToken[0].equals("amount"))
-				{
-					amount = Double.parseDouble(tokens[0]);
-				}
-				else if(formatToken[0].equals("title"))
-				{
-					name = tokens[0];
+					m = datePattern.matcher(str.trim());
+					if (m.matches())
+					{
+						transDate = str;
+						break;
+					}
+					
 				}
 				
-				
-				if(formatToken[1].equals("date"))
+				for (String str : tokens)
 				{
-					transDate = tokens[0];
-				}
-				else if(formatToken[1].equals("amount"))
-				{
-					amount = Double.parseDouble(tokens[0]);
-				}
-				else if(formatToken[1].equals("title"))
-				{
-					name = tokens[0];
+					m = titlePattern.matcher(str.trim());
+					if (str.isEmpty() || str.equals(" "))
+						continue;
+					if (m.matches())
+					{
+						name = str;
+						break;
+					}
 				}
 				
-				
-				if(formatToken[2].equals("date"))
+				for (String str : tokens)
 				{
-					transDate = tokens[0];
-				}
-				else if(formatToken[2].equals("amount"))
-				{
-					amount = Double.parseDouble(tokens[0]);
-				}
-				else if(formatToken[2].equals("title"))
-				{
-					name = tokens[0];
+					m = amountPattern.matcher(str.trim());
+					if (m.matches())
+					{
+						amount = Double.parseDouble(m.group(1));
+						break;
+					}
 				}
 				
+				System.out.println("AMOUNT: " + amount);
 				LocalDate entryDate = LocalDate.now(); 
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
 				
 			    String strDate = entryDate.format(formatter);
-			
 				//Create new transaction object
-				
+
 				/**
 				 * For now the tag is an empty string
 				 * That needs to be figured out later
@@ -133,15 +126,6 @@ public class UploadManager {
 		
 	}
 	
-	public static String getFormat()
-	{
-		return format;
-	}
-	
-	public static void setFormat(String fileFormat)
-	{
-		format = fileFormat;
-	}
 	
 	public static ArrayList<Transaction> getTransactions()
 	{

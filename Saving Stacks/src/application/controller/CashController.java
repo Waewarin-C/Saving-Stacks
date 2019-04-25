@@ -4,6 +4,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -147,7 +148,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	    String name = nameitem.getText();
 	    CheckBox c = getCheckBoxSelected();
 		//datematching
-		String dateregex =("[0-9][0-9]\\[0-9][0-9]\\[0-9][0-9]");	
+		String dateregex =("^(0[1-9]?|[1-9]|1[0-2])/(0[1-9]|[1-9]|1[0-9]|2[0-9]|30|31)/([0-9]{4})$");	
 		String priceregex =("[0-9]*\\.?[0-9][0-9]");
 		
 		if( !date.getText().matches(dateregex) || !costitem.getText().matches(priceregex) || nameitem.getText().length() < 1 || c == null )

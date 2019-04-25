@@ -11,11 +11,13 @@ import application.model.Goal;
 import application.model.GoalSet;
 import application.model.Transaction;
 import application.model.UploadManager;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -33,9 +35,11 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	
 	@FXML private Label warning, uploadPrompt, date, tranTitle, amnt, goalTitle;
 	
-	@FXML private Button fileButton;
+	@FXML private Button fileButton, continueButton;
 
 	@FXML private GridPane gridView;
+	
+	
 	
 	private int arrayIndicator;
 	private ArrayList<Transaction> transactions;
@@ -69,6 +73,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		transactions = UploadManager.getTransactions();
 		gridView.toFront();
 		
+		continueButton.setVisible(true);
 		fileButton.setVisible(false);
 		warning.setVisible(false);
 		date.setVisible(true); 
@@ -78,11 +83,11 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		
 		//IDEA: Filter in the transactions into an intermediary data structure, and have them 11 at a time
 		//presented to the user. They save, and it recycles to the next set of transactions.
-		
-		for (int i = 0; i < transactions.size(); i++)
+		int cnt = 0;
+		for (int i = 0; i < transactions.size(); i++, cnt++)
 		{
 			
-			if (i == MAX_ROWS)
+			if (cnt == MAX_ROWS)
 			{
 				arrayIndicator = i;
 				break;
@@ -143,6 +148,15 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	}
 
 	
+	public void getNextItems(ActionEvent arg0)
+	{
+		
+
+		
+		
+	}
+
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -163,7 +177,8 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			
 			gridView.setStyle("-fx-border-color: #25282f; -fx-border-width: 3; -fx-border-radius: 20");
 			
-			
+			continueButton.setStyle(BACKGROUND_COLOR_STYLE);
+			continueButton.setTextFill(Color.WHITE);
 		}
 
 		warning.setVisible(true);

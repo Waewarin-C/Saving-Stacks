@@ -44,13 +44,20 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
+         <children>
+            <Button fx:id="continueButton" mnemonicParsing="false" onAction="#getNextItems" prefHeight="25.0" prefWidth="329.0" style="-fx-background-color: white;" text="Next Items..." visible="false" GridPane.columnIndex="1" GridPane.rowIndex="11">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
       </GridPane>
       <Label fx:id="date" alignment="CENTER" layoutX="56.0" layoutY="14.0" prefHeight="37.0" prefWidth="115.0" text="Date" visible="false">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label fx:id="tranTitle" alignment="CENTER" layoutX="310.0" layoutY="14.0" prefHeight="37.0" prefWidth="115.0" text="Transaction" visible="false">
+      <Label fx:id="tranTitle" alignment="CENTER" layoutX="301.0" layoutY="13.0" prefHeight="37.0" prefWidth="115.0" text="Transaction" visible="false">
          <font>
             <Font size="19.0" />
          </font>

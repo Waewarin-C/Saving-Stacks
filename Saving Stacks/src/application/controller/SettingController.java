@@ -331,7 +331,13 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 		settingButton.setStyle("-fx-text-fill: " + selectedStyle);
 		
+		
+		passwordRadio.setStyle("");
+		passwordRadio.getStylesheets().clear();
+		passwordRadio.getStylesheets().add(getClass().getResource("../view/radio_dark.css").toExternalForm());
+		
 		pt.play();
+		
 	}
 	
 	public void lightHandle(ActionEvent darkEvent)
@@ -398,6 +404,10 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		}
 		
 		settingButton.setStyle("-fx-text-fill: " + selectedStyle);
+		
+		passwordRadio.setStyle("");
+		passwordRadio.getStylesheets().clear();
+		passwordRadio.getStylesheets().add(getClass().getResource("../view/radio_light.css").toExternalForm());
 		
 		pt.play();
 	}

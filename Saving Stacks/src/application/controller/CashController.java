@@ -56,7 +56,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private Label whoopsdate;
 	@FXML
-	private Label whoopsprice;
+	private Label whoopsprice, whoopstext, whoopsgoal;
 	@FXML
 	private ListView<String> cashView;
 	@FXML
@@ -142,9 +142,16 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	@Override
 	public void handle(ActionEvent event) {
 		
+		clearErrorMssgs();
+	    String transDate = date.getText();
+	    String name = nameitem.getText();
+	    CheckBox c = getCheckBoxSelected();
+		//datematching
+		String dateregex =("[0-9][0-9]\\[0-9][0-9]\\[0-9][0-9]");	
+		String priceregex =("[0-9]*\\.?[0-9][0-9]");
 		
-			//datematching
-			String dateregex =("[0-9][0-9]\\[0-9][0-9]\\[0-9][0-9]");	 
+		if( !date.getText().matches(dateregex) || !costitem.getText().matches(priceregex) || nameitem.getText().length() < 1 || c == null )
+		{
 			if (!date.getText().matches(dateregex))
 			{
 				whoopsdate.setText("Wrong date format");
@@ -153,30 +160,42 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 			//datematching
 			
 			//price matching
-			String priceregex =("[0-9]*\\.?[0-9][0-9]");
-			if (costitem.getText().matches(priceregex))
+			
+			if (!costitem.getText().matches(priceregex))
 			{
 				whoopsprice.setText("Wrong price format");
 				whoopsprice.setVisible(true);
 			}
 			//price matching
+			
+			if( nameitem.getText().length() < 1 )
+			{
+				whoopstext.setText("Please enter a transaction name.");
+				whoopstext.setVisible(true);
+			}
+			
+			if( c == null )
+			{
+				whoopsgoal.setText("Please select a goal.");
+				whoopsgoal.setVisible(true);
+			}
 		
+		}
 		
-		int id = Transaction.establishTransId();
-		LocalDate entryDate = LocalDate.now(); 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
-	    String strDate = entryDate.format(formatter);
-	    String transDate = date.getText();
-	    String name = nameitem.getText();
-	    CheckBox c = getCheckBoxSelected();
-	    String tag = c.getText();
-	    double amount = Double.parseDouble(costitem.getText());
-		Transaction trans = new Transaction(id, strDate, transDate, name, tag, amount);
-		Transaction.saveTransaction( trans );
-		items.add(trans.toStringList());
-		cashView.setItems(items);
-		
-		resetScene();
+		else
+		{
+			int id = Transaction.establishTransId();
+			LocalDate entryDate = LocalDate.now(); 
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
+		    String strDate = entryDate.format(formatter);
+		    String tag = c.getText();
+		    double amount = Double.parseDouble(costitem.getText());
+			Transaction trans = new Transaction(id, strDate, transDate, name, tag, amount);
+			Transaction.saveTransaction( trans );
+			items.add(trans.toStringList());
+			cashView.setItems(items);
+			resetScene();
+		}
 	}
 	
 	/**
@@ -184,9 +203,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	 */
 	public void clearScene()
 	{
-		errorMsg.setVisible(false);
-		whoopsprice.setVisible(false);
-		whoopsdate.setVisible(false);
+		clearErrorMssgs();
 		date.setText("");
 		nameitem.setText("");
 		costitem.setText("");
@@ -199,14 +216,21 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 	}
 	
+	public void clearErrorMssgs()
+	{
+		errorMsg.setVisible(false);
+		whoopsprice.setVisible(false);
+		whoopsdate.setVisible(false);
+		whoopstext.setVisible(false);
+		whoopsgoal.setVisible(false);
+	}
+	
 	/**
 	 * 
 	 */
 	public void resetScene()
 	{
-		errorMsg.setVisible(false);
-		whoopsprice.setVisible(false);
-		whoopsdate.setVisible(false);
+		clearErrorMssgs();
 		date.setText("");
 		nameitem.setText("");
 		costitem.setText("");
@@ -246,12 +270,6 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	 */
 	public CheckBox getCheckBoxSelected()
 	{
-		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
-		{
-			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
-			if (n.isSelected() == false)
-				n.setDisable(true);
-		}	
 		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
 		{
 			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );

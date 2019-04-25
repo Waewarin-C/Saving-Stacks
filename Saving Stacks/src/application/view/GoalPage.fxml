@@ -46,11 +46,6 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <Button fx:id="saveGoals" layoutX="657.0" layoutY="659.0" mnemonicParsing="false" onAction="#saveHandle" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Save Goals" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
       <Label fx:id="goalError" layoutX="110.0" layoutY="665.0" text="Please enter valid entries for all three fields prior to continuing." textFill="#ee0a0a" visible="false">
          <font>
             <Font name="Segoe UI" size="15.0" />
@@ -79,6 +74,11 @@
       <Label fx:id="monLimError" layoutX="386.0" layoutY="94.0" text="Please enter a valid dollar amount." textFill="#f80000" visible="false">
          <font>
             <Font name="Segoe UI" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="goalAdd" layoutX="468.0" layoutY="663.0">
+         <font>
+            <Font name="Segoe UI" size="16.0" />
          </font>
       </Label>
    </children>

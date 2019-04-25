@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -42,7 +41,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private Label lockError, entryError, fieldError, goalError, monLimError;
 	@FXML
-	private Label title, budgetLabel;
+	private Label title, budgetLabel, goalAdd;
 	@FXML
 	private Button monthlyLimitSave;
 	
@@ -71,6 +70,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			monthlyLimit.setStyle(INPUT_FIELD_STYLE);
 			title.setTextFill(Color.WHITE);
 			budgetLabel.setTextFill(Color.WHITE);
+			goalAdd.setTextFill(Color.WHITE);
 		}
 		
 		// sets the Bottom Bar.
@@ -154,6 +154,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 				removeButton( button );
 				addUnlockIcon( 0 );
 				unlockTextField( row );
+				goalMap = goalMap.removeGoal( goalMap, row );
+				GoalSet.saveGoalArray( filePath, goalMap );
 			}
 			else
 			{
@@ -188,6 +190,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 			{
 				setVisibleFalseErrMssg();
 				removeButton(btn);
+				TextField title = (TextField) getNodeByRowColumnIndex( row, 0 );
 				TextField text = (TextField) getNodeByRowColumnIndex( row, 1 );
 				double amount = Double.parseDouble(text.getText());
 				DecimalFormat df = new DecimalFormat("#.00");
@@ -195,18 +198,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 				text.setText( strAmt );
 				lockTextField( row );
 				addLockIcon( row );
-				addGoaltoMap( row );	
+				addGoaltoMap( row );
+				GoalSet.saveGoalArray( filePath, goalMap );
+				goalAdd.setText("Goal \"" + title.getText() + "\" has been added!" );
 			}	
 		}		
-	}
-	
-	/**
-	 * 
-	 * @param event
-	 */
-	public void saveHandle( ActionEvent event )
-	{
-		GoalSet.saveGoalArray( filePath, goalMap );
 	}
 	
 	/**

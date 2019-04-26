@@ -108,6 +108,30 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		img.setFitHeight(860);
 		img.setFitWidth(860);
 		
+		
+		b.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+
+			@Override
+			 public void handle(ActionEvent arg0) {
+				
+				blurPane.getChildren().remove(goalGraph);
+				
+				goalGraph.setLayoutX(15);
+				goalGraph.setLayoutY(14);
+				goalGraph.setPrefHeight(310);
+				goalGraph.setPrefWidth(350);
+				goalPane.getChildren().add(goalGraph);
+				
+			
+				
+				fadeOut(img, blurPane, b);
+				
+	
+			
+			}
+			
+		});
+		
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
 			blurPane.setBackground(new Background(new BackgroundFill(Color.web("#25282f"), new CornerRadii(30), null)));
@@ -130,52 +154,7 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		goalGraph.setLayoutY(0);
 		goalGraph.setPrefHeight(574);
 		goalGraph.setPrefWidth(584);
-		
-		FadeTransition imgFT = new FadeTransition(Duration.millis(200), img);
-		imgFT.setFromValue(0.0);
-		imgFT.setToValue(1.0);
-		
-		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(200), blurPane);
-		blurPaneFT.setFromValue(0.0);
-		blurPaneFT.setToValue(1.0);
-		
-		FadeTransition buttonFT = new FadeTransition(Duration.millis(200), b);
-		buttonFT.setFromValue(0.0);
-		buttonFT.setToValue(1.0);
-		
-		ParallelTransition pt = new ParallelTransition(imgFT, blurPaneFT, buttonFT);
-		
-		
-		
-		pt.play();
-		
-		
-		
-		b.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-
-			@Override
-			 public void handle(ActionEvent arg0) {
-				
-				blurPane.getChildren().remove(spendingChart);
-				
-				goalGraph.setLayoutX(15);
-				goalGraph.setLayoutY(14);
-				goalGraph.setPrefHeight(310);
-				goalGraph.setPrefWidth(350);
-				goalPane.getChildren().add(goalGraph);
-				
-				
-				
-				
-				homeAnchor.getChildren().remove(img);
-				homeAnchor.getChildren().remove(blurPane);
-				homeAnchor.getChildren().remove(b);
-				
-				
-			
-			}
-			
-		});
+		fadeIn(img, blurPane, b);
 		
 		
 	}
@@ -193,6 +172,7 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		b.setLayoutY(45);
 		b.setFont(new Font("Segoe UI", 20));
 		b.setStyle("-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 30");
+		
 		
 		
 		DropShadow ds = new DropShadow();
@@ -223,6 +203,31 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		img.setFitHeight(860);
 		img.setFitWidth(860);
 		
+		b.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+
+			@Override
+			 public void handle(ActionEvent arg0) {
+				
+				blurPane.getChildren().remove(spendingChart);
+				
+				spendingChart.setLayoutX(15);
+				spendingChart.setLayoutY(14);
+				spendingChart.setPrefHeight(310);
+				spendingChart.setPrefWidth(350);
+				spendPane.getChildren().add(spendingChart);
+				
+				
+				
+			
+				
+				fadeOut(img, blurPane, b);
+				
+			
+			}
+			
+		});
+		
+		
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
 			blurPane.setBackground(new Background(new BackgroundFill(Color.web("#25282f"), new CornerRadii(30), null)));
@@ -245,7 +250,17 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		spendingChart.setLayoutY(0);
 		spendingChart.setPrefHeight(574);
 		spendingChart.setPrefWidth(584);
+		fadeIn(img, blurPane, b);
 		
+		
+		
+	}
+	
+	
+	
+	
+	public void fadeIn(ImageView img, Pane blurPane, Button b)
+	{
 		FadeTransition imgFT = new FadeTransition(Duration.millis(200), img);
 		imgFT.setFromValue(0.0);
 		imgFT.setToValue(1.0);
@@ -264,38 +279,37 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 		pt.play();
 		
-		
-		
-		b.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-
-			@Override
-			 public void handle(ActionEvent arg0) {
-				
-				blurPane.getChildren().remove(spendingChart);
-				
-				spendingChart.setLayoutX(15);
-				spendingChart.setLayoutY(14);
-				spendingChart.setPrefHeight(310);
-				spendingChart.setPrefWidth(350);
-				spendPane.getChildren().add(spendingChart);
-				
-				
-				
-				
-				homeAnchor.getChildren().remove(img);
-				homeAnchor.getChildren().remove(blurPane);
-				homeAnchor.getChildren().remove(b);
-				
-				
-			
-			}
-			
-		});
-		
-		
 	}
 	
 	
+	public void fadeOut(ImageView img, Pane blurPane, Button b)
+	{
+		FadeTransition imgFT = new FadeTransition(Duration.millis(200), img);
+		imgFT.setFromValue(1.0);
+		imgFT.setToValue(0.0);
+		
+		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(200), blurPane);
+		blurPaneFT.setFromValue(1.0);
+		blurPaneFT.setToValue(0.0);
+		
+		FadeTransition buttonFT = new FadeTransition(Duration.millis(200), b);
+		buttonFT.setFromValue(1.0);
+		buttonFT.setToValue(0.0);
+		
+		ParallelTransition pt = new ParallelTransition(imgFT, blurPaneFT, buttonFT);
+		
+		
+		
+		pt.play();
+		
+		
+
+		
+		
+		homeAnchor.getChildren().remove(img);
+		homeAnchor.getChildren().remove(blurPane);
+		homeAnchor.getChildren().remove(b);
+	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -373,6 +387,8 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 			spendingChart.getStylesheets().add(getClass().getResource("../view/chart_dark.css").toExternalForm());
 			goalGraph.getXAxis().setTickLabelFill(Color.WHITE);
 			goalGraph.getYAxis().setTickLabelFill(Color.WHITE);
+			goalGraph.getXAxis().getStylesheets().add(getClass().getResource("../view/bar_chart_dark.css").toExternalForm());
+			goalGraph.getYAxis().getStylesheets().add(getClass().getResource("../view/bar_chart_dark.css").toExternalForm());
 			
 			budget.setStyle("-fx-text-fill: #60ad5e");
 		}

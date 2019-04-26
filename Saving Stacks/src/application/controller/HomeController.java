@@ -11,21 +11,27 @@ import application.model.GoalSet;
 import application.model.Home;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 
-public class HomeController implements Initializable {
+public class HomeController implements EventHandler<ActionEvent>, Initializable {
 
 	private static final String controllerID = "HOME";
 	
 	private GoalSet goals;
-	private HashMap<Integer, Goal> goalMap;
 	private Home home;
 	
 	@FXML
@@ -43,6 +49,9 @@ public class HomeController implements Initializable {
 	@FXML
 	BarChart goalGraph;
 	
+	@FXML
+	Button weeklyButton, monthlyButton, yearlyButton;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -59,6 +68,51 @@ public class HomeController implements Initializable {
 		ArrayList<PieChart.Data> spending = home.retrieveData(goals);
 		ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
 		spendingChart.setData(data);
+		
+		CategoryAxis xAxis = new CategoryAxis();
+		NumberAxis yAxis = new NumberAxis();
+		
+		goalGraph.getXAxis().setLabel("Goals");
+		goalGraph.getYAxis().setLabel("Percentage");
+		
+		ArrayList<XYChart.Data> goalEndProgress = new ArrayList<XYChart.Data>();
+		XYChart.Series goalTotal = new XYChart.Series();
+		goalTotal.setName("End Goal");
+		
+		for(Integer key : goals.getGoalMap().keySet())
+		{
+			goalEndProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 100.00));
+		}
+		
+		goalTotal.getData().addAll(goalEndProgress);
+		
+		ArrayList<XYChart.Data> goalTrackProgress = new ArrayList<XYChart.Data>();
+		XYChart.Series goalTrack = new XYChart.Series();
+		goalTrack.setName("Progress");
+		
+		for(Integer key : goals.getGoalMap().keySet())
+		{
+			if(goals.getGoalMap().get(key).getTitle().equals("Rent"))
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 80.00));
+			}
+			else if(goals.getGoalMap().get(key).getTitle().equals("Grocery"))
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 50.00));
+			}
+			else if(goals.getGoalMap().get(key).getTitle().equals("Gas"))
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 30.00));
+			}
+			else if(goals.getGoalMap().get(key).getTitle().equals("Puppies"))
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
+			}
+		}
+		goalTrack.getData().addAll(goalTrackProgress);
+		
+		goalGraph.getData().addAll(goalTotal, goalTrack);
+		
 		
 		goalPrompt.textFillProperty().bind(moneyPrompt.textFillProperty());
 		spendingPrompt.textFillProperty().bind(moneyPrompt.textFillProperty());
@@ -84,6 +138,12 @@ public class HomeController implements Initializable {
 		}
 		
 		BottomBarController.attachBottomBar(homeAnchor.getChildren(), controllerID);
+		
+	}
+
+	@Override
+	public void handle(ActionEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 

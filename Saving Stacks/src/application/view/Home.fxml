@@ -25,7 +25,12 @@
               </yAxis>
             </BarChart>
          </children></Pane>
-      <Pane fx:id="switchPane" layoutX="400.0" layoutY="28.0" prefHeight="61.0" prefWidth="379.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;" />
+      <Pane fx:id="switchPane" layoutX="400.0" layoutY="28.0" prefHeight="61.0" prefWidth="379.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
+         <children>
+            <Button fx:id="weeklyButton" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#handle" prefHeight="31.0" prefWidth="110.0" style="-fx-background-radius: 30;" text="Weekly" />
+            <Button layoutX="135.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="110.0" style="-fx-background-radius: 30;" text="Montly" />
+            <Button layoutX="255.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="110.0" style="-fx-background-radius: 30;" text="Button" />
+         </children></Pane>
       <Label fx:id="moneyPrompt" layoutX="42.0" layoutY="28.0" prefHeight="37.0" prefWidth="203.0" text="Budget Remaining:">
          <font>
             <Font size="20.0" />

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import application.Main;
 import application.model.ColorTransition;
 import application.model.Login;
+import application.model.SettingsManager;
 import javafx.animation.ParallelTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -179,9 +180,38 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 	}
 	
+	/**
+	 * Dev mode option, type reset to set all defaults.
+	 */
+	public void resetData()
+	{
+		
+		SettingsManager settings = Main.settings;
+		
+		settings.setValueWithBooleanProperty("is_login_active", false);
+		settings.setValueWithBooleanProperty("is_protection_enabled", false);
+		settings.setValueWithBooleanProperty("welcome_shown_once", false);
+		settings.setValueWithBooleanProperty("is_dark_mode_enabled", false);
+		settings.setValueWithProperty("user_password", "unset");
+		settings.setValueWithProperty("user_question", "unset");
+		settings.setValueWithProperty("user_answer", "unset");
+		settings.setValueWithProperty("defined_tint_color", "unset");
+		settings.setValueWithProperty("monthly_budget", "0.00");
+	}
+	
 	
 	@Override
 	public void handle(ActionEvent arg0) {
+		
+		
+		if (password.getText().equalsIgnoreCase("reset"))
+		{
+			resetData();
+			password.clear();
+			passMsg.setText("Defaults reset - relaunch");
+			passMsg.setVisible(true);
+			return;
+		}
 		
 		String new_password = password.getText();
 		

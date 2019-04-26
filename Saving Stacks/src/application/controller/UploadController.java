@@ -169,6 +169,11 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	public void getNextItems(ActionEvent arg0)
 	{
 		
+		if (arrayIndicator == transactions.size()-1)
+		{
+			return;
+		}
+		
 		moveToNextPage = arg0;
 		
 		gridView.getChildren().removeAll(choiceBoxes);

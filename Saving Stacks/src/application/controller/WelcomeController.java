@@ -61,6 +61,7 @@ public class WelcomeController implements EventHandler<ActionEvent>, Initializab
 		
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+			Main.settings.setValueWithBooleanProperty("welcome_shown_once", true);
 			Main.stage.setScene(new Scene(root, 800, 800));
 			Main.stage.show();
 			

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -22,7 +23,10 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <ListView fx:id="cashView" layoutX="42.0" layoutY="78.0" prefHeight="432.0" prefWidth="459.0" style="-fx-background-color: F5F5F5;" />
+      <ListView fx:id="cashView" layoutX="42.0" layoutY="78.0" prefHeight="432.0" prefWidth="459.0" style="-fx-background-color: F5F5F5;">
+         <effect>
+            <DropShadow color="#0000005a" />
+         </effect></ListView>
       <GridPane fx:id="goalCheckBox" layoutX="548.0" layoutY="78.0" prefHeight="432.0" prefWidth="213.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
@@ -40,52 +44,52 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="1">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="2" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="2">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="3" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="3">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="4">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="5" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="5">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="6" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="6">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="7" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="7">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="8" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="8">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" prefHeight="48.0" prefWidth="111.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="9" onAction="#handleChecks">
+            <CheckBox mnemonicParsing="false" onAction="#handleChecks" prefHeight="48.0" prefWidth="111.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="9">
                <font>
                   <Font name="Segoe UI" size="16.0" />
                </font>

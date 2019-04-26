@@ -1,0 +1,7 @@
+.list-cell {
+    -fx-background-color: #33333d;
+    -fx-text-fill: white;
+}
+.list-cell:odd {
+     -fx-background-color: #25282f
+}

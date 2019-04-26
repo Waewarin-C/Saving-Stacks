@@ -74,6 +74,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
+		cashView.setFixedCellSize(60);
 		BottomBarController.attachBottomBar(cashAnchor.getChildren(), controllerID);
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
@@ -88,6 +89,10 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 			nameitem.setStyle("-fx-background-color: #25282f; -fx-background-radius: 30; -fx-text-fill: white");
 			
 			cashView.setStyle("-fx-background-color: #25282f");
+			
+			cashView.getStylesheets().add(getClass().getResource("../view/list_view_dark.css").toExternalForm());
+			
+			
 			
 		}
 		

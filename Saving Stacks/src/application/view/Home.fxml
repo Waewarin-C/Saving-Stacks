@@ -27,21 +27,21 @@
          </children></Pane>
       <Pane fx:id="switchPane" layoutX="400.0" layoutY="28.0" prefHeight="61.0" prefWidth="379.0" style="-fx-background-color: F5F5F5; -fx-background-radius: 30;">
          <children>
-            <Button fx:id="weeklyButton" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#handle" prefHeight="31.0" prefWidth="110.0" style="-fx-background-radius: 30;" text="Weekly" />
-            <Button layoutX="135.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="110.0" style="-fx-background-radius: 30;" text="Montly" />
-            <Button layoutX="255.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="110.0" style="-fx-background-radius: 30;" text="Button" />
+            <Button fx:id="weeklyButton" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#handle" prefHeight="31.0" prefWidth="110.0" style="-fx-background-radius: 30; -fx-background-color: black;" text="Weekly" textFill="WHITE" />
+            <Button layoutX="135.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="110.0" style="-fx-background-radius: 30; -fx-background-color: black;" text="Montly" textFill="WHITE" />
+            <Button layoutX="255.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="110.0" style="-fx-background-radius: 30; -fx-background-color: black;" text="Button" textFill="WHITE" />
          </children></Pane>
       <Label fx:id="moneyPrompt" layoutX="42.0" layoutY="28.0" prefHeight="37.0" prefWidth="203.0" text="Budget Remaining:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="spendingPrompt" alignment="CENTER" layoutX="102.0" layoutY="302.0" prefHeight="37.0" prefWidth="203.0" text="Spending">
+      <Label fx:id="spendingPrompt" alignment="CENTER" layoutX="90.0" layoutY="302.0" prefHeight="37.0" prefWidth="203.0" text="Spending">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="goalPrompt" alignment="CENTER" layoutX="488.0" layoutY="302.0" prefHeight="37.0" prefWidth="203.0" text="Goal Progress">
+      <Label fx:id="goalPrompt" alignment="CENTER" layoutX="505.0" layoutY="302.0" prefHeight="37.0" prefWidth="203.0" text="Goal Progress">
          <font>
             <Font size="20.0" />
          </font>
@@ -51,5 +51,7 @@
             <Font name="Roboto" size="38.0" />
          </font>
       </Label>
+      <Button layoutX="159.0" layoutY="263.0" mnemonicParsing="false" onAction="#expandPieChartToView" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Zoom" textFill="WHITE" />
+      <Button layoutX="564.0" layoutY="263.0" mnemonicParsing="false" onAction="#expandGraphToView" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Zoom" textFill="WHITE" />
    </children>
 </AnchorPane>

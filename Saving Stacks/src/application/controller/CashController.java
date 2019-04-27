@@ -62,6 +62,8 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	private ListView<String> cashView;
 	@FXML
 	private Button addButton;
+	@FXML
+	private Button delete; 
 	
 	private GoalSet goals = new GoalSet();
 	private String filename = "goals.csv";
@@ -319,6 +321,19 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	    
 	    return number;
 	}
+
+	
+	@FXML
+	public void delete(ActionEvent delete){
+		
+		cashView.getItems().removeAll(cashView.getSelectionModel().getSelectedItem());
+		//String tobeDeleted = cashView.getSelectionModel().getSelectedItem();
+		
+	      //System.out.println(tobeDeleted);
+	}
+
+
+
 
 	//public void  formatter()
 	//{

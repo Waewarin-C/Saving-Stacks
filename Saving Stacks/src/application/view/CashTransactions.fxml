@@ -119,5 +119,6 @@
       </Label>
       <Label fx:id="whoopstext" alignment="CENTER" layoutX="36.0" layoutY="608.0" prefHeight="22.0" prefWidth="219.0" textFill="#e41b1b" wrapText="true" />
       <Label fx:id="whoopsgoal" alignment="CENTER" layoutX="508.0" layoutY="59.0" prefHeight="22.0" prefWidth="219.0" textFill="#e41b1b" wrapText="true" />
+      <Button fx:id="deleteButton" layoutX="536.0" layoutY="644.0" mnemonicParsing="false" onAction="#delete" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Delete" textFill="WHITE" />
    </children>
 </AnchorPane>

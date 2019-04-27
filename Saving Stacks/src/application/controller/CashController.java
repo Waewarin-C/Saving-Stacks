@@ -322,61 +322,15 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	    return number;
 	}
 
-	
+	/**
+	 * 
+	 * @param delete
+	 */
 	@FXML
 	public void delete(ActionEvent delete){
 		
 		cashView.getItems().removeAll(cashView.getSelectionModel().getSelectedItem());
 	}
-
-
-
-
-	//public void  formatter()
-	//{
-		/*
-		date.getText().addListener((arg0, oldValue, newValue) -> {
-	    if (!newValue) { //when focus lost
-	        if(!textField.getText().matches("[0-9][0-9]\\[0-9][0-9]|\\[0-9][0-9]")){
-	            textField.setText("");
-	        }
-	    }
-		});
-		*/
-	//}
 }
 
 
-
-// to deal with the check boxes I will make a boolean that will return one true and the others false from my previous lab. 
-
-// reason for not implementing this rn is fxml is not opening and dont want to use wrong variables. 
-
-// to clear the textfields just do it for each one
-// TextField.clear
-
-//this is for the price boolean 
-//private boolean isint(TextField input, String whoops){
-//	try{
-//		int total=Integer.parseInt(input.getText())
-//		return input; 
-//	}catch(NumberFormatException e){
-//		<we can have a text field below the price thing that'll display error, using whoops>
-//	}
-//}
-
-//this is for date confirmation
-//textField.date().addListener((arg0, oldValue, newValue) -> {
-    //if (!newValue) { //when focus lost
-        //if(!textField.getText().matches("[0-9][0-9]\/[0-9][0-9]|\/[0-9][0-9]")){
-            //when it not matches the pattern (XX/XX/XX)
-            //set the textField empty
-            //textField.setText("");
-        //}
-    //}
-//});
-
-
-//while(!scan.hasNextInt()) scan.next();
-//int demoInt = scan.nextInt();
-// idea for date

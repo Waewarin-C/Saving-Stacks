@@ -107,7 +107,7 @@
       </Label>
       <Label fx:id="whoopsdate" alignment="CENTER" layoutX="291.0" layoutY="608.0" prefHeight="22.0" prefWidth="219.0" textFill="#e41b1b" wrapText="true" />
       <Label fx:id="whoopsprice" alignment="CENTER" layoutX="544.0" layoutY="608.0" prefHeight="22.0" prefWidth="200.0" textFill="#fc0a0a" wrapText="true" />
-      <Label fx:id="cashLabel" layoutX="47.0" layoutY="29.0" prefHeight="36.0" prefWidth="207.0" text="Current Transactions">
+      <Label fx:id="cashLabel" layoutX="47.0" layoutY="29.0" prefHeight="36.0" prefWidth="231.0" text="Current Transactions">
          <font>
             <Font size="22.0" />
          </font>

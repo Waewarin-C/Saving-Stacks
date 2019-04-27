@@ -327,9 +327,6 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	public void delete(ActionEvent delete){
 		
 		cashView.getItems().removeAll(cashView.getSelectionModel().getSelectedItem());
-		//String tobeDeleted = cashView.getSelectionModel().getSelectedItem();
-		
-	      //System.out.println(tobeDeleted);
 	}
 
 

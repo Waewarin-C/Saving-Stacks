@@ -26,6 +26,21 @@ public class Login {
 	}
 	
 	
+	//TODO: create password policies
+	//correct passwords
+	//TODO: continue working on this part MOSES!
+	public boolean passwordStrength() {
+		if(getSecretValue().matches("[123456789]*")) {
+			if(getSecretValue().matches("[!@#$%^&*()-+=]*")) {
+				return true;
+			}
+			return false;
+		}
+		
+		return false;
+	}
+	
+	
 	public boolean checkHashValue() throws InterruptedException{
 		
 		String stored_password = Main.settings.getValueWithProperty("user_password");

@@ -442,12 +442,13 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		pt.play();
 	}
 	
+	
 	public void radioToggle(ActionEvent event)
 	{
 		
 		
 		
-		if (passwordRadio.isSelected())
+		if (passwordRadio.isSelected() && !Main.settings.getValueWithProperty("user_password").equals("unset"))
 		{
 			Main.settings.setValueWithBooleanProperty("is_protection_enabled", true);
 			Main.settings.setValueWithBooleanProperty("is_login_active", true);

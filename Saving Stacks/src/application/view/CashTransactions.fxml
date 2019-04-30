@@ -121,7 +121,7 @@
       <Label fx:id="whoopsgoal" alignment="CENTER" layoutX="508.0" layoutY="59.0" prefHeight="22.0" prefWidth="219.0" textFill="#e41b1b" wrapText="true" />
       <Button fx:id="deleteButton" layoutX="540.0" layoutY="644.0" mnemonicParsing="false" onAction="#delete" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: black; -fx-background-radius: 30;" text="Delete" textFill="WHITE" />
       <Label fx:id="cashStatus" alignment="CENTER" layoutX="554.0" layoutY="690.0" prefHeight="22.0" prefWidth="169.0" textFill="#28a148" />
-      <Label fx:id="cashStatus" layoutX="289.0" layoutY="653.0" prefHeight="28.0" prefWidth="195.0" />
-      <Label fx:id="cashStatus2" layoutX="38.0" layoutY="650.0" prefHeight="28.0" prefWidth="195.0" />
+      <Label fx:id="cashStatus" layoutX="289.0" layoutY="653.0" prefHeight="28.0" prefWidth="195.0" textFill="#0bdd6a" />
+      <Label fx:id="cashStatus2" layoutX="38.0" layoutY="650.0" prefHeight="28.0" prefWidth="195.0" textFill="#da0a0a" />
    </children>
 </AnchorPane>

@@ -11,6 +11,7 @@ import application.model.GoalSet;
 import application.model.Home;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -216,10 +217,7 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 				spendingChart.setPrefWidth(350);
 				spendPane.getChildren().add(spendingChart);
 				
-				
-				
-			
-				
+		
 				fadeOut(img, blurPane, b);
 				
 			
@@ -242,9 +240,7 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		homeAnchor.getChildren().add(blurPane);
 		homeAnchor.getChildren().add(b);
 		
-		img.toFront();
-		blurPane.toFront();
-		b.toFront();
+
 		blurPane.getChildren().add(spendingChart);
 		spendingChart.setLayoutX(0);
 		spendingChart.setLayoutY(0);
@@ -261,22 +257,21 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	
 	public void fadeIn(ImageView img, Pane blurPane, Button b)
 	{
-		FadeTransition imgFT = new FadeTransition(Duration.millis(200), img);
+		FadeTransition imgFT = new FadeTransition(Duration.millis(300), img);
 		imgFT.setFromValue(0.0);
 		imgFT.setToValue(1.0);
 		
-		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(200), blurPane);
+		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(300), blurPane);
 		blurPaneFT.setFromValue(0.0);
 		blurPaneFT.setToValue(1.0);
 		
-		FadeTransition buttonFT = new FadeTransition(Duration.millis(200), b);
+		FadeTransition buttonFT = new FadeTransition(Duration.millis(300), b);
 		buttonFT.setFromValue(0.0);
 		buttonFT.setToValue(1.0);
 		
 		ParallelTransition pt = new ParallelTransition(imgFT, blurPaneFT, buttonFT);
 		
-		
-		
+
 		pt.play();
 		
 	}
@@ -284,20 +279,32 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	
 	public void fadeOut(ImageView img, Pane blurPane, Button b)
 	{
-		FadeTransition imgFT = new FadeTransition(Duration.millis(200), img);
+		FadeTransition imgFT = new FadeTransition(Duration.millis(300), img);
 		imgFT.setFromValue(1.0);
 		imgFT.setToValue(0.0);
 		
-		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(200), blurPane);
+		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(300), blurPane);
 		blurPaneFT.setFromValue(1.0);
 		blurPaneFT.setToValue(0.0);
 		
-		FadeTransition buttonFT = new FadeTransition(Duration.millis(200), b);
+		FadeTransition buttonFT = new FadeTransition(Duration.millis(300), b);
 		buttonFT.setFromValue(1.0);
 		buttonFT.setToValue(0.0);
 		
 		ParallelTransition pt = new ParallelTransition(imgFT, blurPaneFT, buttonFT);
 		
+		
+		pt.setOnFinished(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				homeAnchor.getChildren().remove(img);
+				homeAnchor.getChildren().remove(blurPane);
+				homeAnchor.getChildren().remove(b);
+				
+			}
+			
+		});
 		
 		
 		pt.play();
@@ -305,10 +312,6 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 
 		
-		
-		homeAnchor.getChildren().remove(img);
-		homeAnchor.getChildren().remove(blurPane);
-		homeAnchor.getChildren().remove(b);
 	}
 	
 	@Override

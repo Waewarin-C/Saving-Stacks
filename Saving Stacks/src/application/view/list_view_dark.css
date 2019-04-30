@@ -5,3 +5,6 @@
 .list-cell:odd {
      -fx-background-color: #25282f
 }
+.list-cell:selected {
+	-fx-background-color: black;
+}

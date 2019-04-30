@@ -63,7 +63,11 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private Button addButton;
 	@FXML
-	private Button delete; 
+	private Button deletebutton; 
+	@FXML
+	private Label cashStatus; 
+	@FXML
+	private Label cashStatus2;
 	
 	private GoalSet goals = new GoalSet();
 	private String filename = "goals.csv";
@@ -165,6 +169,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 			{
 				whoopsdate.setText("Wrong date format");
 				whoopsdate.setVisible(true);
+				cashStatus.setVisible(false);
 			}
 			//datematching
 			
@@ -174,6 +179,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 			{
 				whoopsprice.setText("Wrong price format");
 				whoopsprice.setVisible(true);
+				cashStatus.setVisible(false);
 			}
 			//price matching
 			
@@ -181,12 +187,14 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 			{
 				whoopstext.setText("Please enter a transaction name.");
 				whoopstext.setVisible(true);
+				cashStatus.setVisible(false);
 			}
 			
 			if( c == null )
 			{
 				whoopsgoal.setText("Please select a goal.");
 				whoopsgoal.setVisible(true);
+				cashStatus.setVisible(false);
 			}
 		
 		}
@@ -233,6 +241,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		date.setText("");
 		nameitem.setText("");
 		costitem.setText("");
+		cashStatus.setText("");
 		
 		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
 		{
@@ -249,6 +258,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		whoopsdate.setVisible(false);
 		whoopstext.setVisible(false);
 		whoopsgoal.setVisible(false);
+		cashStatus.setVisible(true);
+		cashStatus2.setVisible(true);
+		
 	}
 	
 	/**
@@ -260,6 +272,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		date.setText("");
 		nameitem.setText("");
 		costitem.setText("");
+		cashStatus.setText("Successfully added");
+		cashStatus2.setText("");
+		
 		
 		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
 		{
@@ -330,6 +345,8 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	public void delete(ActionEvent delete){
 		
 		cashView.getItems().removeAll(cashView.getSelectionModel().getSelectedItem());
+		cashStatus2.setText("Successfully deleted");
+		cashStatus.setVisible(false);
 	}
 }
 

@@ -4,13 +4,9 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import application.Main;
 import application.model.GoalSet;
 import application.model.Transaction;
@@ -20,7 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -31,12 +26,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-
-//TODO: implement text area 
-//TODO: user data error handling
-//TODO: param notes need to be added.
 /**   
+ * CashController initializes the CashTransactions.fxml scene and communicates between the Transaction.java class 
+ * and the CashTransactions.fxml scene to allow the user to enter and save individual cash transaction that would 
+ * not have otherwise been uploaded or recorded in the upload scene.
  * 
+ * @author Chelsea Flores (rue750)
  * @author dakotakuczenski
  */
 
@@ -77,9 +72,17 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	
 	private static final String controllerID = "CASH";
 	
+	/**
+	 * Initialize function initializes the GUI for the cash.fxml scene.
+	 * @param URL location and ResourceBundle resources
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-	
+		/*
+		 * Attached the menu bar to the bottom of the cash controller.
+		 * Additionally, if is_dark_mode_enabled is true, then the page initializes to dark mode,
+		 * changing the GUI colors.
+		 */
 		cashView.setFixedCellSize(60);
 		BottomBarController.attachBottomBar(cashAnchor.getChildren(), controllerID);
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
@@ -96,14 +99,21 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 			
 			cashView.setStyle("-fx-background-color: #25282f");
 			
-			cashView.getStylesheets().add(getClass().getResource("../view/list_view_dark.css").toExternalForm());
-			
-			
-			
+			cashView.getStylesheets().add(getClass().getResource("../view/list_view_dark.css").toExternalForm());	
 		}
 		
+		/*
+		 * clears the scene of any previously set items that the user may have selected in prior
+		 * scene sessions. 
+		 */
 		clearScene();
 		
+		/*
+		 * Identifies if goals have been saved by the user. If the goals have been saved, the checkboxes 
+		 * are initialized with these goals. If not, then a warning message appears, asking the user
+		 * to enter goals prior to continuing. Similarly, if the goal file exists but no goals are in the
+		 * file, then the goal error message appears.
+		 */
 		Path path = Paths.get(filePath);
 		
 		if( Files.exists(path))
@@ -120,7 +130,10 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 				addButton.setDisable(true);
 			}
 			else
-			{					
+			{			
+				/*
+				 * Iterates through the goals and nodes in the gridpane to set the goals to checkbox labels.
+				 */
 				for(int i = 0; i < goals.getGoalMap().size(); i ++ )
 				{
 					String goal = goals.getGoalMap().get(i).getTitle();
@@ -143,6 +156,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 		else
 		{
+			/*
+			 * Sets the error message and disables GUI components.
+			 */
 			errorMsg.setVisible(true);
 			date.setDisable(true);
 			costitem.setDisable(true);
@@ -152,17 +168,30 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 	}
 	
+	/**
+	 * This function creates a transaction object provided the user input and saves
+	 * the transaction to the transactions.csv file when the add button being pressed.
+	 * @param event ActionEvent of the add button.
+	 */
 	@Override
 	public void handle(ActionEvent event) {
-		
+		/*
+		 * clears any error messages and gets all the values from the editable items in the GUI.
+		 */
 		clearErrorMssgs();
 	    String transDate = date.getText();
 	    String name = nameitem.getText();
 	    CheckBox c = getCheckBoxSelected();
-		//datematching
-		String dateregex =("^(0[1-9]?|[1-9]|1[0-2])/(0[1-9]|[1-9]|1[0-9]|2[0-9]|30|31)/([0-9]{4})$");	
+		//date regex
+		String dateregex =("^(0[1-9]?|[1-9]|1[0-2])/(0[1-9]|[1-9]|1[0-9]|2[0-9]|30|31)/([0-9]{4})$");
+		//price regex
 		String priceregex =("[0-9]*\\.?[0-9][0-9]");
 		
+		/*
+		 * If any information is missing, the error messages are set.
+		 * Otherwise, a new transaction object is created using the transaction class, adds the transaction to the list view,
+		 * and the transaction is saved to a file and the scene is reset.
+		 */
 		if( !date.getText().matches(dateregex) || !costitem.getText().matches(priceregex) || nameitem.getText().length() < 1 || c == null )
 		{
 			if (!date.getText().matches(dateregex))
@@ -171,17 +200,13 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 				whoopsdate.setVisible(true);
 				cashStatus.setVisible(false);
 			}
-			//datematching
-			
-			//price matching
-			
+
 			if (!costitem.getText().matches(priceregex))
 			{
 				whoopsprice.setText("Wrong price format");
 				whoopsprice.setVisible(true);
 				cashStatus.setVisible(false);
 			}
-			//price matching
 			
 			if( nameitem.getText().length() < 1 )
 			{
@@ -216,13 +241,21 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * handleChecks ensures that only one checkbox in the grid can be selected
+	 * at any given time.
+	 * @param event ActionEvent of a checkbox being checked.
 	 */
 	public void handleChecks( ActionEvent event )
 	{
+		/*
+		 * Gets the checkbox of the event.
+		 */
 		CheckBox c = (CheckBox) event.getSource();
 		
+		/*
+		 * setSelected to false for all the checkboxes in the grid and
+		 * then sets the checkbox of the event to true.
+		 */
 		for(int i = 0; i < GoalController.MAX_ROWS; i++ )
 		{
 			CheckBox n = (CheckBox) getNodeByRowColumnIndex( i , 0 );
@@ -233,7 +266,8 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
-	 * 
+	 * Completely clears the scene and initializes/empties all the 
+	 * GUI components.
 	 */
 	public void clearScene()
 	{
@@ -251,6 +285,10 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		}
 	}
 	
+	/**
+	 * clearErrorMssgs setVisible to false for all the error messages on the 
+	 * cash scene.
+	 */
 	public void clearErrorMssgs()
 	{
 		errorMsg.setVisible(false);
@@ -264,7 +302,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
-	 * 
+	 * resetScene resets the GUI components that can be updated by the user.
 	 */
 	public void resetScene()
 	{
@@ -284,10 +322,12 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * getNodeByRowColumnIndex takes the row and column index and returns the
+	 * gridpane node at that location.
 	 * 
-	 * @param row
-	 * @param column
-	 * @return
+	 * @param row int index of the grid
+	 * @param column int index of the grid
+	 * @return Node of the node in the gridpane with that row and column.
 	 */
 	public Node getNodeByRowColumnIndex( int row, int column) {
 		
@@ -306,8 +346,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * getCheckBoxSelected iterates through the grid and returns the checkbox 
+	 * for which isSelected is true. If no checkbox is selected, null is returned.
+	 * @return CheckBox of the selected checkbox.
 	 */
 	public CheckBox getCheckBoxSelected()
 	{
@@ -318,23 +359,6 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 				return n;
 		}
 		return null;
-	}
-	
-	/**
-	 * 
-	 * @param strNum
-	 * @return
-	 */
-	public Boolean isDouble( String strNum )
-	{
-		Boolean number = true;
-	    try {
-	    	double value = Double.valueOf(strNum);	
-	    }catch(NumberFormatException e) {
-	    	number = false;
-	    }	
-	    
-	    return number;
 	}
 
 	/**

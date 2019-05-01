@@ -1,12 +1,12 @@
-is_login_active=true
+is_login_active=false
 is_protection_enabled=true
 welcome_shown_once=true
 is_dark_mode_enabled=false
 user_password=ff06535ac1029cca2fc2b86ac7355a7b4e0b8d839fc76b51d30833f4e1347ddc
 user_question=unset
 user_answer=unset
-login_attempts=1
+login_attempts=3
 default_tint_color_dark=#FFFFFF
 default_tint_color_light=#000000
 defined_tint_color=#000000
-monthly_budget=0.00
+monthly_budget=9234.00

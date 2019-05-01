@@ -17,6 +17,15 @@ Saving Stacks is a personal financial application that allows users to upload tr
 Many, we are trying.
 * Cash transactions
 * Login
+* Transactions.csv Data Management: The transaction file will continue to grow. If we had more time, we would have liked to establish data management to remove any   transactions that will no longer be applicable provided their time stamp and the metrics displayed on the home scene.
+
+
+# Future Enchancements #
+Future enchancements that we would like to make to Saving Stacks 2.0 include:
+
+* Goals: Establish effective dates for the goals and apply the transactions within this date range. 
+* Further metrics allowing you to look at transaction and goal history.
+* Goal benchmark feedback, i.e. "Congratulations! You've Reached Your Goal" or "Keep trying! You'll get them next time."
 
 # Installations #
 1. Clone the repo

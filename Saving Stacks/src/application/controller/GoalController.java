@@ -28,8 +28,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 
+/**
+ * The GoalController interacts with the GoalPage.fxml and the GoalSet.java class.
+ * If goals are already set up, then the goals are initiated on the screen. Otherwise,
+ * a row of the gridpane is set up with blank GUI components. The controller allows you to
+ * add, delete and edit goals in the gridpane.
+ * 
+ * @author Chelsea Flores (rue750)
+ */
 public class GoalController implements EventHandler<ActionEvent>, Initializable {
 	
+	/*
+	 * FXML GUI components
+	 */
 	@FXML
 	private GridPane goalGrid;
 	@FXML
@@ -48,7 +59,6 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	public static final String controllerID = "GOALS";
 	public static final int MAX_ROWS = 10;
 	public static final int MAX_COLS = 6;
-	
 	private static final String INPUT_FIELD_STYLE = "-fx-background-color: #25282f; -fx-background-radius: 30; -fx-text-fill: white";
 	private static final String BACKGROUND_COLOR_STYLE = "-fx-background-color: #33333d";
 	
@@ -59,11 +69,16 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	GoalSet goalMap = new GoalSet();
 
 	/**
+	 * initialize initializes the GoalPage.fxml.
 	 * 
+	 * @param location URL and resources ResourceBundle
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		/*
+		 * Sets dark mode if is_dark_mode_enabled is true.
+		 */
 		if (Main.settings.getBooleanValueWithProperty("is_dark_mode_enabled"))
 		{
 			goalAnchor.setStyle(BACKGROUND_COLOR_STYLE);
@@ -76,13 +91,14 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		// sets the Bottom Bar.
 		BottomBarController.attachBottomBar(goalAnchor.getChildren(), controllerID);
 		
+		//sets error messages to false
 		setVisibleFalseErrMssg();
-		//TODO: set color scene and light/dark settings
-		
+
 		/*
-		 * TODO: Error Handling
-		 * 		Save -> cannot save unless lock is clicked.
-		 * 		Delete goal -> deleting the first row.
+		 * Identifies if goals have been saved by the user. If the goals have been saved, they are initialized in the screen and then
+		 * sets editable to false for the grid row. If the file does not exist, then a warning message appears, asking the user
+		 * to enter goals prior to continuing. Similarly, if the goal file exists but no goals are in the
+		 * file, then the goal error message appears.
 		 */
 		Path path = Paths.get(filePath);
 		
@@ -112,17 +128,30 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * The handle function is triggered when one of the icons in the grid row is select. Depending
+	 * on which is icon is pressed a goal can do the following: the grid row can be locked or unlocked
+	 * (If the grid row is locked, then a goal object is created and saved. The unlock allows the user to edit
+	 * a current goal. ); delete the goal which deletes the grid row as well as the goal from the hashmap; adds
+	 * a line to the grid so that another goal can  be added.
+	 * 
+	 * @param event ActionEvent for hitting one of the icons in the gridpane row.
 	 */
 	@Override
 	public void handle(ActionEvent event) {
 		
+		/*
+		 * Assigns the node of the action event as a button and a node, in addition to the 
+		 * the row that the button pressed was in.
+		 */
+	
 		Button btn = (Button) event.getSource();
-		
         Node n = (Node)event.getSource() ;
-        Integer row = GridPane.getRowIndex(n);
-        
+        Integer row = GridPane.getRowIndex(n); 
 		String id = btn.getId();
 		
+		/*
+		 * Reads the button Id (add, delete, unlock, lock) to identify what action the program needs to take.
+		 */
 		if(id.equals("add"))
 		{
 			setVisibleFalseErrMssg();
@@ -206,8 +235,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * Checks the value entered into the monthly limit TextField is a number and saves
+	 * it to the monthly_budget.
 	 * 
-	 * @param event
+	 * @param event ActionEvent of the save button being pressed.
 	 */
 	public void saveMonthlyHandle( ActionEvent event )
 	{
@@ -228,9 +259,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * isDouble takes a string value and checks if that string value is a number value.
 	 * 
-	 * @param strNum
-	 * @return
+	 * @param strNum String to be checked for a number value.
+	 * @return Boolean value of whether or not the string contains a number.
 	 */
 	public Boolean isDouble( String strNum )
 	{
@@ -245,9 +277,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
-	 * 
-	 * @param file
-	 * @param goalArray
+	 * setGoalstoScene iterates through the goal hashmap and sets the data to the GUI components
+	 * in the gridpane. Locks the editable fields and initiates the lock icon vs. the unlock icon.
 	 */
 	public void setGoalstoScene()
 	{				
@@ -271,9 +302,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 
 	/**
+	 * Checks whether or not the Button id in the lock location is "lock" or "unlock."
 	 * 
-	 * @param row
-	 * @return
+	 * @param row int of the row to be modified in the gridpane.
+	 * @return Boolean value of whether or not the icon id in the gridpane row
+	 * is "lock" or "unlock"
 	 */
 	public Boolean checkLock( int row )
 	{
@@ -289,9 +322,11 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * Checks if the dollar amount in the amount TextField is a double value.
 	 * 
-	 * @param row
-	 * @return
+	 * @param row int of the row to be modified in the gridpane.
+	 * @return Boolean value of whether or not the user input in the amount Textfield
+	 * is a double.
 	 */
 	public Boolean checkDollarEntry( int row )
 	{
@@ -303,9 +338,12 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * checkFields checks the title Textfield, the amount Textfield and the a timeframe
+	 * is selected and returns true or false.
 	 * 
-	 * @param row
-	 * @return
+	 * @param row int of the row to be modified in the gridpane.
+	 * @return Boolean value of whether or not all the user input fields are
+	 * populated.
 	 */
 	public Boolean checkFields( int row )
 	{
@@ -327,8 +365,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * addGoaltoMap adds the goal to the goalMap hash method established in the GoalSet.java
+	 * class. The goal is constructed based on the user input into the the row of the gridpane.
 	 * 
-	 * @param row
+	 * @param row int of the row to be modified in the gridpane.
 	 */
 	public void addGoaltoMap( int row )
 	{
@@ -347,10 +387,12 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * getNodeByRowColumnIndex takes in a grid row and column and returns the node 
+	 * of the grid at that location.
 	 * 
-	 * @param row
-	 * @param column
-	 * @return
+	 * @param row int of the row to be modified in the gridpane.
+	 * @param column int of the column to be modified in the gridpane.
+	 * @return Node of the gridpane given the row and column on the gridpane.
 	 */
 	public Node getNodeByRowColumnIndex( int row, int column) 
 	{
@@ -370,8 +412,9 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 
 	
 	/**
+	 * Removes the button passed into the method.
 	 * 
-	 * @param button
+	 * @param button Button on the GUI
 	 */
 	public void removeButton( Button button )
 	{
@@ -379,8 +422,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * Removes all the nodes that were previously added to the gridpane.
 	 * 
-	 * @param row
+	 * @param row int of the row of the gridpane
+	 * @param size int size of the goalhash
 	 */
 	public void clearGrid( int size, int row )
 	{
@@ -391,34 +436,13 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		{		
 			temp.add(n);
 		}	
-			goalGrid.getChildren().removeAll(temp);
 		
-		/*if( size == 0 && row == 0)
-		{
-			
-		}
-		else if( size == 1 && row == 0 )
-		{
-			TextField text = (TextField) getNodeByRowColumnIndex( row, 0 );
-			text.setText("");
-			TextField amount = (TextField) getNodeByRowColumnIndex( row, 1 );
-			amount.setText("");
-			ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
-			time.setValue("");
-			Button button = (Button) getNodeByRowColumnIndex( row, 3 );
-			removeButton( button );
-			addUnlockIcon( 0 );
-		}
-		else	
-		{
-			for( Node n : children)
-			{		
-				temp.add(n);
-			}	
-				goalGrid.getChildren().removeAll(temp);
-		}*/
+		goalGrid.getChildren().removeAll(temp);
 	}
 	
+	/**
+	 * SetVisible to false for all the error messages.
+	 */
 	public void setVisibleFalseErrMssg()
 	{
 		lockError.setVisible(false);
@@ -429,18 +453,13 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 		
 	/**
+	 * Locks the GUI items in the row given the row index entered as a parameter.
 	 * 
-	 * @param row
+	 * @param row int of the row to be modified in the gridpane.
 	 */
 	public void lockTextField( int row )
 	{
 		ObservableList<Node> children = goalGrid.getChildren();
-		
-		//TextField text = (TextField) getNodeByRowColumnIndex( row, 1 );
-		//String strText = text.getText();
-		//DecimalFormat df = new DecimalFormat("#.00");
-		//strText = df.format(strText);
-		//text.setText(strText);
 		
 		for( Node n : children )
 		{	
@@ -454,7 +473,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	
 	/**
 	 * 
-	 * @param row
+	 * @param row int of the row to be modified in the gridpane.
 	 */
 	public void unlockTextField( int row )
 	{
@@ -472,7 +491,12 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	
 	/**
 	 * 
-	 * @param row
+	 * Generates a row with the goal information previously input by the user.
+	 * 
+	 * @param row int of the row to be modified in the gridpane.
+	 * @param title String of the goal
+	 * @param dollarAmount double of the dollar amount associated with the goal.
+	 * @param timeframe String of the timeframe selected in the ChoiceBox.
 	 */
 	public void generateRow( int row, String title, double dollarAmount, String timeframe )
 	{
@@ -484,8 +508,9 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * Creates an icon for the functionality that allows you to unlock a grid row.
 	 * 
-	 * @param row
+	 * @param row int of the row to be modified in the gridpane.
 	 */
 	public void addUnlockIcon( int row )
 	{
@@ -501,8 +526,9 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * Creates an icon for the functionality that allows you to lock a grid row.
 	 * 
-	 * @param row
+	 * @param row int of the row to be modified in the gridpane.
 	 */
 	public void addLockIcon( int row )
 	{
@@ -518,8 +544,9 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 		
 	/**
+	 * Creates an icon for the functionality that allows you to remove a grid row.
 	 * 
-	 * @param row
+	 * @param row int of the row to be modified in the gridpane.
 	 */
 	public void addRemoveIcon( int row )
 	{
@@ -535,8 +562,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * Creates an icon for the functionality that allows you to add a grid row as long as the 
+	 * index of the row is not 0.
 	 * 
-	 * @param row
+	 * @param row int of the row to be modified in the gridpane.
 	 */
 	public void addAddIcon( int row )
 	{
@@ -555,8 +584,9 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * Creates a textfield for the title to be entered or set.
 	 * 
-	 * @param row
+	 * @param row int of the row to be modified in the gridpane. 
 	 */
 	public void createGoalTextField( int row, String title )
 	{
@@ -579,8 +609,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * Creates a textfield for the dollar amount to be entered or set.
 	 * 
-	 * @param row
+	 * @param row int of the row to be modified in the gridpane.
+	 * @param dollarAmt double of the goal.
 	 */
 	public void createAmtTextField( int row, double dollarAmt )
 	{
@@ -609,8 +641,10 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 	/**
+	 * Creates a ChoiceBox in the row of the gridpane passed into the method and sets the 
+	 * text to the timeframe indicated in the parameters.
 	 * 
-	 * @param row
+	 * @param row int value of the grid pane.
 	 */
 	public void createChoiceBox( int row, String timeframe )
 	{

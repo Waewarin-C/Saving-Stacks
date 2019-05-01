@@ -37,35 +37,45 @@ public class Goal {
 	}
 
 	/**
-	 * @param time the time to set
+	 * Sets the timeframe of the goal object.
+	 * 
+	 * @param time the time to set of string of the timeframe of the goal.
 	 */
 	public void setTime(String time) {
 		this.time = time;
 	}
 
 	/**
-	 * @param date the date to set
+	 * Sets the entry date of the transaction.
+	 * 
+	 * @param date the date to set of the String of the entry date.
 	 */
 	public void setDate(String date) {
 		this.date = date;
 	}
 	
 	/**
-	 * @return the date
+	 * Returns the entry date of the transaction.
+	 * 
+	 * @return the date String of the date the transaction was entered.
 	 */
 	public String getDate() {
 		return this.date;
 	}
 	
 	/**
-	 * @return the amount
+	 * getAmount returns the double amount of the goal.
+	 * 
+	 * @return the amount double of the goal dollar amount.
 	 */
 	public double getAmount() {
 		return amount;
 	}
 
 	/**
-	 * @param amount the amount to set
+	 * setAmount sets the dollar amount of the goal.
+	 * 
+	 * @param amount the amount to set double as the amount value.
 	 */
 	public void setAmount(double amount) {
 		this.amount = amount;

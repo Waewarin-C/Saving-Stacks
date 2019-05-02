@@ -15,9 +15,9 @@ Saving Stacks is a personal financial application that allows users to upload tr
 
 # Known Issues #
 Many, we are trying.
-* Cash transactions
-* Login
-* Transactions.csv Data Management: The transaction file will continue to grow. If we had more time, we would have liked to establish data management to remove any   transactions that will no longer be applicable provided their time stamp and the metrics displayed on the home scene.
+* Budget on the home page does not update.
+* Login attempts does not always sync up. Account might lock without warning.
+* Transactions.csv Data Management: The transaction file will continue to grow. If we had more time, we would have liked to establish data management to remove any transactions that will no longer be applicable provided their time stamp and the metrics displayed on the home scene.
 
 
 # Future Enchancements #
@@ -30,6 +30,7 @@ Future enchancements that we would like to make to Saving Stacks 2.0 include:
 # Installations #
 1. Clone the repo
 2. Run the repo
+3. There is no default password or security question provided.
 
 # License #
 MIT License

@@ -201,6 +201,59 @@ public class Transaction {
 		}
 	}
 	
+	
+	
+	
+	
+	
+	/**
+	//delete a line in file, hope it works. 
+	//delete from transaction arraylist. 
+	public static void deleter(String file, String deleteMe) {
+	    try 
+	    {
+	      File inFile = new File(file);
+	      if (!inFile.isFile()) 
+	      {
+	        System.out.println("This is not a already existing file");
+	        return;
+	      }
+	      //Construct the new file that will later be renamed to the original filename.
+	      File tempF = new File(inFile.getAbsolutePath() + ".csv");
+	      BufferedReader br = new BufferedReader(new FileReader(file));
+	      PrintWriter pw = new PrintWriter(new FileWriter(tempF));
+	      String line = null;
+	      //Read from the original file and write to the new
+	      while ((line = br.readLine()) != null) 
+	      {
+	        if (!line.trim().equals(deleteMe)) 
+	        {
+	          pw.println(line);
+	          pw.flush();
+	        }
+	      } //close files. 
+	      pw.close();
+	      br.close();
+	      //Delete the og file
+	      if (!inFile.delete()) 
+	      {
+	        System.out.println("Error deleting the file");
+	        return;
+	      }
+	      //Rename the new file to the old file.
+	      if (!tempF.renameTo(inFile))
+	        System.out.println("Error renaming the file");
+	    }
+	    catch (FileNotFoundException ex) {
+	      ex.printStackTrace();
+	    }
+	    catch (IOException ex) {
+	      ex.printStackTrace();
+	    }
+	  }
+	**/
+
+	
 	/**
 	 * toStringList creates a string to be displayed on the listview.
 	 * 

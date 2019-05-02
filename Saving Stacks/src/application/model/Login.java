@@ -6,6 +6,12 @@ import java.security.NoSuchAlgorithmException;
 import application.Main;
 
 /**
+ * The Login class will take in a password from the user,
+ * Construct the object and the object will then be created for 
+ * verification. The password for security purposes will be hashed and
+ * then stored in the SettingsManagerConfig file. For security purposes,
+ *  it is best to call the checkHashValue method rather than the value.
+ * 
  * @author Moses J. Arocha - qiv737
  *
  */
@@ -15,11 +21,22 @@ public class Login {
 	private int loginAttempts;
 	
 
+	/**
+	 * Login constructor, creates the login object which can
+	 * be used to check password.
+	 * @param secretValue - String, the password
+	 */
 	public Login(String secretValue) {
 		this.secretValue = secretValue;
 	}
 	
 	
+	/**
+	 * Additional Login constructor, requires both a password
+	 * and the number of loginAttempts used.
+	 * @param secretValue - String, the password
+	 * @param loginAttempts - int, the login attemps used
+	 */
 	public Login(String secretValue, int loginAttempts) {
 		this.secretValue = secretValue;
 		this.loginAttempts = loginAttempts;
@@ -27,8 +44,13 @@ public class Login {
 	
 	
 	//TODO: create password policies
-	//correct passwords
-	//TODO: continue working on this part MOSES!
+	/**
+	 * Method was supposed to check if the password contained
+	 * a certain value for password strength, but I failed and 
+	 * ran out of time. I am sorry, my dog needed to play fetch
+	 * and I couldn't resist.
+	 * @return - boolean, true if requirements meant, false otherwise
+	 */
 	public boolean passwordStrength() {
 		if(getSecretValue().matches("[123456789]*")) {
 			if(getSecretValue().matches("[!@#$%^&*()-+=]*")) {
@@ -41,7 +63,14 @@ public class Login {
 	}
 	
 	
-	public boolean checkHashValue() throws InterruptedException{
+	/**
+	 * checkHashValue method will check to make sure that
+	 * either the password or the stored answer provided
+	 * matches the one given by the user.  
+	 * @return - boolean, true if password matches, false otherwise
+	 * @throws InterruptedException
+	 */
+	public boolean checkHashValue() throws InterruptedException {
 		
 		String stored_password = Main.settings.getValueWithProperty("user_password");
 		String stored_answer = Main.settings.getValueWithProperty("user_answer");
@@ -87,6 +116,12 @@ public class Login {
 	}
 	
 	
+	/**
+	 * setSecQuestion method takes in a question and answer and sets
+	 * them accordingly in the SettingsManagerConfig file
+	 * @param question - String, the security question
+	 * @param answer - String, the security answer
+	 */
 	public void setSecQuestion(String question, String answer) {
 		
 		try {
@@ -110,6 +145,12 @@ public class Login {
 	}
 	
 	
+	/**
+	 * SetPassword will set the password passed into the original
+	 * object construction. Important to use this method whenever
+	 * setting as the password as using otherwise will always result
+	 * in false.
+	 */
 	public void setPassword() {
 		
 		try {
@@ -136,6 +177,7 @@ public class Login {
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
+	 * Returns a string value of the password
 	 */
 	@Override
 	public String toString() {
@@ -144,7 +186,8 @@ public class Login {
 
 
 	/**
-	 * @return the secretValue
+	 * Returns the password
+	 * @return String, the password
 	 */
 	public String getSecretValue() {
 		return secretValue;
@@ -152,7 +195,8 @@ public class Login {
 
 
 	/**
-	 * @param secretValue the secretValue to set
+	 * Sets the password
+	 * @param password (password)
 	 */
 	public void setSecretValue(String secretValue) {
 		this.secretValue = secretValue;
@@ -160,7 +204,8 @@ public class Login {
 
 
 	/**
-	 * @return the loginAttempts
+	 * Returns the login attempts counter
+	 * @return int, the login attempts
 	 */
 	public int getLoginAttempts() {
 		return loginAttempts;
@@ -168,12 +213,12 @@ public class Login {
 
 
 	/**
+	 * Sets the login attempts
 	 * @param loginAttempts the loginAttempts to set
 	 */
 	public void setLoginAttempts(int loginAttempts) {
 		this.loginAttempts = loginAttempts;
 	}
-	
 	
 	
 }

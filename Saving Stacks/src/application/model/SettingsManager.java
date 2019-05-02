@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 /**
- * @author Gabriel Morales
+ * @author Gabriel Morales (woc797)
  *
  * LaunchManager class reads from the "LaunchManagerConfig"
  * within the data folder of the app. 

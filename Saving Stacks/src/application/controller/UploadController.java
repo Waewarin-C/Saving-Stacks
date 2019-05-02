@@ -29,7 +29,16 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
-public class UploadController implements EventHandler<ActionEvent>, Initializable{
+/**
+ * @author Gabriel Morales (woc797)
+ * @author Waewarin Chindarassami (fik450)
+ * 
+ * UploadController shows the user a view for
+ * uploading csv files to the application for
+ * tracking and connecting to goals.
+ *
+ */
+public class UploadController implements EventHandler<ActionEvent>, Initializable {
 
 	@FXML private AnchorPane uploadAnchor;
 	
@@ -47,9 +56,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	private HashMap<String, Goal> goalMap;
 	private GoalSet goals;
 	
-	/**
-	 *  NOTE: the following lists are for removal from GridPane
-	 */
+	//NOTE: the following lists are for removal from GridPane
 	private ArrayList<ChoiceBox<String>> choiceBoxes;
 	private ArrayList<Label> labels;
 	private ArrayList<TextField> textFields;
@@ -91,8 +98,6 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		goalTitle.setVisible(true);
 		saveButton.setVisible(true);
 		
-		//IDEA: Filter in the transactions into an intermediary data structure, and have them 11 at a time
-		//presented to the user. They save, and it recycles to the next set of transactions.
 		int cnt = 0;
 		for (int i = 0; i < transactions.size(); i++, cnt++)
 		{
@@ -165,7 +170,13 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		
 	}
 
-	
+	/**
+	 * Show the next pages of the uploaded csv files -
+	 * the transactions show 11 at a time. 
+	 * The gridPane is cleared and reloaded.
+	 * 
+	 * @param arg0 ActionEvent - Event fired from clicking the "view next items" button
+	 */
 	public void getNextItems(ActionEvent arg0)
 	{
 		
@@ -269,7 +280,12 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		
 	}
 
-	
+	/**
+	 * Save changes, if any, to the transaction csv file.
+	 * Regardless, the transactions will be saved.
+	 * 
+	 * @param arg0 ActionEvent - Event fired when clicking "save" button.
+	 */
 	public void saveChanges(ActionEvent arg0)
 	{
 		
@@ -290,6 +306,14 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	}
 	
 	
+	/**
+	 * Get the node located at row and column of 
+	 * the GridPane.
+	 * 
+	 * @param row int - the row of the GridPane
+	 * @param column int - the column of the GridPane.
+	 * @return Node - the node located at the column and row.
+	 */
 	public Node getNodeByRowColumnIndex( int row, int column) 
 	{
 	    Node result = null;

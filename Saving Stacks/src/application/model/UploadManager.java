@@ -27,7 +27,12 @@ public class UploadManager {
 	private static ArrayList<Transaction> transactions;
 	public static String status;
 	
-	//Static method to read the csv file
+	/**
+	 * Reads the file specified from choosing
+	 * within the filesystem.
+	 * 
+	 * @param chosenFile File - file chosen by the user.
+	 */
 	public static void readFile(File chosenFile) 
 	{
 	
@@ -102,23 +107,16 @@ public class UploadManager {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
 				
 			    String strDate = entryDate.format(formatter);
-				//Create new transaction object
 
-				/**
-				 * For now the tag is an empty string
-				 * That needs to be figured out later
-				 * when the UploadController is worked on
-				 */
 				
 				Transaction temp = new Transaction(id, strDate, transDate, name, " ", amount);
-				
-				//Add transaction to ArrayList
+
 				transactions.add(temp);
 				
-				//Increment id
+
 				id++;
 			}
-			//Keep track of the last transaction id used
+
 			Transaction.saveTransId(id - 1);
 			
 			scan.close();
@@ -130,7 +128,13 @@ public class UploadManager {
 		
 	}
 	
-	
+	/**
+	 * Gets the transactions loaded by the file selected in the 
+	 * filesystem.
+	 * 
+	 * @return ArrayList<Transaction> - arraylist of transactions given by uploaded
+	 * file.
+	 */
 	public static ArrayList<Transaction> getTransactions()
 	{
 		return transactions;

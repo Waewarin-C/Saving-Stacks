@@ -25,6 +25,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+/**
+ * @author Gabriel Morales (woc797)
+ * 
+ * Security features by Moses Arocha (qiv737).
+ *
+ * Manages all surface-level settings and color schemes. Including
+ * password set and security question/answer set.
+ *
+ */
 public class SettingController implements Initializable, EventHandler<ActionEvent>{
 
 	private static final String controllerID = "SETTINGS";
@@ -154,7 +163,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 	}
 
-	
+	/**
+	 * Sets the security question shown on the login view.
+	 * Will save to the settings config.
+	 * 
+	 * @param arg0 ActionEvent - Event fired when "Save" is clicked.
+	 */
 	public void setSecurityQuestion(ActionEvent arg0)
 	{
 		
@@ -181,7 +195,8 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	}
 	
 	/**
-	 * Dev mode option, type reset to set all defaults.
+	 * A developer mode option to reset the app to defaults.
+	 * Does not include the transactions csv, or any other csv files.
 	 */
 	public void resetData()
 	{
@@ -199,7 +214,11 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		settings.setValueWithProperty("monthly_budget", "0.00");
 	}
 	
-	
+	/**
+	 * Deals with saving the password.
+	 * 
+	 * @param arg0 ActionEvent - Event fired when save is pressed.
+	 */
 	@Override
 	public void handle(ActionEvent arg0) {
 		
@@ -237,8 +256,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 
 	}
 	
-	/*
-	 * Handles the logout button in settings
+	
+	/**
+	 * Logout button shown on the settings view.
+	 * When logout is pressed, it will push to the login view itself.
+	 * 
+	 * @param arg0 ActionEvent - Event fired when "Save" is clicked.
 	 */
 	public void handleLogout(ActionEvent arg0) {
 		try {
@@ -252,6 +275,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 	}
 	
+	/**
+	 * Tint color for the current button. Tint #1. 
+	 * 
+	 * 
+	 * @param arg0 ActionEvent - Event fired when this tint is clicked.
+	 */
 	public void tintHandle(ActionEvent arg0)
 	{
 		String style = tint0.getStyle().split(" ")[1];
@@ -261,7 +290,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 	}
 	
-	
+	/**
+	 * Tint color for the current button. Tint #2. 
+	 * 
+	 * 
+	 * @param arg0 ActionEvent - Event fired when this tint is clicked.
+	 */
 	public void tintHandle1(ActionEvent arg0)
 	{
 		String style = tint1.getStyle().split(" ")[1];
@@ -270,7 +304,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		settingButton.setStyle("-fx-text-fill: " + style);
 	}
 	
-	
+	/**
+	 * Tint color for the current button. Tint #3. 
+	 * 
+	 * 
+	 * @param arg0 ActionEvent - Event fired when this tint is clicked.
+	 */
 	public void tintHandle2(ActionEvent arg0)
 	{
 		String style = tint2.getStyle().split(" ")[1];
@@ -279,7 +318,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		settingButton.setStyle("-fx-text-fill: " + style);
 	}
 	
-	
+	/**
+	 * Tint color for the current button. Tint #4. 
+	 * 
+	 * 
+	 * @param arg0 ActionEvent - Event fired when this tint is clicked.
+	 */
 	public void tintHandle3(ActionEvent arg0)
 	{
 		String style = tint3.getStyle().split(" ")[1];
@@ -288,7 +332,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		settingButton.setStyle("-fx-text-fill: " + style);
 	}
 	
-	
+	/**
+	 * Tint color for the current button. Tint #5. 
+	 * 
+	 * 
+	 * @param arg0 ActionEvent - Event fired when this tint is clicked.
+	 */
 	public void tintHandle4(ActionEvent arg0)
 	{
 		String style = tint4.getStyle().split(" ")[1];
@@ -298,6 +347,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 	}
 
 	
+	/**
+	 * Transition from light to dark mode.
+	 * Sets the style of the selected scene nodes with desired color.
+	 * 
+	 * @param darkEvent ActionEvent - Event fired when "dark" is clicked.
+	 */
 	public void darkHandle(ActionEvent darkEvent)
 	{
 		
@@ -370,6 +425,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		
 	}
 	
+	/**
+	 * Transition from dark to light mode.
+	 * Sets the style of the selected scene nodes with desired color.
+	 * 
+	 * @param darkEvent ActionEvent - Event fired when "light" is clicked.
+	 */
 	public void lightHandle(ActionEvent darkEvent)
 	{
 		
@@ -442,7 +503,12 @@ public class SettingController implements Initializable, EventHandler<ActionEven
 		pt.play();
 	}
 	
-	
+	/**
+	 * Enables the security features within the app.
+	 * Sets the protection (or not) to be turned on/off depending on selection.
+	 * 
+	 * @param darkEvent ActionEvent - Event fired when "enable protection" is selected.
+	 */
 	public void radioToggle(ActionEvent event)
 	{
 		

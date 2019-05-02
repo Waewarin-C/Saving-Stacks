@@ -2,16 +2,13 @@ package application.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import application.Main;
-import application.model.Goal;
 import application.model.GoalSet;
 import application.model.Home;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,7 +21,6 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -66,7 +62,13 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	Button weeklyButton, monthlyButton, yearlyButton;
 	
-	
+	/**
+	 * Zoom feature for the Graph object shown on 
+	 * the home page. Requires use of the original
+	 * object due to static limitations.
+	 * 
+	 * @param arg0 ActionEvent - Event fired from "zoom" button
+	 */
 	public void expandGraphToView(ActionEvent arg0)
 	{
 		
@@ -160,7 +162,13 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 	}
 	
-	
+	/**
+	 * Zoom feature for the PieChart object shown on 
+	 * the home page. Requires use of the original
+	 * object due to static limitations.
+	 * 
+	 * @param arg0 ActionEvent - Event fired from "zoom" button
+	 */
 	public void expandPieChartToView(ActionEvent arg0)
 	{
 		
@@ -254,7 +262,14 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	
 	
 	
-	
+	/**
+	 * The fade-in animation when the "zoom" button is clicked.
+	 * 
+	 * 
+	 * @param img ImageView - a screenshot of the scene graph.
+	 * @param blurPane Pane - a pane shown on top of the blurred screenshot.
+	 * @param b Button - the "done" button on the zoom view.
+	 */
 	public void fadeIn(ImageView img, Pane blurPane, Button b)
 	{
 		FadeTransition imgFT = new FadeTransition(Duration.millis(300), img);
@@ -276,7 +291,14 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 	}
 	
-	
+	/**
+	 * The fade-out animation when the "zoom" button is clicked.
+	 * 
+	 * 
+	 * @param img ImageView - a screenshot of the scene graph.
+	 * @param blurPane Pane - a pane shown on top of the blurred screenshot.
+	 * @param b Button - the "done" button on the zoom view.
+	 */
 	public void fadeOut(ImageView img, Pane blurPane, Button b)
 	{
 		FadeTransition imgFT = new FadeTransition(Duration.millis(300), img);

@@ -24,16 +24,14 @@ import javafx.scene.paint.Color;
 
 
 /**
- * The LoginController class will take in a password from the user,
- * Construct the object and the object will then be created for 
- * future use. The password for security purposes will be hashed and
- * then stored in the config file. For security purposes, it is best
- * to call the verify method rather than the object
+ * The LoginController class will act as the middle man between
+ * the login object and the Login.fxml. It creates a login object
+ * and calls the correct functions to check if the password is correct
+ * and behaves accordingly.
  * 
- * @author Moses J. Arocha
+ * @author Moses J. Arocha - qiv737
  *
  */
-
 
 public class LoginController implements EventHandler<ActionEvent>, Initializable
 {
@@ -53,7 +51,12 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 	ImageView logoImage;
 	
 		
-	
+	/**
+	 * Handle method deals with the Login button,
+	 * depends on the Login class, will redirect
+	 * to the Home.fxml if password is accepted.
+	 * @param event - ActionEvent, the login button
+	 */
 	@Override
 	public void handle(ActionEvent event) {
 		// Handles the Password Login
@@ -85,6 +88,12 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 	}
 	
 	
+	/**
+	 * HandleForgotPassword method deals with with the forgot password
+	 * button, it will display the security question found in the 
+	 * SettingsManagerConfig file.
+	 * @param arg0, ActionEvent, the forgotPassword button 
+	 */
 	public void handleForgotPassword(ActionEvent arg0) {
 		
 		forgotPasswordLabel.setText("Pleae enter the answer to the security question in the password field:");
@@ -92,10 +101,13 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 		
 	}
 	
+	
 
 	/*
 	 * (non-Javadoc)
 	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 * initialize displays the username and displays the logo in
+	 * accordance to which background mode is set.
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

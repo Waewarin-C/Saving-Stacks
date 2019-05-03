@@ -1,6 +1,5 @@
 package application.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,6 +56,7 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	@FXML
 	private PieChart spendingChart;
 	
+	@SuppressWarnings("rawtypes")
 	@FXML
 	private BarChart goalGraph;
 	
@@ -389,16 +389,6 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		goalTrack.setName("Amount Spent");
 		
 		HashMap<String, Double> monthlyTotals = Transaction.monthTransactionByGoal(goals);
-		/*double percentInProgress = 0.0;
-		ArrayList<Transaction> transactions = new ArrayList<Transaction>();
-		try 
-		{
-			transactions = Transaction.loadTransactions();
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}*/
 		for(String key : monthlyTotals.keySet())
 		{
 			goalTrackProgress.add(new XYChart.Data(key, monthlyTotals.get(key)));
@@ -444,13 +434,14 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	@Override
 	public void handle(ActionEvent event) {
 		String buttonPushed = ((Button) event.getSource()).getText();
+		home = new Home();
 		
 		if(buttonPushed.equals("Weekly"))
 		{
 			spendingChart.getData().clear();
 			ArrayList<PieChart.Data> spending = home.retrieveWeeklyData(goals);
 			ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
-			spendingChart.setData(data);
+			spendingChart.getData().addAll(data);
 		}
 		else if(buttonPushed.equals("Monthly"))
 		{

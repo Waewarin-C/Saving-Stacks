@@ -85,30 +85,5 @@ public class Home {
 		
 		return spending;
 	}
-	
-	public ArrayList<Transaction> getTransactionsFromGoal(ArrayList<Transaction> transactions, String goal)
-	{
-		ArrayList<Transaction> temp = new ArrayList<Transaction>();
-		for(int i = 0; i < transactions.size(); i++)
-		{
-			if(transactions.get(i).getTag().toLowerCase().equals(goal.toLowerCase()))
-			{
-				temp.add(transactions.get(i));
-			}
-		}
-		return temp;
-	}
-	public double getPercentInProgress(ArrayList<Transaction> trans, double totalAmount)
-	{
-		double totalFromTransactions = 0.0;
-		double percent = 0.0;
-		
-		for(int i = 0; i < trans.size(); i++)
-		{
-			totalFromTransactions += trans.get(i).getAmount();
-		}
-		
-		percent = (totalFromTransactions / totalAmount) * 100;
-		return percent;
-	}
+
 }

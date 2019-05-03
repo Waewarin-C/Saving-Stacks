@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -291,6 +294,84 @@ public class Transaction {
 		
 		scan.close();
 		return temp;	
+		
+	}
+	
+	/**
+	 * Takes the established goals and the transactions in the file and returns a hashmap
+	 * of the transaction totals for the current month for the goals loaded. The key is the goal
+	 * name and the value is the amount total.
+	 * 
+	 * @param goals - GoalSet object containing the goals
+	 * @return HashMap<String, Double> of goals and monthly total of transaction amounts.
+	 */
+	public static HashMap<String, Double> monthTransactionByGoal( GoalSet goals )
+	{
+		HashMap<String, Double> monthlyTotals = new HashMap<String, Double>();
+		
+		if( transFilename == null)
+		{
+			for(int i = 0; i < goals.getGoalMap().size(); i++ )
+			{
+				String title = goals.getGoalMap().get(i).getTitle();
+				monthlyTotals.put( title, 0.0 );	
+			}
+		}
+		else
+		{
+			try {
+				LocalDate date = LocalDate.now();
+				DateTimeFormatter format = DateTimeFormatter.ofPattern("mm dd yyyy");
+				String dateString = date.format(format);
+				String tokens[] = dateString.split(" ");
+				int month = Integer.parseInt(tokens[0]);
+				int year = Integer.parseInt(tokens[2]);
+				
+				
+				ArrayList<Transaction> trans = loadTransactions();
+				ArrayList<String> goalString = new ArrayList<String>();
+				
+				
+				for(int j = 0; j <goals.getGoalMap().size(); j++ )
+				{
+					String temp  = goals.getGoalMap().get(j).getTitle();
+					goalString.add( temp );
+				}
+				
+
+				for(int j = 0; j < goalString.size(); j++)
+				{
+					String x = goalString.get(j);
+					double amount = 0;
+					
+					for( int k = 0; k < trans.size(); k++)
+					{
+						Transaction y = trans.get(k);
+						String title = y.getTag();
+						String dateArr[] = y.getTransDate().split("//");
+						int monTest = Integer.parseInt(dateArr[0]);
+						int yearTest = Integer.parseInt(dateArr[3]);						
+						
+						if( month == monTest && yearTest == year && x.equalsIgnoreCase(title))
+						{
+							amount = amount + y.getAmount();
+						}
+						
+					}
+					
+					monthlyTotals.put(x, amount);
+					
+					
+				}
+				
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return monthlyTotals;
+		
 		
 	}
 	

@@ -10,9 +10,17 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * GoalSet.java class aggregates Goal objects. This class manipulates the user input on the GoalPage.fxml
+ * and handles data associated with the goals entered by the user.
+ * 
+ * @author Chelsea Flores (rue750)
+ */
 public class GoalSet {
 	
+	//class variables
 	private HashMap<Integer, Goal> goalMap;	
+	
 	/**
 	 * GoalSet constructor for Goal Page initialization
 	 */
@@ -22,13 +30,14 @@ public class GoalSet {
 	}
 
 	/**
-	 * save goals to file when typed into the interface
-	 * @param file name as a String to use to save the goals.
+	 * saveGoalArray saves the goals in the goalMap to the goals.csv file.
+	 * 
+	 * @param filename - String of the name of the file .
 	 */
 	public static void saveGoalArray( String file, GoalSet goalMap ) {
 		
 		try {
-			// open the file for writing	
+			
 			FileWriter writer = new FileWriter( new File( file ) );
 			
 			for( int i = 0; i < goalMap.getGoalMap().size(); i++ )
@@ -44,6 +53,9 @@ public class GoalSet {
 	}
 	
 	/**
+	 * loadGoals loads the goals into the GoalSet HashMap and sets the key value as the 
+	 * index of the grid pane row in which it was created.
+	 * 
 	 * @param the file File of the goal information.
 	 */
 	public void loadGoals( String filepath )
@@ -76,8 +88,13 @@ public class GoalSet {
 		}		
 	}
 	
-	/*
+	/**
+	 * generateGoal takes in String parameters to create a Goal object.
 	 * 
+	 * @param title - String of the goal title.
+	 * @param goalAmt - String of the goal dollar amount.
+	 * @param time - String of the timeframe of the goal.
+	 * @return Goal that is created using the parameters.
 	 */
 	public static Goal generateGoal( String title, String goalAmt, String time )
 	{
@@ -90,7 +107,13 @@ public class GoalSet {
 		return goal;
 	}
 	
-	//TODO: remove Goal from Hashmap.
+	/**
+	 * Removes the goal from the GoalSet HashMap and resets the key values.
+	 * 
+	 * @param goalMap - HashMap of the goals in the GoalSet object.
+	 * @param row - integer value of the row to be removed.
+	 * @return the GoalSet Object of the updated GoalSet HashMap.
+	 */
 	public GoalSet removeGoal( GoalSet goalMap, int row )
 	{
 		goalMap.getGoalMap().remove(row);
@@ -115,6 +138,8 @@ public class GoalSet {
 	}
 	
 	/**
+	 * Returns the HashMap in the GoalSet object.
+	 * 
 	 * @return the goalMap
 	 */
 	public HashMap<Integer, Goal> getGoalMap() {
@@ -122,6 +147,8 @@ public class GoalSet {
 	}
 
 	/**
+	 * setGoalMap sets the HashMap in the GoalSet object.
+	 * 
 	 * @param goalMap the goalMap to set
 	 */
 	public void setGoalMap(HashMap<Integer, Goal> goalMap) {

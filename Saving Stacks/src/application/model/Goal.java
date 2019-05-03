@@ -2,11 +2,22 @@ package application.model;
 
 public class Goal {
 	
+	/*
+	 * Class variables
+	 */
 	private String title;
 	private String time;
 	private String date;
 	private double amount;
 	
+	/**
+	 * Goal constructor.
+	 * 
+	 * @param title - String of the goal title.
+	 * @param time - String of the timeframe of the goal.
+	 * @param date - String of the date the goal was entered.
+	 * @param amount - double of the amount of the goal.
+	 */
 	public Goal( String title, String time, String date, double amount)
 	{
 		this.title = title;
@@ -15,22 +26,38 @@ public class Goal {
 		this.amount = amount;
 	}
 
-	//goal string
+	/**
+	 * toString creates a String of the Goal object.
+	 * 
+	 * @return ret - String of the Goal object.
+	 */
 	public String toString() {
 		String ret = this.getTitle() + "," + this.getTime() + "," + this.getDate() + "," + this.getAmount() + "\n";
 		return ret;
 	}
 	
+	/**
+	 * Returns the title of the goal.
+	 * 
+	 * @return String of the goal title.
+	 */
 	public String getTitle() {
 		return title;
 	}
 
+	/**
+	 * Sets the title of the goal.
+	 * 
+	 * @param title - String of the goal title.
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 	/**
-	 * @return the time
+	 * Returns the timeframe of the goal.
+	 * 
+	 * @return the time - String of the goal timeframe.
 	 */
 	public String getTime() {
 		return time;

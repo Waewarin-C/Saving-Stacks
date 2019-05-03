@@ -64,6 +64,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	
 	private String filename = "goals.csv";
 	private String filePath = "data/" + filename;
+	@SuppressWarnings("unused")
 	private File file;	
 	
 	GoalSet goalMap = new GoalSet();
@@ -177,6 +178,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 				text.setText("");
 				TextField amount = (TextField) getNodeByRowColumnIndex( row, 1 );
 				amount.setText("");
+				@SuppressWarnings("unchecked")
 				ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
 				time.setValue("");
 				Button button = (Button) getNodeByRowColumnIndex( row, 3 );
@@ -268,7 +270,8 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 	{
 		Boolean number = true;
 	    try {
-	    	double value = Double.valueOf(strNum);	
+	    	@SuppressWarnings("unused")
+			double value = Double.valueOf(strNum);	
 	    }catch(NumberFormatException e) {
 	    	number = false;
 	    }	
@@ -351,6 +354,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		
 		TextField title = (TextField) getNodeByRowColumnIndex( row, 0);
 		TextField amount = (TextField) getNodeByRowColumnIndex( row, 1);
+		@SuppressWarnings("unchecked")
 		ChoiceBox<String> timeframe = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2);
 		String t = title.getText();
 		String a = amount.getText();
@@ -378,6 +382,7 @@ public class GoalController implements EventHandler<ActionEvent>, Initializable 
 		TextField amt = (TextField) getNodeByRowColumnIndex( row, 1 );
 		String goalAmt = amt.getText();
 		
+		@SuppressWarnings("unchecked")
 		ChoiceBox<String> time = (ChoiceBox<String>) getNodeByRowColumnIndex( row, 2 );
 		String timeframe = time.getValue();
 

@@ -3,6 +3,7 @@ package application.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -357,24 +358,38 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		spendingChart.setData(data);
 		
 		goalGraph.getXAxis().setLabel("Goals");
-		goalGraph.getYAxis().setLabel("Percentage");
+		goalGraph.getYAxis().setLabel("Amount");
 		
 		ArrayList<XYChart.Data> goalEndProgress = new ArrayList<XYChart.Data>();
 		XYChart.Series goalTotal = new XYChart.Series();
-		goalTotal.setName("End Goal");
+		goalTotal.setName("Goal Amount");
 		
+		double monthlyAmount = 0.0;
 		for(Integer key : goals.getGoalMap().keySet())
 		{
-			goalEndProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 100.00));
+			if(goals.getGoalMap().get(key).getTime().equals("Weekly"))
+			{
+				monthlyAmount = home.weeklyToMonthly(goals.getGoalMap().get(key).getAmount());
+			}
+			else if(goals.getGoalMap().get(key).getTime().equals("Yearly"))
+			{
+				monthlyAmount = home.yearlyToMonthly(goals.getGoalMap().get(key).getAmount());
+			}
+			else if(goals.getGoalMap().get(key).getTime().equals("Monthly"))
+			{
+				monthlyAmount = goals.getGoalMap().get(key).getAmount();
+			}
+			goalEndProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), monthlyAmount));
 		}
 		
 		goalTotal.getData().addAll(goalEndProgress);
 		
 		ArrayList<XYChart.Data> goalTrackProgress = new ArrayList<XYChart.Data>();
 		XYChart.Series goalTrack = new XYChart.Series();
-		goalTrack.setName("Progress");
+		goalTrack.setName("Amount Spent");
 		
-		double percentInProgress = 0.0;
+		HashMap<String, Double> monthlyTotals = Transaction.monthTransactionByGoal(goals);
+		/*double percentInProgress = 0.0;
 		ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 		try 
 		{
@@ -383,52 +398,10 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		catch (IOException e) 
 		{
 			e.printStackTrace();
-		}
-		for(Integer key : goals.getGoalMap().keySet())
+		}*/
+		for(String key : monthlyTotals.keySet())
 		{
-			if(key == 0)
-			{
-				ArrayList<Transaction> trans = home.getTransactionsFromGoal(transactions, goals.getGoalMap().get(key).getTitle());
-				
-				percentInProgress = home.getPercentInProgress(trans, goals.getGoalMap().get(key).getAmount());
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), percentInProgress));
-			}
-			else if(key == 1)
-			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 50.00));
-			}
-			else if(key == 2)
-			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 30.00));
-			}
-			else if(key == 3)
-			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
-			}
-			else if(key == 4)
-			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
-			}
-			else if(key == 5)
-			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
-			}
-			else if(key == 6)
-			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
-			}
-			else if(key == 7)
-			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
-			}
-			else if(key == 8)
-			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
-			}
-			else if(key == 9)
-			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
-			}
+			goalTrackProgress.add(new XYChart.Data(key, monthlyTotals.get(key)));
 		}
 		goalTrack.getData().addAll(goalTrackProgress);
 		

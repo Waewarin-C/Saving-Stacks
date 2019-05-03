@@ -369,11 +369,11 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		{
 			if(goals.getGoalMap().get(key).getTime().equals("Weekly"))
 			{
-				monthlyAmount = home.weeklyToMonthly(goals.getGoalMap().get(key).getAmount());
+				monthlyAmount = (goals.getGoalMap().get(key).getAmount()) * 4;
 			}
 			else if(goals.getGoalMap().get(key).getTime().equals("Yearly"))
 			{
-				monthlyAmount = home.yearlyToMonthly(goals.getGoalMap().get(key).getAmount());
+				monthlyAmount = (goals.getGoalMap().get(key).getAmount()) / 12;
 			}
 			else if(goals.getGoalMap().get(key).getTime().equals("Monthly"))
 			{

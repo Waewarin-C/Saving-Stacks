@@ -86,16 +86,6 @@ public class Home {
 		return spending;
 	}
 	
-	public double weeklyToMonthly(double amount)
-	{
-		return amount * 4;
-	}
-	
-	public double yearlyToMonthly(double amount)
-	{
-		return amount / 12;
-	}
-	
 	public ArrayList<Transaction> getTransactionsFromGoal(ArrayList<Transaction> transactions, String goal)
 	{
 		ArrayList<Transaction> temp = new ArrayList<Transaction>();

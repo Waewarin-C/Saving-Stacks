@@ -321,9 +321,9 @@ public class Transaction {
 		{
 			try {
 				LocalDate date = LocalDate.now();
-				DateTimeFormatter format = DateTimeFormatter.ofPattern("mm dd yyyy");
+				DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 				String dateString = date.format(format);
-				String tokens[] = dateString.split(" ");
+				String tokens[] = dateString.split("-");
 				int month = Integer.parseInt(tokens[0]);
 				int year = Integer.parseInt(tokens[2]);
 				
@@ -348,9 +348,9 @@ public class Transaction {
 					{
 						Transaction y = trans.get(k);
 						String title = y.getTag();
-						String dateArr[] = y.getTransDate().split("//");
+						String dateArr[] = y.getTransDate().split("/");
 						int monTest = Integer.parseInt(dateArr[0]);
-						int yearTest = Integer.parseInt(dateArr[3]);						
+						int yearTest = Integer.parseInt(dateArr[2]);						
 						
 						if( month == monTest && yearTest == year && x.equalsIgnoreCase(title))
 						{

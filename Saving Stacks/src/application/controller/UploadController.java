@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -60,7 +61,6 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	private ArrayList<ChoiceBox<String>> choiceBoxes;
 	private ArrayList<Label> labels;
 	private ArrayList<TextField> textFields;
-	
 	
 	
 	private static final String BACKGROUND_COLOR_STYLE = "-fx-background-color: #33333d";
@@ -270,13 +270,12 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		if (arrayIndicator == transactions.size() - 1)
 		{
 			countLabel.setText(arrayIndicator + 1 + "/" + transactions.size());
-			continueButton.setVisible(false);
+			
 		}
 		else
 		{
 			countLabel.setText(arrayIndicator + "/" + transactions.size());
 		}
-		
 		
 	}
 
@@ -293,15 +292,20 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		{
 			@SuppressWarnings("unchecked")
 			String choice = ((ChoiceBox<String>) getNodeByRowColumnIndex(i, 3)).getValue();
-			if (choice.equals("Unset"))
-			{
-				continue;
-			}
 			transactions.get(i).setName(textFields.get(i).getText());
 			transactions.get(i).setTag(choice);
 		}
 		
-		Transaction.saveTransaction(transactions);
+		try {
+			ArrayList<Transaction> t = Transaction.loadTransactions();
+			transactions.addAll(t);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//as opposed to appending, we will save it this way.
+		Transaction.saveTransactions(transactions);
+		
 		getNextItems(moveToNextPage);
 	}
 	
@@ -342,6 +346,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		textFields = new ArrayList<>();
 		
 		GridPane.setHalignment(saveButton,  HPos.CENTER);
+		continueButton.setVisible(false);
 		saveButton.setVisible(false);
 		countLabel.setVisible(false);
 		countLabel.textFillProperty().bind(warning.textFillProperty());

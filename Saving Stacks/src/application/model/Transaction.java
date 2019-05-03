@@ -375,6 +375,27 @@ public class Transaction {
 		
 	}
 	
+	
+	public static void saveTransactions(ArrayList<Transaction> transactions)
+	{
+		
+		try {
+			FileWriter fw = new FileWriter(new File(transFilename));
+			
+			for (int i = 0; i < transactions.size(); i++)
+			{
+				fw.write(transactions.get(i).toString());
+			}
+			
+			fw.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	/**
 	 * toStringList creates a string to be displayed on the listview.
 	 * 

@@ -201,27 +201,46 @@ public class Transaction {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	/**
 	//delete a line in file, hope it works. 
 	//delete from transaction arraylist. 
-	public static void deleter(String file, String deleteMe) {
-	    try 
-	    {
-	      File inFile = new File(file);
-	      if (!inFile.isFile()) 
-	      {
-	        System.out.println("This is not a already existing file");
-	        return;
-	      }
+	/**
+	 * Deletes a transaction from the list view from the transaction file.
+	 * 
+	 * @param deleteMe String is a string from the list view of the transaction that needs to be deleted.
+	 */
+	public static void deleter( String deleteMe) {
+		
+		String tokens[] = deleteMe.split("-");
+		int idToDelete = Integer.parseInt(tokens[0].trim());
+		
+		ArrayList<Transaction> transFileLoad = null;
+		
+		try {
+			transFileLoad = loadTransactions();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		if(transFileLoad == null)
+			System.out.println("Transaction from the file did not load.");	      
+	     
+		for(int i = 0; i < transFileLoad.size(); i++)
+		{
+			Transaction temp = transFileLoad.get(i);
+			if( temp.getTransId() == idToDelete )
+			{
+				transFileLoad.remove(i);
+			}
+			else
+			{
+				saveTransToNewFile( temp );
+			}
+		}
+    
+		/*
 	      //Construct the new file that will later be renamed to the original filename.
-	      File tempF = new File(inFile.getAbsolutePath() + ".csv");
-	      BufferedReader br = new BufferedReader(new FileReader(file));
-	      PrintWriter pw = new PrintWriter(new FileWriter(tempF));
+	      BufferedReader br = new BufferedReader(new FileReader(inFile));
+	      PrintWriter pw = new PrintWriter(new FileWriter(inFile));
 	      String line = null;
 	      //Read from the original file and write to the new
 	      while ((line = br.readLine()) != null) 
@@ -242,17 +261,38 @@ public class Transaction {
 	      }
 	      //Rename the new file to the old file.
 	      if (!tempF.renameTo(inFile))
-	        System.out.println("Error renaming the file");
-	    }
-	    catch (FileNotFoundException ex) {
-	      ex.printStackTrace();
-	    }
-	    catch (IOException ex) {
-	      ex.printStackTrace();
-	    }
+	        System.out.println("Error renaming the file");*/
+	  //  }catch (IOException ex) {
+	  //    ex.printStackTrace();
+	  //  }
 	  }
-	**/
-
+	
+	/**
+	 * Loads the transaction from the transaction file into an arraylist.
+	 * 
+	 * @return ArrayList<Transaction> of transaction objects in the transaction file.
+	 * @throws IOException
+	 */
+	public static ArrayList<Transaction> loadTransactions() throws IOException
+	{
+		ArrayList<Transaction> temp = new ArrayList<Transaction>();
+		Scanner scan = new Scanner(new File( transFilename ));
+		
+		while( scan.hasNext())
+		{
+			String line = scan.nextLine();
+			String tokens[] = line.split(",");
+			int id = Integer.parseInt(tokens[0]);
+			double amt = Double.parseDouble(tokens[4]);
+			Transaction trans = new Transaction(id, tokens[1], tokens[3], tokens[2], tokens[5], amt );
+			temp.add(trans);
+			
+		}
+		
+		scan.close();
+		return temp;	
+		
+	}
 	
 	/**
 	 * toStringList creates a string to be displayed on the listview.

@@ -367,12 +367,10 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	 */
 	@FXML
 	public void delete(ActionEvent delete){
-		
+		Transaction.deleter(cashView.getSelectionModel().getSelectedItem());
 		cashView.getItems().removeAll(cashView.getSelectionModel().getSelectedItem());
 		cashStatus2.setText("Successfully deleted");
 		cashStatus.setVisible(false);
-		
-		//Transaction.deleter(cashView.getSelectionModel().getSelectedItem(), filePath);
 	}
 }
 

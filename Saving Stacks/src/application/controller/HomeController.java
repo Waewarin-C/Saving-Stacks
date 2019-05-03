@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -7,6 +8,7 @@ import java.util.ResourceBundle;
 import application.Main;
 import application.model.GoalSet;
 import application.model.Home;
+import application.model.Transaction;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.collections.FXCollections;
@@ -17,13 +19,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
@@ -46,22 +45,22 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	private Home home;
 	
 	@FXML
-	AnchorPane homeAnchor;
+	private AnchorPane homeAnchor;
 	
 	@FXML
-	Pane spendPane, goalPane, switchPane;
+	private Pane spendPane, goalPane, switchPane;
 	
 	@FXML
-	Label moneyPrompt, spendingPrompt, goalPrompt, budget;
+	private Label moneyPrompt, spendingPrompt, goalPrompt, budget;
 	
 	@FXML
-	PieChart spendingChart;
+	private PieChart spendingChart;
 	
 	@FXML
-	BarChart goalGraph;
+	private BarChart goalGraph;
 	
 	@FXML
-	Button weeklyButton, monthlyButton, yearlyButton;
+	private Button weeklyButton, monthlyButton, yearlyButton;
 	
 	/**
 	 * Zoom feature for the Graph object shown on 
@@ -338,6 +337,7 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -351,7 +351,8 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 		home = new Home();
 		
-		ArrayList<PieChart.Data> spending = home.retrieveData(goals);
+		//Show the monthly view by default
+		ArrayList<PieChart.Data> spending = home.retrieveMonthlyData(goals);
 		ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
 		spendingChart.setData(data);
 		
@@ -373,11 +374,24 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		XYChart.Series goalTrack = new XYChart.Series();
 		goalTrack.setName("Progress");
 		
+		double percentInProgress = 0.0;
+		ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+		try 
+		{
+			transactions = Transaction.loadTransactions();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 		for(Integer key : goals.getGoalMap().keySet())
 		{
 			if(key == 0)
 			{
-				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 80.00));
+				ArrayList<Transaction> trans = home.getTransactionsFromGoal(transactions, goals.getGoalMap().get(key).getTitle());
+				
+				percentInProgress = home.getPercentInProgress(trans, goals.getGoalMap().get(key).getAmount());
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), percentInProgress));
 			}
 			else if(key == 1)
 			{
@@ -388,6 +402,30 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 30.00));
 			}
 			else if(key == 3)
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
+			}
+			else if(key == 4)
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
+			}
+			else if(key == 5)
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
+			}
+			else if(key == 6)
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
+			}
+			else if(key == 7)
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
+			}
+			else if(key == 8)
+			{
+				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
+			}
+			else if(key == 9)
 			{
 				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
 			}
@@ -436,15 +474,24 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 		if(buttonPushed.equals("Weekly"))
 		{
-			
+			spendingChart.getData().clear();
+			ArrayList<PieChart.Data> spending = home.retrieveWeeklyData(goals);
+			ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
+			spendingChart.setData(data);
 		}
 		else if(buttonPushed.equals("Monthly"))
 		{
-			
+			spendingChart.getData().clear();
+			ArrayList<PieChart.Data> spending = home.retrieveMonthlyData(goals);
+			ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
+			spendingChart.setData(data);
 		}
 		else if(buttonPushed.equals("Yearly"))
 		{
-			
+			spendingChart.getData().clear();
+			ArrayList<PieChart.Data> spending = home.retrieveYearlyData(goals);
+			ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
+			spendingChart.setData(data);
 		}
 	}
 

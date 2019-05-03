@@ -23,6 +23,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
@@ -336,6 +337,7 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 	}
 	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -352,9 +354,6 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		ArrayList<PieChart.Data> spending = home.retrieveData(goals);
 		ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
 		spendingChart.setData(data);
-		
-		CategoryAxis xAxis = new CategoryAxis();
-		NumberAxis yAxis = new NumberAxis();
 		
 		goalGraph.getXAxis().setLabel("Goals");
 		goalGraph.getYAxis().setLabel("Percentage");
@@ -376,19 +375,19 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 		for(Integer key : goals.getGoalMap().keySet())
 		{
-			if(goals.getGoalMap().get(key).getTitle().equals("Rent"))
+			if(key == 0)
 			{
 				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 80.00));
 			}
-			else if(goals.getGoalMap().get(key).getTitle().equals("Grocery"))
+			else if(key == 1)
 			{
 				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 50.00));
 			}
-			else if(goals.getGoalMap().get(key).getTitle().equals("Gas"))
+			else if(key == 2)
 			{
 				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 30.00));
 			}
-			else if(goals.getGoalMap().get(key).getTitle().equals("Puppies"))
+			else if(key == 3)
 			{
 				goalTrackProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), 45.00));
 			}
@@ -432,9 +431,21 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	}
 
 	@Override
-	public void handle(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void handle(ActionEvent event) {
+		String buttonPushed = ((Button) event.getSource()).getText();
 		
+		if(buttonPushed.equals("Weekly"))
+		{
+			
+		}
+		else if(buttonPushed.equals("Monthly"))
+		{
+			
+		}
+		else if(buttonPushed.equals("Yearly"))
+		{
+			
+		}
 	}
 
 }

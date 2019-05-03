@@ -17,9 +17,38 @@ public class Home {
 	{
 		for(Integer key : goals.getGoalMap().keySet())
 		{
-			spending.add(new PieChart.Data(goals.getGoalMap().get(key).getTitle(), goals.getGoalMap().get(key).getAmount()));
+			if(goals.getGoalMap().get(key).getTime().equals("Weekly"))
+			{
+				double weeklyToMonthly = weeklyConversion(goals.getGoalMap().get(key).getAmount());
+				spending.add(new PieChart.Data(goals.getGoalMap().get(key).getTitle(), weeklyToMonthly));
+			}
+			else if(goals.getGoalMap().get(key).getTime().equals("Yearly"))
+			{
+				double yearlyToMonthly = yearlyConversion(goals.getGoalMap().get(key).getAmount());
+				spending.add(new PieChart.Data(goals.getGoalMap().get(key).getTitle(), yearlyToMonthly));
+			}
+			else if(goals.getGoalMap().get(key).getTime().equals("Monthly"))
+			{
+				double monthly = goals.getGoalMap().get(key).getAmount();
+				spending.add(new PieChart.Data(goals.getGoalMap().get(key).getTitle(), monthly));
+			}
 		}
 		
 		return spending;
+	}
+	
+	public double weeklyConversion(double amount)
+	{
+		return amount * 4;
+	}
+	
+	public void monthlyConversion()
+	{
+		
+	}
+	
+	public double yearlyConversion(double amount)
+	{
+		return amount / 12;
 	}
 }

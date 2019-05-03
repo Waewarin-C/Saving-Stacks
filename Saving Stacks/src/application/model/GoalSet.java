@@ -53,6 +53,42 @@ public class GoalSet {
 	}
 	
 	/**
+	 * Takes in a GoalSet object HashMap and creates a new hashmap with the title of the goal
+	 * as the key and the amount of the goal as the key value.
+	 * 
+	 * @param goal GoalSet HashMap that contains the goals to evaluate.
+	 * @return HashMap<String,Double> of the goals by day.
+	 */
+	public HashMap<String, Double> setDailyGoalsByTitle( HashMap<Integer, Goal> goal)
+	{
+		HashMap<String, Double> temp = new HashMap<String, Double>();
+		
+		for(int i = 0; i < goal.size(); i++ )
+		{
+			String title = goal.get(i).getTitle();
+			String timeframe = goal.get(i).getTime();
+			double amount = goal.get(i).getAmount();
+			
+			if( timeframe.equalsIgnoreCase("weekly"))
+			{
+				amount = amount/7;
+			}
+			else if( timeframe.equalsIgnoreCase("monthly"))
+			{
+				amount = amount/30;
+			}
+			else if( timeframe.equalsIgnoreCase("yearly"))
+			{
+				amount = amount/365;
+			}
+			
+			temp.put(title, amount);
+		}
+		
+		return temp;
+	}
+	
+	/**
 	 * loadGoals loads the goals into the GoalSet HashMap and sets the key value as the 
 	 * index of the grid pane row in which it was created.
 	 * 

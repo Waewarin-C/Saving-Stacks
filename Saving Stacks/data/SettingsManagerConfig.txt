@@ -1,6 +1,6 @@
 is_login_active=true
 is_protection_enabled=true
-welcome_shown_once=true
+welcome_shown_once=false
 is_dark_mode_enabled=false
 user_password=c00e6ad9069efaef418f33a0f5daf4a641a4c26ef9162320fed2609a47044bb6
 user_question=favorite class

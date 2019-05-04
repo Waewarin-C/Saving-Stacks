@@ -32,7 +32,7 @@ Future enchancements that we would like to make to Saving Stacks 2.0 include:
 # Installations #
 1. Clone the repo
 2. Run the repo
-3. There is no default password or security question provided.
+3. Default password is "GitRowdy" - Protection can be disabled in settings.
 
 # License #
 MIT License

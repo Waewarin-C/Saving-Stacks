@@ -185,7 +185,7 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 		//date regex
 		String dateregex =("^(0[1-9]?|[1-9]|1[0-2])/(0[1-9]|[1-9]|1[0-9]|2[0-9]|30|31)/([0-9]{4})$");
 		//price regex
-		String priceregex =("[0-9]*\\.?[0-9][0-9]");
+		String priceregex =("\\$?([-]?[0-9]+\\.?[0-9]?[0-9]?)");
 		
 		/*
 		 * If any information is missing, the error messages are set.

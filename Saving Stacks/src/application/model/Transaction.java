@@ -234,12 +234,9 @@ public class Transaction {
 			{
 				transFileLoad.remove(i);
 			}
-			else
-			{
-				saveTransToNewFile( temp );
-			}
 		}
     
+		saveTransactions( transFileLoad );
 		/*
 	      //Construct the new file that will later be renamed to the original filename.
 	      BufferedReader br = new BufferedReader(new FileReader(inFile));

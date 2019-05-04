@@ -64,7 +64,6 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	private ArrayList<Label> labels;
 	private ArrayList<TextField> textFields;
 	
-	private boolean loadedOnce;
 	
 	private static final String BACKGROUND_COLOR_STYLE = "-fx-background-color: #33333d";
 	private static final String controllerID = "UPLOAD";
@@ -305,7 +304,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		{
 			transactions.addAll(temporary);
 			
-			Transaction.saveTransaction(transactions);
+			Transaction.saveTransactions(transactions);
 			
 			saveButton.setDisable(true);
 			

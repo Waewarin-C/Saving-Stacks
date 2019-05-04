@@ -110,4 +110,9 @@ public class Home {
 		
 		return spending;
 	}
+	
+	public ArrayList<PieChart.Data> getSpending()
+	{
+		return spending;
+	}
 }

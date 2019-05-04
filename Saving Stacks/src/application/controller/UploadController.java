@@ -54,6 +54,8 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	private ActionEvent moveToNextPage;
 	
 	private int arrayIndicator;
+	private int saveIndicator;
+	
 	private ArrayList<Transaction> transactions;
 	private ArrayList<String> goalNames;
 	private HashMap<String, Goal> goalMap;
@@ -295,13 +297,15 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		{
 			@SuppressWarnings("unchecked")
 			String choice = ((ChoiceBox<String>) getNodeByRowColumnIndex(i, 3)).getValue();
-			transactions.get(i).setName(textFields.get(i).getText());
-			transactions.get(i).setTag(choice);
+			transactions.get(saveIndicator).setName(textFields.get(i).getText());
+			transactions.get(saveIndicator).setTag(choice);
+			saveIndicator++;
 		}
-		
+			
 		
 		if (arrayIndicator == transactions.size() - 1)
 		{
+			
 			transactions.addAll(temporary);
 			
 			Transaction.saveTransactions(transactions);
@@ -311,9 +315,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			return;
 			
 		}
-		
-		//as opposed to appending, we will save it this way.
-		Transaction.saveTransactions(transactions);
+
 		
 		getNextItems(moveToNextPage);
 	}

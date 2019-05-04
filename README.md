@@ -53,7 +53,7 @@ Application SVGs/Icons provided by Google material design.
 Application colors provided by Google material design.
 
 All assets used are open source and available here:
-https://material.io/design/
+https://material.io/tools/
 
 # License #
 MIT License

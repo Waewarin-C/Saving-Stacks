@@ -17,7 +17,7 @@ Saving Stacks is a personal financial application that allows users to upload tr
 * Login attempts does not always sync up. Account might lock without warning.
 * Transactions.csv Data Management: The transaction file will continue to grow. If we had more time, we would have liked to establish data management to remove any transactions that will no longer be applicable provided their time stamp and the metrics displayed on the home scene.
 * The pie chart on the home page changes with each view clicked, but the ratios still look the same throughout each view; however, the amounts do change on the background after the calculations.
-
+* Animations tend to skip on first play/efficiency reduction when many things are open. To view the animations after first launch (at least on the home page) click "Zoom" more than once.
 
 # Future Enchancements #
 Future enchancements that we would like to make to Saving Stacks 2.0 include:

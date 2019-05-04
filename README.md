@@ -19,6 +19,7 @@ Many, we are trying.
 * Login attempts does not always sync up. Account might lock without warning.
 * Transactions.csv Data Management: The transaction file will continue to grow. If we had more time, we would have liked to establish data management to remove any transactions that will no longer be applicable provided their time stamp and the metrics displayed on the home scene.
 * The pie chart on the home page changes with each view clicked, but the ratios still look the same throughout each view; however, the amounts do change on the background after the calculations.
+* Currently the Uploads section disallows custom expense titles due to a bug.
 
 
 # Future Enchancements #
@@ -31,7 +32,7 @@ Future enchancements that we would like to make to Saving Stacks 2.0 include:
 # Installations #
 1. Clone the repo
 2. Run the repo
-3. There is no default password or security question provided.
+3. Default password is "GitRowdy" - Protection can be disabled in settings.
 
 # License #
 MIT License

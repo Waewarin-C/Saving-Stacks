@@ -85,5 +85,4 @@ public class Home {
 		
 		return spending;
 	}
-
 }

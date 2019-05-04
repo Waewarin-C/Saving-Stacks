@@ -431,31 +431,164 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void handle(ActionEvent event) {
 		String buttonPushed = ((Button) event.getSource()).getText();
+		
+		goals = new GoalSet();
+		goals.loadGoals("data/goals.csv");
 		home = new Home();
 		
 		if(buttonPushed.equals("Weekly"))
 		{
+			//Pie chart
 			spendingChart.getData().clear();
 			ArrayList<PieChart.Data> spending = home.retrieveWeeklyData(goals);
 			ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
-			spendingChart.getData().addAll(data);
+			spendingChart.setData(data);
+			
+			//Bar chart
+			goalGraph.getData().clear();
+			goalGraph.getXAxis().setLabel("Goals");
+			goalGraph.getYAxis().setLabel("Amount");
+			
+			ArrayList<XYChart.Data> goalEndProgress = new ArrayList<XYChart.Data>();
+			XYChart.Series goalTotal = new XYChart.Series();
+			goalTotal.setName("Goal Amount");
+			
+			double weeklyAmount = 0.0;
+			for(Integer key : goals.getGoalMap().keySet())
+			{
+				if(goals.getGoalMap().get(key).getTime().equals("Weekly"))
+				{
+					weeklyAmount = (goals.getGoalMap().get(key).getAmount());
+				}
+				else if(goals.getGoalMap().get(key).getTime().equals("Yearly"))
+				{
+					weeklyAmount = (goals.getGoalMap().get(key).getAmount()) / 52;
+				}
+				else if(goals.getGoalMap().get(key).getTime().equals("Monthly"))
+				{
+					weeklyAmount = (goals.getGoalMap().get(key).getAmount()) / 4;
+				}
+				goalEndProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), weeklyAmount));
+			}
+			
+			goalTotal.getData().addAll(goalEndProgress);
+			
+			ArrayList<XYChart.Data> goalTrackProgress = new ArrayList<XYChart.Data>();
+			XYChart.Series goalTrack = new XYChart.Series();
+			goalTrack.setName("Amount Spent");
+			
+			HashMap<String, Double> monthlyTotals = Transaction.monthTransactionByGoal(goals);
+			for(String key : monthlyTotals.keySet())
+			{
+				goalTrackProgress.add(new XYChart.Data(key, (monthlyTotals.get(key)) / 4));
+			}
+			goalTrack.getData().addAll(goalTrackProgress);
+			
+			goalGraph.getData().addAll(goalTotal, goalTrack);
 		}
 		else if(buttonPushed.equals("Monthly"))
 		{
+			//Pie chart
 			spendingChart.getData().clear();
 			ArrayList<PieChart.Data> spending = home.retrieveMonthlyData(goals);
 			ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
 			spendingChart.setData(data);
+			
+			//Bar chart
+			goalGraph.getData().clear();
+			goalGraph.getXAxis().setLabel("Goals");
+			goalGraph.getYAxis().setLabel("Amount");
+			
+			ArrayList<XYChart.Data> goalEndProgress = new ArrayList<XYChart.Data>();
+			XYChart.Series goalTotal = new XYChart.Series();
+			goalTotal.setName("Goal Amount");
+			
+			double monthlyAmount = 0.0;
+			for(Integer key : goals.getGoalMap().keySet())
+			{
+				if(goals.getGoalMap().get(key).getTime().equals("Weekly"))
+				{
+					monthlyAmount = (goals.getGoalMap().get(key).getAmount()) * 4;
+				}
+				else if(goals.getGoalMap().get(key).getTime().equals("Yearly"))
+				{
+					monthlyAmount = (goals.getGoalMap().get(key).getAmount()) / 12;
+				}
+				else if(goals.getGoalMap().get(key).getTime().equals("Monthly"))
+				{
+					monthlyAmount = goals.getGoalMap().get(key).getAmount();
+				}
+				goalEndProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), monthlyAmount));
+			}
+			
+			goalTotal.getData().addAll(goalEndProgress);
+			
+			ArrayList<XYChart.Data> goalTrackProgress = new ArrayList<XYChart.Data>();
+			XYChart.Series goalTrack = new XYChart.Series();
+			goalTrack.setName("Amount Spent");
+			
+			HashMap<String, Double> monthlyTotals = Transaction.monthTransactionByGoal(goals);
+			for(String key : monthlyTotals.keySet())
+			{
+				goalTrackProgress.add(new XYChart.Data(key, monthlyTotals.get(key)));
+			}
+			goalTrack.getData().addAll(goalTrackProgress);
+			
+			goalGraph.getData().addAll(goalTotal, goalTrack);
 		}
 		else if(buttonPushed.equals("Yearly"))
 		{
+			//Pie chart
 			spendingChart.getData().clear();
 			ArrayList<PieChart.Data> spending = home.retrieveYearlyData(goals);
 			ObservableList<PieChart.Data> data = FXCollections.observableList(spending);
 			spendingChart.setData(data);
+			
+			//Bar chart
+			goalGraph.getData().clear();
+			goalGraph.getXAxis().setLabel("Goals");
+			goalGraph.getYAxis().setLabel("Amount");
+			
+			ArrayList<XYChart.Data> goalEndProgress = new ArrayList<XYChart.Data>();
+			XYChart.Series goalTotal = new XYChart.Series();
+			goalTotal.setName("Goal Amount");
+			
+			double yearlyAmount = 0.0;
+			for(Integer key : goals.getGoalMap().keySet())
+			{
+				if(goals.getGoalMap().get(key).getTime().equals("Weekly"))
+				{
+					yearlyAmount = (goals.getGoalMap().get(key).getAmount()) * 52;
+				}
+				else if(goals.getGoalMap().get(key).getTime().equals("Yearly"))
+				{
+					yearlyAmount = goals.getGoalMap().get(key).getAmount();
+				}
+				else if(goals.getGoalMap().get(key).getTime().equals("Monthly"))
+				{
+					yearlyAmount = (goals.getGoalMap().get(key).getAmount()) * 12 ;
+				}
+				goalEndProgress.add(new XYChart.Data(goals.getGoalMap().get(key).getTitle(), yearlyAmount));
+			}
+			
+			goalTotal.getData().addAll(goalEndProgress);
+			
+			ArrayList<XYChart.Data> goalTrackProgress = new ArrayList<XYChart.Data>();
+			XYChart.Series goalTrack = new XYChart.Series();
+			goalTrack.setName("Amount Spent");
+			
+			HashMap<String, Double> monthlyTotals = Transaction.monthTransactionByGoal(goals);
+			for(String key : monthlyTotals.keySet())
+			{
+				goalTrackProgress.add(new XYChart.Data(key, (monthlyTotals.get(key)) * 12));
+			}
+			goalTrack.getData().addAll(goalTrackProgress);
+			
+			goalGraph.getData().addAll(goalTotal, goalTrack);
 		}
 	}
 

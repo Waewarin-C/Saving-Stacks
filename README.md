@@ -35,7 +35,7 @@ the welcome screen.
 
 *Password: GitRowdy
 *Password Question: favorite class
-*Password Anser: apps
+*Password Answer: apps
 
 # Additional Documents #
 The sample data mirrors a transaction report that can be downloaded from a bank website. This can be used to test the

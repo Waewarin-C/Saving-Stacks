@@ -315,6 +315,16 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			return;
 			
 		}
+		else
+		{
+			
+			transactions.addAll(temporary);
+			
+			Transaction.saveTransactions(transactions);
+			
+			transactions.removeAll(temporary);
+			
+		}
 
 		
 		getNextItems(moveToNextPage);

@@ -1,3 +1,10 @@
+/**
+ * Home takes care of converting the data for the pie chart
+ * between weekly, monthly, and yearly
+ * 
+ * @author Waewarin Chindarassami (fik450)
+ */
+
 package application.model;
 
 import java.util.ArrayList;
@@ -13,6 +20,12 @@ public class Home {
 		spending = new ArrayList<PieChart.Data>();
 	}
 	
+	/**
+	 * Changes all the goal amounts entered to be weekly
+	 * 
+	 * @param goals GoalSet - HashMap of the goals
+	 * @return ArrayList<PieChart.Data> - ArrayList of the converted amounts
+	 */
 	public ArrayList<PieChart.Data> retrieveWeeklyData(GoalSet goals)
 	{
 		for(Integer key : goals.getGoalMap().keySet())
@@ -38,6 +51,12 @@ public class Home {
 		return spending;
 	}
 	
+	/**
+	 * Changes all the goal amounts entered to be monthly
+	 * 
+	 * @param goals GoalSet - HashMap of the goals
+	 * @return ArrayList<PieChart.Data> - ArrayList of the converted amounts
+	 */
 	public ArrayList<PieChart.Data> retrieveMonthlyData(GoalSet goals)
 	{
 		for(Integer key : goals.getGoalMap().keySet())
@@ -62,6 +81,12 @@ public class Home {
 		return spending;
 	}
 	
+	/**
+	 * Changes all the goal amounts entered to be yearly
+	 * 
+	 * @param goals GoalSet - HashMap of the goals
+	 * @return ArrayList<PieChart.Data> - ArrayList of the converted amounts
+	 */
 	public ArrayList<PieChart.Data> retrieveYearlyData(GoalSet goals)
 	{
 		for(Integer key : goals.getGoalMap().keySet())

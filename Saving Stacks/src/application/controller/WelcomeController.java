@@ -1,4 +1,8 @@
 /**
+ * The WelcomeController interacts with the Welcome View (Welcome.fxml)
+ * of the application to display information about what the user can 
+ * expect from the application
+ * 
  * @author Waewarin Chindarassami (fik450)
  */
 
@@ -32,29 +36,35 @@ import javafx.util.Duration;
 public class WelcomeController implements EventHandler<ActionEvent>, Initializable{
 	
 	@FXML
-	Button startButton;
+	private Button startButton;
 	
 	@FXML
-	Pane homeIcon, goalsIcon, cashIcon, settingsIcon;
+	private Pane homeIcon, goalsIcon, cashIcon, settingsIcon;
 	
 	@FXML
-	Label welcome, name;
+	private Label welcome, name;
 	
 	@FXML
-	Label homeLabel, homeLine1, homeLine2;
+	private Label homeLabel, homeLine1, homeLine2;
 	
 	@FXML
-	Label goalsLabel, goalsLine1, goalsLine2;
+	private Label goalsLabel, goalsLine1, goalsLine2;
 	
 	@FXML
-	Label cashLabel, uploadLabel, cashLine1, cashLine2, cashLine3;
+	private Label cashLabel, uploadLabel, cashLine1, cashLine2, cashLine3;
 	
 	@FXML
-	Label settingsLabel, settingsLine1, settingsLine2;
+	private Label settingsLabel, settingsLine1, settingsLine2;
 	
 	@FXML
-	ImageView logo;
+	private ImageView logo;
 	
+	/**
+	 * handle()
+	 * 
+	 * Redirects the user the the Home Page once the 
+	 * "Get Started" is clicked
+	 */
 	@Override
 	public void handle(ActionEvent arg0) 
 	{	
@@ -75,7 +85,8 @@ public class WelcomeController implements EventHandler<ActionEvent>, Initializab
 	/**
 	 * initialize()
 	 * 
-	 * Initializes the icons
+	 * Initializes and displays the icons
+	 * the corresponds to the bottom bar in the application
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 

@@ -11,6 +11,7 @@
 package application.controller;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -360,10 +361,16 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		budget.setText("$" + Main.settings.getValueWithProperty("monthly_budget"));
 		
+		double sumofTransations = Transaction.currentMonthTotal();
+		Double monthlyBudget = Double.valueOf(Main.settings.getValueWithProperty("monthly_budget"));
+		double remainingBudget = monthlyBudget - sumofTransations;
+		DecimalFormat df = new DecimalFormat("#.00");
+		String strBudgRem = df.format(remainingBudget);
+
+		budget.setText("$" + strBudgRem);
 		
-		Double budgetRemaining = Double.valueOf(Main.settings.getValueWithProperty("monthly_budget"));
+		Double budgetRemaining = Double.valueOf(strBudgRem);
 		
 		goals = new GoalSet();
 		goals.loadGoals("data/goals.csv");

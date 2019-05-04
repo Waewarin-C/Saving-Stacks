@@ -107,7 +107,7 @@
             <Label layoutX="622.0" layoutY="557.0" text="Gabriel Morales" />
             <Label layoutX="593.0" layoutY="577.0" text="Waewarin Chindarassami" />
             <Label layoutX="616.0" layoutY="596.0" text="Dakota Kuczenski" />
-            <Label layoutX="604.0" layoutY="618.0" text="Chelsea Flores-Young" />
+            <Label layoutX="604.0" layoutY="618.0" text="Chelsea Flores Young" />
          </children>
       </Pane>
    </children>

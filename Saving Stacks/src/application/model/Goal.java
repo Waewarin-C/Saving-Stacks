@@ -1,5 +1,11 @@
 package application.model;
 
+/**
+ * Goal.java class sets up the Goal object, it's toString() and getters and setters.
+ * 
+ * @author Chelsea Flores (rue750)
+ *
+ */
 public class Goal {
 	
 	/*

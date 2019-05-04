@@ -1,3 +1,13 @@
+/**
+ * The HomeController interacts with the Home View (Home.fxml)
+ * of the application to display the statics and progress of
+ * the goals the user has entered. The user are also able to 
+ * view theses statics through a weekly, monthly, or yearly view.
+ * 
+ * @author Waewarin Chindarassami (fik450)
+ * Zoom features by Gabriel Morales (woc797)
+ */
+
 package application.controller;
 
 import java.net.URL;
@@ -338,6 +348,14 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	}
 	
 
+	/**
+	 * Displays the remaining monthly budget
+	 * Displays monthly statics and progress of the goals
+	 * the user has entered in the goals page by default
+	 * 
+	 * @param arg0 URL
+	 * @param arg1 ResourceBundle
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -431,6 +449,13 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 		
 	}
 
+	/**
+	 * Changes the views of the pie chart and bar chart based
+	 * on the view the user selects from the three available 
+	 * buttons (Weekly, Monthly, Yearly)
+	 * 
+	 * @param event ActionEvent - Event fired from any of the three view buttons
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void handle(ActionEvent event) {

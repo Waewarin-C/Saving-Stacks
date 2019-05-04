@@ -6,7 +6,7 @@ Saving Stacks
 * Waewarin Chindarassami: Waewarin-C
 * Moses Arocha: moses-a
 * Dakota Kuczenski: Dakotakuczenski
-* Chelsea Flores-Young: ChelseaFlores
+* Chelsea Flores Young: ChelseaFlores
 
 # Motivation #
 Obtain financial freedom with Saving Stacks: Your Financial Organization App. Our intuitive, easy-to-use application allows you to organize your cash flow and generate weekly, monthly and yearly financial goals. For those of us who find tracking our finances and maintaining saving plans next to impossible, download our desktop app to get started.
@@ -14,8 +14,6 @@ Obtain financial freedom with Saving Stacks: Your Financial Organization App. Ou
 Saving Stacks is a personal financial application that allows users to upload transaction files, enter cash transactions manually, and set weekly, monthly and yearly goals. The application also contains metrics, so the user can easily track spending and savings.
 
 # Known Issues #
-Many, we are trying.
-* Budget on the home page does not update.
 * Login attempts does not always sync up. Account might lock without warning.
 * Transactions.csv Data Management: The transaction file will continue to grow. If we had more time, we would have liked to establish data management to remove any transactions that will no longer be applicable provided their time stamp and the metrics displayed on the home scene.
 * The pie chart on the home page changes with each view clicked, but the ratios still look the same throughout each view; however, the amounts do change on the background after the calculations.
@@ -27,6 +25,23 @@ Future enchancements that we would like to make to Saving Stacks 2.0 include:
 * Goals: Establish effective dates for the goals and apply the transactions within this date range. 
 * Further metrics allowing you to look at transaction and goal history.
 * Goal benchmark feedback, i.e. "Congratulations! You've Reached Your Goal" or "Keep trying! You'll get them next time."
+* Upload Files: create further data handling to ensure proper input, i.e. identify same file uploads, deposits, withdraws, etc.
+
+# Login #
+The login functions for the individual user who has the application on his/her desktop. This can be enable and disabled, and 
+would be set post entering the application for the first time. While we do have the password enabled to display functionality, 
+the user would typically only be able to enable this feature after entering the application for the first time and moving passed
+the welcome screen.
+
+*Password: GitRowdy
+*Password Question: favorite class
+*Password Anser: apps
+
+# Additional Documents #
+The sample data mirrors a transaction report that can be downloaded from a bank website. This can be used to test the
+Upload Files functionality.
+
+*SampleData.csv
 
 # Installations #
 1. Clone the repo

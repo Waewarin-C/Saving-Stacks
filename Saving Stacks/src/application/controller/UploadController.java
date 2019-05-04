@@ -45,9 +45,11 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	
 	@FXML private Label warning, uploadPrompt, date, tranTitle, amnt, goalTitle, countLabel;
 	
-	@FXML private Button fileButton, continueButton, saveButton;
+	@FXML private Button fileButton, saveButton;
 
 	@FXML private GridPane gridView;
+	
+	private ArrayList<Transaction> temporary;
 	
 	private ActionEvent moveToNextPage;
 	
@@ -62,6 +64,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	private ArrayList<Label> labels;
 	private ArrayList<TextField> textFields;
 	
+	private boolean loadedOnce;
 	
 	private static final String BACKGROUND_COLOR_STYLE = "-fx-background-color: #33333d";
 	private static final String controllerID = "UPLOAD";
@@ -88,8 +91,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		
 		transactions = UploadManager.getTransactions();
 		gridView.toFront();
-		
-		continueButton.setVisible(true);
+
 		fileButton.setVisible(false);
 		warning.setVisible(false);
 		date.setVisible(true); 
@@ -277,6 +279,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			countLabel.setText(arrayIndicator + "/" + transactions.size());
 		}
 		
+		
 	}
 
 	/**
@@ -288,6 +291,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 	public void saveChanges(ActionEvent arg0)
 	{
 		
+		
 		for (int i = 0; i < textFields.size(); i++)
 		{
 			@SuppressWarnings("unchecked")
@@ -296,11 +300,17 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			transactions.get(i).setTag(choice);
 		}
 		
-		try {
-			ArrayList<Transaction> t = Transaction.loadTransactions();
-			transactions.addAll(t);
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+		if (arrayIndicator == transactions.size() - 1)
+		{
+			transactions.addAll(temporary);
+			
+			Transaction.saveTransaction(transactions);
+			
+			saveButton.setDisable(true);
+			
+			return;
+			
 		}
 		
 		//as opposed to appending, we will save it this way.
@@ -346,7 +356,6 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		textFields = new ArrayList<>();
 		
 		GridPane.setHalignment(saveButton,  HPos.CENTER);
-		continueButton.setVisible(false);
 		saveButton.setVisible(false);
 		countLabel.setVisible(false);
 		countLabel.textFillProperty().bind(warning.textFillProperty());
@@ -364,9 +373,7 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 			goalTitle.setTextFill(Color.WHITE); 
 			
 			gridView.setStyle("-fx-border-color: #25282f; -fx-border-width: 3; -fx-border-radius: 20");
-			
-			continueButton.setStyle(BACKGROUND_COLOR_STYLE);
-			continueButton.setTextFill(Color.WHITE);
+
 		}
 
 		warning.setVisible(true);
@@ -386,6 +393,12 @@ public class UploadController implements EventHandler<ActionEvent>, Initializabl
 		
 		goalNames = new ArrayList<>(goalMap.keySet());
 		
+		
+		try {
+			temporary = Transaction.loadTransactions();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

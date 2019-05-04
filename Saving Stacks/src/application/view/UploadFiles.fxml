@@ -45,11 +45,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="continueButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="329.0" style="-fx-background-color: white;" text="Changes saved on button press." visible="false" GridPane.columnIndex="1" GridPane.rowIndex="11">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Button>
             <Label fx:id="countLabel" alignment="CENTER" prefHeight="47.0" prefWidth="157.0" text="Label" GridPane.rowIndex="11">
                <font>
                   <Font size="22.0" />

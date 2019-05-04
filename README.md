@@ -48,6 +48,13 @@ Upload Files functionality.
 2. Run the repo
 3. Default password is "GitRowdy" - Protection can be disabled in settings.
 
+# Acknowledgements #
+Application SVGs/Icons provided by Google material design.
+Application colors provided by Google material design.
+
+All assets used are open source and available here:
+https://material.io/design/
+
 # License #
 MIT License
 Copyright (c) 2019 UTSA CS-3443 Git-Rowdy

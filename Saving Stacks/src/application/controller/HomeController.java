@@ -273,15 +273,15 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	 */
 	public void fadeIn(ImageView img, Pane blurPane, Button b)
 	{
-		FadeTransition imgFT = new FadeTransition(Duration.millis(300), img);
+		FadeTransition imgFT = new FadeTransition(Duration.millis(200), img);
 		imgFT.setFromValue(0.0);
 		imgFT.setToValue(1.0);
 		
-		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(300), blurPane);
+		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(200), blurPane);
 		blurPaneFT.setFromValue(0.0);
 		blurPaneFT.setToValue(1.0);
 		
-		FadeTransition buttonFT = new FadeTransition(Duration.millis(300), b);
+		FadeTransition buttonFT = new FadeTransition(Duration.millis(200), b);
 		buttonFT.setFromValue(0.0);
 		buttonFT.setToValue(1.0);
 		
@@ -302,15 +302,15 @@ public class HomeController implements EventHandler<ActionEvent>, Initializable 
 	 */
 	public void fadeOut(ImageView img, Pane blurPane, Button b)
 	{
-		FadeTransition imgFT = new FadeTransition(Duration.millis(300), img);
+		FadeTransition imgFT = new FadeTransition(Duration.millis(200), img);
 		imgFT.setFromValue(1.0);
 		imgFT.setToValue(0.0);
 		
-		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(300), blurPane);
+		FadeTransition blurPaneFT = new FadeTransition(Duration.millis(200), blurPane);
 		blurPaneFT.setFromValue(1.0);
 		blurPaneFT.setToValue(0.0);
 		
-		FadeTransition buttonFT = new FadeTransition(Duration.millis(300), b);
+		FadeTransition buttonFT = new FadeTransition(Duration.millis(200), b);
 		buttonFT.setFromValue(1.0);
 		buttonFT.setToValue(0.0);
 		

@@ -362,7 +362,9 @@ public class CashController implements EventHandler<ActionEvent>, Initializable 
 	}
 
 	/**
-	 * 
+	 * Deletes a transaction from the list and calls on the deleter method in transactions. 
+     * click item on list view and then delete, will also show if successful.
+     * 
 	 * @param delete
 	 */
 	@FXML

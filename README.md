@@ -1,6 +1,8 @@
 # Saving-Stacks #
 Saving Stacks
 
+NOTE: This project is now archived and no changes are being made.
+
 # Contributors #
 * Gabriel Morales: Gabiel-Morales
 * Waewarin Chindarassami: Waewarin-C
@@ -64,3 +66,30 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# Screenshots #
+
+<img src="Screenshots/1.JPG" width="434" height="450"></img>
+<img src="Screenshots/20.JPG" width="434" height="450"></img>
+<img src="Screenshots/21.JPG" width="434" height="450"></img>
+<img src="Screenshots/2.JPG" width="434" height="450"></img>
+<img src="Screenshots/3.JPG" width="434" height="450"></img>
+<img src="Screenshots/4.JPG" width="434" height="450"></img>
+<img src="Screenshots/5.JPG" width="434" height="450"></img>
+<img src="Screenshots/9.JPG" width="434" height="450"></img>
+<img src="Screenshots/10.JPG" width="434" height="450"></img>
+<img src="Screenshots/6.JPG" width="434" height="450"></img>
+<img src="Screenshots/7.JPG" width="434" height="450"></img>
+<img src="Screenshots/8.JPG" width="434" height="450"></img>
+<img src="Screenshots/11.JPG" width="434" height="450"></img>
+<img src="Screenshots/18.JPG" width="434" height="450"></img>
+<img src="Screenshots/19.JPG" width="434" height="450"></img>
+<img src="Screenshots/24.JPG" width="434" height="450"></img>
+<img src="Screenshots/14.JPG" width="434" height="450"></img>
+<img src="Screenshots/17.JPG" width="434" height="450"></img>
+<img src="Screenshots/15.JPG" width="434" height="450"></img>
+<img src="Screenshots/16.JPG" width="434" height="450"></img>
+<img src="Screenshots/13.JPG" width="434" height="450"></img>
+<img src="Screenshots/22.JPG" width="434" height="450"></img>
+<img src="Screenshots/23.JPG" width="434" height="450"></img>
+<img src="Screenshots/12.JPG" width="434" height="450"></img>
